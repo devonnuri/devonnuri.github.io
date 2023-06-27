@@ -1,0 +1,124 @@
+body {
+    margin: 0;
+    padding: 0;
+    /* background-color: #f5f5f5; */
+
+    font-family: 'Tex Gyre Termes', serif;
+}
+
+input {
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;
+}
+
+#container {
+    width: 48rem;
+    margin: 0 auto;
+    padding: 0 2rem;
+    border: 1px solid black;
+}
+
+#logo {
+    width: 100%;
+    text-align: center;
+}
+
+#logo img {
+    width: 17.75rem;
+    margin: 3rem 0 0 0;
+}
+
+.search-input {
+    width: 100%;
+    font-size: 1.375em;
+    font-family: 'Tex Gyre Termes', serif;
+    font-style: italic;
+    padding: 0.2rem 0 0.2rem 0.5rem;
+    outline: none;
+
+    margin: 2rem 0;
+}
+
+.search-input::-moz-selection { /* Code for Firefox */
+    color: white;
+    background: black;
+  }
+  
+.search-input::selection {
+color: white;
+background: black;
+}
+
+#content .titles h1 {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 1rem 0 0 0;
+}
+
+#content .titles h2 {
+    font-size: 1.5em;
+    color: gray;
+    font-weight: normal;
+    margin: 0 0 1rem 0;
+}
+
+#content .details {
+    text-align: right;
+    color: gray;
+}
+
+#content .details p {
+    margin: 0.3rem 0;
+}
+
+#content .details a {
+    color: gray;
+    text-decoration: underline;
+}
+
+#content .details a:visited {
+    color: gray;
+}
+
+#content #body {
+    counter-reset: h1counter;
+    text-align: justify;
+    hyphens: auto;
+}
+
+#content #body h1 {
+    counter-reset: h2counter;
+
+    font-size: 1.7em;
+    font-weight: bold;
+    margin: 0.7rem 0;
+}
+
+#content #body h1:before {
+    content: counter(h1counter) ". ";
+    counter-increment: h1counter;
+}
+
+#content #body h1.nocount:before {
+    content: none;
+    counter-increment: none;
+}
+
+#content #body h2 {
+    counter-reset: h3counter;
+
+    font-size: 1.4em;
+    font-weight: bold;
+    margin: 0.7rem 0;
+}
+
+#content #body h2:before {
+    content: counter(h1counter) "." counter(h2counter) ". ";
+    counter-increment: h2counter;
+}
+
+#content #body h2.nocount:before {
+    content: none;
+    counter-increment: none;
+}
