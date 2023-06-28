@@ -100,9 +100,9 @@ fn main() {
         let current_category = if index_entry_filename == "_wiki" {
             "".to_string()      // Root directory
         } else if index_category == "" {
-            frontmatter.get("title").unwrap_or(&"".to_string()).clone()
+            "<a href=\"/".to_string() + index_entry_filename + "/\">" + frontmatter.get("title").unwrap_or(&"".to_string()) + "</a>"
         } else {
-            index_category.clone() + " > " + frontmatter.get("title").unwrap_or(&"".to_string())
+            index_category.clone() + " &gt; <a href=\"/" + index_entry_filename + "/\">" + frontmatter.get("title").unwrap_or(&"".to_string()) + "</a>"
         };
 
         write_html(&index_entry_directory, &index_path, html, &frontmatter, index_category.clone());
