@@ -2,6 +2,8 @@
 name = "blog_generator"
 version = "0.1.0"
 edition = "2021"
+homepage = "https://wiki.onnuri.dev"
+repository = "https://github.com/devonnuri/devonnuri.github.io/"
 
 [dependencies]
 unicode-id = { version = "0.3", features = ["no_std"] }

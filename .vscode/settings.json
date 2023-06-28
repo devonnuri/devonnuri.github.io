@@ -13,5 +13,6 @@
         "./Cargo.toml",
         "./Cargo.toml",
         "./Cargo.toml"
-    ]
+    ],
+    "liveServer.settings.port": 5501
 }

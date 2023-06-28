@@ -20,6 +20,7 @@ use crate::markdown::alloc::{
     vec::Vec,
 };
 use core::str;
+use std::collections::HashMap;
 
 /// Link, image, or footnote call.
 /// Resource or reference.
@@ -129,6 +130,8 @@ struct CompileContext<'a> {
     buffers: Vec<String>,
     /// Current event index.
     index: usize,
+    /// frontmatter
+    frontmatter: HashMap<String, String>,
 }
 
 impl<'a> CompileContext<'a> {
@@ -164,6 +167,7 @@ impl<'a> CompileContext<'a> {
             line_ending_default: line_ending,
             buffers: vec![String::new()],
             index: 0,
+            frontmatter: HashMap::new(),
             options,
         }
     }
@@ -203,8 +207,8 @@ impl<'a> CompileContext<'a> {
     }
 }
 
-/// Turn events and bytes into a string of HTML.
-pub fn compile(events: &[Event], bytes: &[u8], options: &CompileOptions) -> String {
+/// Turn events and bytes into a string of HTML and a frontmatter.
+pub fn compile(events: &[Event], bytes: &[u8], options: &CompileOptions) -> (String, HashMap<String, String>) {
     let mut index = 0;
     let mut line_ending_inferred = None;
 
@@ -291,11 +295,12 @@ pub fn compile(events: &[Event], bytes: &[u8], options: &CompileOptions) -> Stri
     }
 
     debug_assert_eq!(context.buffers.len(), 1, "expected 1 final buffer");
-    context
+    (context
         .buffers
         .get(0)
         .expect("expected 1 final buffer")
-        .into()
+        .into(),
+    context.frontmatter)
 }
 
 /// Handle the event at `index`.
@@ -397,6 +402,7 @@ fn exit(context: &mut CompileContext) {
         Name::DefinitionTitleString => on_exit_definition_title_string(context),
         Name::Emphasis => on_exit_emphasis(context),
         Name::Frontmatter => on_exit_frontmatter(context),
+        Name::FrontmatterChunk => on_exit_frontmatter_chunk(context),
         Name::GfmAutolinkLiteralEmail => on_exit_gfm_autolink_literal_email(context),
         Name::GfmAutolinkLiteralMailto => on_exit_gfm_autolink_literal_mailto(context),
         Name::GfmAutolinkLiteralProtocol => on_exit_gfm_autolink_literal_protocol(context),
@@ -987,6 +993,18 @@ fn on_exit_emphasis(context: &mut CompileContext) {
 fn on_exit_frontmatter(context: &mut CompileContext) {
     context.resume();
     context.slurp_one_line_ending = true;
+}
+
+/// Handle [`Exit`][Kind::Exit]:[`FrontmatterChunk`][Name::FrontmatterChunk].
+fn on_exit_frontmatter_chunk(context: &mut CompileContext) {
+    let line = Slice::from_position(
+        context.bytes,
+        &Position::from_exit_event(context.events, context.index),
+    );
+    let mut splitter = line.as_str().splitn(2, ':');
+    let key = splitter.next().unwrap().trim();
+    let value = splitter.next().unwrap().trim();
+    context.frontmatter.insert(key.to_string(), value.to_string());
 }
 
 /// Handle [`Exit`][Kind::Exit]:[`GfmAutolinkLiteralEmail`][Name::GfmAutolinkLiteralEmail].

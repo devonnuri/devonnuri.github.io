@@ -1,37 +1,91 @@
 mod markdown;
 
+use std::collections::HashMap;
 use std::fs;
-use crate::markdown::Options;
+use std::path::PathBuf;
+use std::ffi::OsStr;
+
+use crate::markdown::{Options, ParseOptions, Constructs};
 use crate::markdown::parser;
 use crate::markdown::to_html;
 
-fn to_html(value: &str) -> String {
-    let mut options = Options::default();
-    options.parse.constructs.frontmatter = true;
+fn to_html(value: &str) -> (String, HashMap<String, String>) {
+    let options = Options {
+        parse: ParseOptions {
+            constructs: Constructs {
+                frontmatter: true,
+                ..Constructs::default()
+            },
+            ..ParseOptions::default()
+        },
+        ..Options::default()
+    };
 
     let (events, parse_state) = parser::parse(value, &options.parse).unwrap();
-    Ok::<String, String>(to_html::compile(
+    // println!("{:#?}", events);
+
+    Ok::<(String, HashMap<String, String>), (String, HashMap<String, String>)>(to_html::compile(
         &events,
         parse_state.bytes,
         &options.compile,
     )).unwrap()
 }
 
+fn write_html(directory_path: &String, html: String, frontmatter: HashMap<String, String>) {
+    // Make directories recursively in '_build' directory
+    fs::create_dir_all(&directory_path).unwrap();
+
+    // Write html file from the template file
+    let template = fs::read_to_string("./_template/entry.html").unwrap();
+    let html = template
+        .replace("{{title}}", &frontmatter.get("title").unwrap_or(&"".to_string()))
+        .replace("{{subtitle}}", &frontmatter.get("subtitle").unwrap_or(&"".to_string()))
+        .replace("{{created_at}}", &frontmatter.get("created_at").unwrap_or(&"".to_string()))
+        .replace("{{updated_at}}", &frontmatter.get("updated_at").unwrap_or(&"".to_string()))
+        .replace("{{content}}", &html);
+
+    fs::write(directory_path.clone() + "/index.html", html).unwrap();
+}
+
 fn main() {
     let mut directory_queue = Vec::new();
     directory_queue.push("./_wiki".to_string());
 
+    // Create '_build' directory if not exists, and clear it.
+    if fs::metadata("./_build").is_ok() {
+        fs::remove_dir_all("./_build").unwrap();
+    }
+    fs::create_dir("./_build").unwrap();
+
+    // Copy all files from '_static' into '_build'
+    for entry in fs::read_dir("./_static").unwrap() {
+        let entry = entry.unwrap();
+        let path = entry.path();
+        let file_name = path.file_name().unwrap().to_str().unwrap();
+        let new_path = "./_build/".to_string() + file_name;
+        fs::copy(path, new_path).unwrap();
+    }
+
+    // Iterate over all files in the directory.
     while let Some(directory_path) = directory_queue.pop() {
         let index_path = directory_path.clone() + "/_index.md";
-        if fs::metadata(index_path.clone()).is_ok() {
-            println!("found index : {}", index_path);
 
-            let index_content = fs::read_to_string(index_path).unwrap();
-            let html = to_html(&index_content);
-            println!("{}", html);
-        }
+        println!("found index : {}", &index_path);
 
-        let dir = fs::read_dir(directory_path).unwrap();
+        let index_content = fs::read_to_string(&index_path).unwrap();
+        let (html, frontmatter) = to_html(&index_content);
+
+        let directory_pathbuf = PathBuf::from(directory_path.clone());
+        let index_entry_filename = directory_pathbuf.file_name().unwrap_or(OsStr::new("")).to_str().unwrap();
+        let index_entry_directory = if index_entry_filename == "_wiki" { 
+            "./_build/".to_string()
+        } else {
+            "./_build/".to_string() + index_entry_filename + "/"
+        };
+
+        write_html(&index_entry_directory, html, frontmatter);
+
+        let dir = fs::read_dir(&directory_path).unwrap();
 
         for dir_entry in dir {
             let path = dir_entry.unwrap().path();
@@ -47,6 +101,12 @@ fn main() {
             }
 
             println!("found md file : {}", path.to_str().unwrap());
+            let entry_filename = path.file_stem().unwrap().to_str().unwrap();
+            let entry_directory = "./_build/".to_string() + entry_filename + "/";
+
+            let content = fs::read_to_string(path.clone()).unwrap();
+            let (html, frontmatter) = to_html(&content);
+            write_html(&entry_directory, html, frontmatter);
         }
     }
 }

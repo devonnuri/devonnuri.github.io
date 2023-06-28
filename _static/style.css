@@ -17,6 +17,7 @@ input {
     margin: 0 auto;
     padding: 0 2rem;
     border: 1px solid black;
+    min-height: 100vh;
 }
 
 #logo {
@@ -36,6 +37,8 @@ input {
     font-style: italic;
     padding: 0.2rem 0 0.2rem 0.5rem;
     outline: none;
+    border: 1px solid black;
+    border-radius: 4px;
 
     margin: 2rem 0;
 }
@@ -43,11 +46,11 @@ input {
 .search-input::-moz-selection { /* Code for Firefox */
     color: white;
     background: black;
-  }
+}
   
 .search-input::selection {
-color: white;
-background: black;
+    color: white;
+    background: black;
 }
 
 #content .titles h1 {
