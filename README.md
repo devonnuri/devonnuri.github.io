@@ -6,3 +6,5 @@ There was no static site generator that pleases my fussy palate. So, I made it b
 
 - [ ] theorem box
 - [ ] multi-language support
+- [ ] internal link support (including auto language fallback)
+- [ ] prevent mathjax to load if there is no math expression

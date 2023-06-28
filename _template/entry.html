@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}} - devonnuri.wiki</title>
     <link rel="stylesheet" href="/style.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$']],
+                displayMath: [['$$', '$$']],
+            },
+        };
+    </script>
 </head>
 <body>
     <div id="container">
@@ -18,8 +28,8 @@
             <input type="text" class="search-input" placeholder="Where do you want to wander?">
         </div>
         
-        <div id="content">
-            <div class="titles">
+        <div class="content">
+            <div class="header">
                 <h1>{{title}}</h1>
                 <h2>{{subtitle}}</h2>
             </div>
@@ -30,7 +40,7 @@
                 <p><a href="#">Languages</a> <a href="#">Edit</a> <a href="#">History</a></p>
             </div>
 
-            <div id="body">
+            <div class="body-content">
                 {{content}}
             </div>
         </div>

@@ -14,6 +14,8 @@ fn to_html(value: &str) -> (String, HashMap<String, String>) {
         parse: ParseOptions {
             constructs: Constructs {
                 frontmatter: true,
+                // math_flow: true,  // due to mathjax
+                // math_text: true,
                 ..Constructs::default()
             },
             ..ParseOptions::default()

@@ -53,44 +53,44 @@ input {
     background: black;
 }
 
-#content .titles h1 {
+.content .header h1 {
     font-size: 2em;
     font-weight: bold;
     margin: 1rem 0 0 0;
 }
 
-#content .titles h2 {
+.content .header h2 {
     font-size: 1.5em;
     color: gray;
     font-weight: normal;
     margin: 0 0 1rem 0;
 }
 
-#content .details {
+.content .details {
     text-align: right;
     color: gray;
 }
 
-#content .details p {
+.content .details p {
     margin: 0.3rem 0;
 }
 
-#content .details a {
+.content .details a {
     color: gray;
     text-decoration: underline;
 }
 
-#content .details a:visited {
+.content .details a:visited {
     color: gray;
 }
 
-#content #body {
+.content .body-content {
     counter-reset: h1counter;
     text-align: justify;
     hyphens: auto;
 }
 
-#content #body h1 {
+.content .body-content h1 {
     counter-reset: h2counter;
 
     font-size: 1.7em;
@@ -98,17 +98,17 @@ input {
     margin: 0.7rem 0;
 }
 
-#content #body h1:before {
+.content .body-content h1:before {
     content: counter(h1counter) ". ";
     counter-increment: h1counter;
 }
 
-#content #body h1.nocount:before {
+.content .body-content h1.nocount:before {
     content: none;
     counter-increment: none;
 }
 
-#content #body h2 {
+.content .body-content h2 {
     counter-reset: h3counter;
 
     font-size: 1.4em;
@@ -116,12 +116,12 @@ input {
     margin: 0.7rem 0;
 }
 
-#content #body h2:before {
+.content .body-content h2:before {
     content: counter(h1counter) "." counter(h2counter) ". ";
     counter-increment: h2counter;
 }
 
-#content #body h2.nocount:before {
+.content .body-content h2.nocount:before {
     content: none;
     counter-increment: none;
 }
