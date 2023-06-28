@@ -2,3 +2,6 @@ target/
 _build/
 _log/
 .vscode/
+Cargo.lock
+.DS_Store
+**/.DS_Store

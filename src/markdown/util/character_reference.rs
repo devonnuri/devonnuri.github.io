@@ -152,4 +152,3 @@ pub fn value_test(marker: u8) -> fn(&u8) -> bool {
         _ => unreachable!("Unexpected marker `{}`", marker),
     }
 }
-
