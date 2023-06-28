@@ -156,13 +156,6 @@ pub fn before(tokenizer: &mut Tokenizer) -> State {
             );
             State::Retry(StateName::LabelEndStart)
         }
-        Some(b'{') => {
-            tokenizer.attempt(
-                State::Next(StateName::TextBefore),
-                State::Next(StateName::TextBeforeData),
-            );
-            State::Retry(StateName::MdxExpressionTextStart)
-        }
         _ => State::Retry(StateName::TextBeforeData),
     }
 }
@@ -178,25 +171,9 @@ pub fn before(tokenizer: &mut Tokenizer) -> State {
 pub fn before_html(tokenizer: &mut Tokenizer) -> State {
     tokenizer.attempt(
         State::Next(StateName::TextBefore),
-        State::Next(StateName::TextBeforeMdxJsx),
-    );
-    State::Retry(StateName::HtmlTextStart)
-}
-
-/// Before mdx jsx (text).
-///
-/// At `<`, which wasn’t an autolink or html.
-///
-/// ```markdown
-/// > | a <b>
-///       ^
-/// ```
-pub fn before_mdx_jsx(tokenizer: &mut Tokenizer) -> State {
-    tokenizer.attempt(
-        State::Next(StateName::TextBefore),
         State::Next(StateName::TextBeforeData),
     );
-    State::Retry(StateName::MdxJsxTextStart)
+    State::Retry(StateName::HtmlTextStart)
 }
 
 /// Before hard break escape.

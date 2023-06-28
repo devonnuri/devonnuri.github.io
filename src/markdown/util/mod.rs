@@ -10,8 +10,6 @@ pub mod identifier;
 pub mod infer;
 pub mod line_ending;
 pub mod location;
-pub mod mdx;
-pub mod mdx_collect;
 pub mod normalize_identifier;
 pub mod sanitize_uri;
 pub mod skip;

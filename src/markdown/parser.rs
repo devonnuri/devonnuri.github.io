@@ -38,11 +38,7 @@ pub fn parse<'a>(
     let mut parse_state = ParseState {
         options,
         bytes,
-        location: if options.mdx_esm_parse.is_some() || options.mdx_expression_parse.is_some() {
-            Some(Location::new(bytes))
-        } else {
-            None
-        },
+        location: None,
         definitions: vec![],
         gfm_footnote_definitions: vec![],
     };

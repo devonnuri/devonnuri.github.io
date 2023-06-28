@@ -14,8 +14,11 @@ fn to_html(value: &str) -> (String, HashMap<String, String>) {
         parse: ParseOptions {
             constructs: Constructs {
                 frontmatter: true,
-                // math_flow: true,  // due to mathjax
-                // math_text: true,
+                gfm_footnote_definition: true,
+                gfm_label_start_footnote: true,
+                gfm_strikethrough: true,
+                gfm_table: true,
+                gfm_task_list_item: true,
                 ..Constructs::default()
             },
             ..ParseOptions::default()

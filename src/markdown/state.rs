@@ -132,8 +132,6 @@ pub enum Name {
     FlowBeforeCodeIndented,
     FlowBeforeRaw,
     FlowBeforeHtml,
-    FlowBeforeMdxExpression,
-    FlowBeforeMdxJsx,
     FlowBeforeHeadingAtx,
     FlowBeforeHeadingSetext,
     FlowBeforeThematicBreak,
@@ -343,64 +341,6 @@ pub enum Name {
     ListItemContBlank,
     ListItemContFilled,
 
-    MdxEsmStart,
-    MdxEsmWord,
-    MdxEsmInside,
-    MdxEsmLineStart,
-    MdxEsmBlankLineBefore,
-    MdxEsmContinuationStart,
-    MdxEsmAtEnd,
-
-    MdxExpressionTextStart,
-    MdxExpressionTextAfter,
-
-    MdxExpressionFlowStart,
-    MdxExpressionFlowBefore,
-    MdxExpressionFlowAfter,
-    MdxExpressionFlowEnd,
-
-    MdxExpressionStart,
-    MdxExpressionBefore,
-    MdxExpressionInside,
-    MdxExpressionEolAfter,
-
-    MdxJsxFlowStart,
-    MdxJsxFlowBefore,
-    MdxJsxFlowAfter,
-    MdxJsxFlowEnd,
-    MdxJsxFlowNok,
-    MdxJsxTextStart,
-    MdxJsxTextAfter,
-    MdxJsxTextNok,
-    MdxJsxEsWhitespaceStart,
-    MdxJsxEsWhitespaceInside,
-    MdxJsxEsWhitespaceEolAfter,
-    MdxJsxStart,
-    MdxJsxStartAfter,
-    MdxJsxNameBefore,
-    MdxJsxClosingTagNameBefore,
-    MdxJsxTagEnd,
-    MdxJsxPrimaryName,
-    MdxJsxPrimaryNameAfter,
-    MdxJsxMemberNameBefore,
-    MdxJsxMemberName,
-    MdxJsxMemberNameAfter,
-    MdxJsxLocalNameBefore,
-    MdxJsxLocalName,
-    MdxJsxLocalNameAfter,
-    MdxJsxAttributeBefore,
-    MdxJsxSelfClosing,
-    MdxJsxAttributeExpressionAfter,
-    MdxJsxAttributePrimaryName,
-    MdxJsxAttributePrimaryNameAfter,
-    MdxJsxAttributeLocalNameBefore,
-    MdxJsxAttributeLocalName,
-    MdxJsxAttributeLocalNameAfter,
-    MdxJsxAttributeValueBefore,
-    MdxJsxAttributeValueQuotedStart,
-    MdxJsxAttributeValueQuoted,
-    MdxJsxAttributeValueExpressionAfter,
-
     NonLazyContinuationStart,
     NonLazyContinuationAfter,
 
@@ -449,7 +389,6 @@ pub enum Name {
     TextStart,
     TextBefore,
     TextBeforeHtml,
-    TextBeforeMdxJsx,
     TextBeforeHardBreakEscape,
     TextBeforeLabelStartLink,
     TextBeforeData,
@@ -569,8 +508,6 @@ pub fn call(tokenizer: &mut Tokenizer, name: Name) -> State {
         Name::FlowBeforeCodeIndented => construct::flow::before_code_indented,
         Name::FlowBeforeRaw => construct::flow::before_raw,
         Name::FlowBeforeHtml => construct::flow::before_html,
-        Name::FlowBeforeMdxExpression => construct::flow::before_mdx_expression,
-        Name::FlowBeforeMdxJsx => construct::flow::before_mdx_jsx,
         Name::FlowBeforeHeadingAtx => construct::flow::before_heading_atx,
         Name::FlowBeforeHeadingSetext => construct::flow::before_heading_setext,
         Name::FlowBeforeThematicBreak => construct::flow::before_thematic_break,
@@ -828,78 +765,6 @@ pub fn call(tokenizer: &mut Tokenizer, name: Name) -> State {
         Name::ListItemContBlank => construct::list_item::cont_blank,
         Name::ListItemContFilled => construct::list_item::cont_filled,
 
-        Name::MdxEsmStart => construct::mdx_esm::start,
-        Name::MdxEsmWord => construct::mdx_esm::word,
-        Name::MdxEsmInside => construct::mdx_esm::inside,
-        Name::MdxEsmLineStart => construct::mdx_esm::line_start,
-        Name::MdxEsmBlankLineBefore => construct::mdx_esm::blank_line_before,
-        Name::MdxEsmContinuationStart => construct::mdx_esm::continuation_start,
-        Name::MdxEsmAtEnd => construct::mdx_esm::at_end,
-
-        Name::MdxExpressionStart => construct::partial_mdx_expression::start,
-        Name::MdxExpressionBefore => construct::partial_mdx_expression::before,
-        Name::MdxExpressionInside => construct::partial_mdx_expression::inside,
-        Name::MdxExpressionEolAfter => construct::partial_mdx_expression::eol_after,
-
-        Name::MdxExpressionFlowStart => construct::mdx_expression_flow::start,
-        Name::MdxExpressionFlowBefore => construct::mdx_expression_flow::before,
-        Name::MdxExpressionFlowAfter => construct::mdx_expression_flow::after,
-        Name::MdxExpressionFlowEnd => construct::mdx_expression_flow::end,
-
-        Name::MdxExpressionTextStart => construct::mdx_expression_text::start,
-        Name::MdxExpressionTextAfter => construct::mdx_expression_text::after,
-
-        Name::MdxJsxFlowStart => construct::mdx_jsx_flow::start,
-        Name::MdxJsxFlowBefore => construct::mdx_jsx_flow::before,
-        Name::MdxJsxFlowAfter => construct::mdx_jsx_flow::after,
-        Name::MdxJsxFlowEnd => construct::mdx_jsx_flow::end,
-        Name::MdxJsxFlowNok => construct::mdx_jsx_flow::nok,
-
-        Name::MdxJsxTextStart => construct::mdx_jsx_text::start,
-        Name::MdxJsxTextAfter => construct::mdx_jsx_text::after,
-        Name::MdxJsxTextNok => construct::mdx_jsx_text::nok,
-
-        Name::MdxJsxStart => construct::partial_mdx_jsx::start,
-        Name::MdxJsxStartAfter => construct::partial_mdx_jsx::start_after,
-        Name::MdxJsxNameBefore => construct::partial_mdx_jsx::name_before,
-        Name::MdxJsxClosingTagNameBefore => construct::partial_mdx_jsx::closing_tag_name_before,
-        Name::MdxJsxTagEnd => construct::partial_mdx_jsx::tag_end,
-        Name::MdxJsxPrimaryName => construct::partial_mdx_jsx::primary_name,
-        Name::MdxJsxPrimaryNameAfter => construct::partial_mdx_jsx::primary_name_after,
-        Name::MdxJsxMemberNameBefore => construct::partial_mdx_jsx::member_name_before,
-        Name::MdxJsxMemberName => construct::partial_mdx_jsx::member_name,
-        Name::MdxJsxMemberNameAfter => construct::partial_mdx_jsx::member_name_after,
-        Name::MdxJsxLocalNameBefore => construct::partial_mdx_jsx::local_name_before,
-        Name::MdxJsxLocalName => construct::partial_mdx_jsx::local_name,
-        Name::MdxJsxLocalNameAfter => construct::partial_mdx_jsx::local_name_after,
-        Name::MdxJsxAttributeBefore => construct::partial_mdx_jsx::attribute_before,
-        Name::MdxJsxSelfClosing => construct::partial_mdx_jsx::self_closing,
-        Name::MdxJsxAttributeExpressionAfter => {
-            construct::partial_mdx_jsx::attribute_expression_after
-        }
-        Name::MdxJsxAttributePrimaryName => construct::partial_mdx_jsx::attribute_primary_name,
-        Name::MdxJsxAttributePrimaryNameAfter => {
-            construct::partial_mdx_jsx::attribute_primary_name_after
-        }
-        Name::MdxJsxAttributeLocalNameBefore => {
-            construct::partial_mdx_jsx::attribute_local_name_before
-        }
-        Name::MdxJsxAttributeLocalName => construct::partial_mdx_jsx::attribute_local_name,
-        Name::MdxJsxAttributeLocalNameAfter => {
-            construct::partial_mdx_jsx::attribute_local_name_after
-        }
-        Name::MdxJsxAttributeValueBefore => construct::partial_mdx_jsx::attribute_value_before,
-        Name::MdxJsxAttributeValueQuotedStart => {
-            construct::partial_mdx_jsx::attribute_value_quoted_start
-        }
-        Name::MdxJsxAttributeValueQuoted => construct::partial_mdx_jsx::attribute_value_quoted,
-        Name::MdxJsxAttributeValueExpressionAfter => {
-            construct::partial_mdx_jsx::attribute_value_expression_after
-        }
-        Name::MdxJsxEsWhitespaceStart => construct::partial_mdx_jsx::es_whitespace_start,
-        Name::MdxJsxEsWhitespaceInside => construct::partial_mdx_jsx::es_whitespace_inside,
-        Name::MdxJsxEsWhitespaceEolAfter => construct::partial_mdx_jsx::es_whitespace_eol_after,
-
         Name::NonLazyContinuationStart => construct::partial_non_lazy_continuation::start,
         Name::NonLazyContinuationAfter => construct::partial_non_lazy_continuation::after,
 
@@ -948,7 +813,6 @@ pub fn call(tokenizer: &mut Tokenizer, name: Name) -> State {
         Name::TextStart => construct::text::start,
         Name::TextBefore => construct::text::before,
         Name::TextBeforeHtml => construct::text::before_html,
-        Name::TextBeforeMdxJsx => construct::text::before_mdx_jsx,
         Name::TextBeforeHardBreakEscape => construct::text::before_hard_break_escape,
         Name::TextBeforeLabelStartLink => construct::text::before_label_start_link,
         Name::TextBeforeData => construct::text::before_data,

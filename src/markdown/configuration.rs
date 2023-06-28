@@ -1,7 +1,6 @@
 use crate::markdown::alloc::{boxed::Box, fmt, string::String};
 use crate::markdown::util::{
     line_ending::LineEnding,
-    mdx::{EsmParse as MdxEsmParse, ExpressionParse as MdxExpressionParse},
 };
 
 /// Control which constructs are enabled.
@@ -378,61 +377,6 @@ impl Default for Constructs {
     }
 }
 
-impl Constructs {
-    /// GFM.
-    ///
-    /// GFM stands for **GitHub flavored markdown**.
-    /// GFM extends `CommonMark` and adds support for autolink literals,
-    /// footnotes, strikethrough, tables, and tasklists.
-    ///
-    /// For more information, see the GFM specification:
-    /// <https://github.github.com/gfm/>.
-    pub fn gfm() -> Self {
-        Self {
-            gfm_autolink_literal: true,
-            gfm_footnote_definition: true,
-            gfm_label_start_footnote: true,
-            gfm_strikethrough: true,
-            gfm_table: true,
-            gfm_task_list_item: true,
-            ..Self::default()
-        }
-    }
-
-    /// MDX.
-    ///
-    /// This turns on `CommonMark`, turns off some conflicting constructs
-    /// (autolinks, code (indented), and HTML), and turns on MDX (ESM,
-    /// expressions, and JSX).
-    ///
-    /// For more information, see the MDX website:
-    /// <https://mdxjs.com>.
-    ///
-    /// > 👉 **Note**: to support ESM, you *must* pass
-    /// > [`mdx_esm_parse`][MdxEsmParse] in [`ParseOptions`][] too.
-    /// > Otherwise, ESM is treated as normal markdown.
-    /// >
-    /// > You *can* pass
-    /// > [`mdx_expression_parse`][MdxExpressionParse]
-    /// > to parse expressions according to a certain grammar (typically, a
-    /// > programming language).
-    /// > Otherwise, expressions are parsed with a basic algorithm that only
-    /// > cares about braces.
-    pub fn mdx() -> Self {
-        Self {
-            autolink: false,
-            code_indented: false,
-            html_flow: false,
-            html_text: false,
-            mdx_esm: true,
-            mdx_expression_flow: true,
-            mdx_expression_text: true,
-            mdx_jsx_flow: true,
-            mdx_jsx_text: true,
-            ..Self::default()
-        }
-    }
-}
 
 /// Configuration that describes how to compile to HTML.
 ///
@@ -888,24 +832,6 @@ pub struct CompileOptions {
     pub gfm_tagfilter: bool,
 }
 
-impl CompileOptions {
-    /// GFM.
-    ///
-    /// GFM stands for **GitHub flavored markdown**.
-    /// On the compilation side, GFM turns on the GFM tag filter.
-    /// The tagfilter is useless, but it’s included here for consistency, and
-    /// this method exists for parity to parse options.
-    ///
-    /// For more information, see the GFM specification:
-    /// <https://github.github.com/gfm/>.
-    pub fn gfm() -> Self {
-        Self {
-            gfm_tagfilter: true,
-            ..Self::default()
-        }
-    }
-}
-
 /// Configuration that describes how to parse from markdown.
 ///
 /// You can use this:
@@ -1081,33 +1007,6 @@ pub struct ParseOptions {
     /// ```
     pub math_text_single_dollar: bool,
 
-    /// Function to parse expressions with.
-    ///
-    /// This function can be used to add support for arbitrary programming
-    /// languages within expressions.
-    ///
-    /// It only makes sense to pass this when compiling to a syntax tree
-    /// with [`to_mdast()`][crate::to_mdast()].
-    ///
-    /// For an example that adds support for JavaScript with SWC, see
-    /// `tests/test_utils/mod.rs`.
-    pub mdx_expression_parse: Option<Box<MdxExpressionParse>>,
-
-    /// Function to parse ESM with.
-    ///
-    /// This function can be used to add support for arbitrary programming
-    /// languages within ESM blocks, however, the keywords (`export`,
-    /// `import`) are currently hardcoded JavaScript-specific.
-    ///
-    /// > 👉 **Note**: please raise an issue if you’re interested in working on
-    /// > MDX that is aware of, say, Rust, or other programming languages.
-    ///
-    /// It only makes sense to pass this when compiling to a syntax tree
-    /// with [`to_mdast()`][crate::to_mdast()].
-    ///
-    /// For an example that adds support for JavaScript with SWC, see
-    /// `tests/test_utils/mod.rs`.
-    pub mdx_esm_parse: Option<Box<MdxEsmParse>>,
     // Note: when adding fields, don’t forget to add them to `fmt::Debug` below.
 }
 
@@ -1120,14 +1019,6 @@ impl fmt::Debug for ParseOptions {
                 &self.gfm_strikethrough_single_tilde,
             )
             .field("math_text_single_dollar", &self.math_text_single_dollar)
-            .field(
-                "mdx_expression_parse",
-                &self.mdx_expression_parse.as_ref().map(|_d| "[Function]"),
-            )
-            .field(
-                "mdx_esm_parse",
-                &self.mdx_esm_parse.as_ref().map(|_d| "[Function]"),
-            )
             .finish()
     }
 }
@@ -1139,53 +1030,12 @@ impl Default for ParseOptions {
             constructs: Constructs::default(),
             gfm_strikethrough_single_tilde: true,
             math_text_single_dollar: true,
-            mdx_expression_parse: None,
-            mdx_esm_parse: None,
         }
     }
 }
 
 impl ParseOptions {
-    /// GFM.
-    ///
-    /// GFM stands for GitHub flavored markdown.
-    /// GFM extends `CommonMark` and adds support for autolink literals,
-    /// footnotes, strikethrough, tables, and tasklists.
-    ///
-    /// For more information, see the GFM specification:
-    /// <https://github.github.com/gfm/>
-    pub fn gfm() -> Self {
-        Self {
-            constructs: Constructs::gfm(),
-            ..Self::default()
-        }
-    }
-
-    /// MDX.
-    ///
-    /// This turns on `CommonMark`, turns off some conflicting constructs
-    /// (autolinks, code (indented), and HTML), and turns on MDX (ESM,
-    /// expressions, and JSX).
-    ///
-    /// For more information, see the MDX website:
-    /// <https://mdxjs.com>.
-    ///
-    /// > 👉 **Note**: to support ESM, you *must* pass
-    /// > [`mdx_esm_parse`][MdxEsmParse] in [`ParseOptions`][] too.
-    /// > Otherwise, ESM is treated as normal markdown.
-    /// >
-    /// > You *can* pass
-    /// > [`mdx_expression_parse`][MdxExpressionParse]
-    /// > to parse expressions according to a certain grammar (typically, a
-    /// > programming language).
-    /// > Otherwise, expressions are parsed with a basic algorithm that only
-    /// > cares about braces.
-    pub fn mdx() -> Self {
-        Self {
-            constructs: Constructs::mdx(),
-            ..Self::default()
-        }
-    }
+    
 }
 
 /// Configuration that describes how to parse from markdown and compile to
@@ -1215,36 +1065,14 @@ pub struct Options {
     pub compile: CompileOptions,
 }
 
-impl Options {
-    /// GFM.
-    ///
-    /// GFM stands for GitHub flavored markdown.
-    /// GFM extends `CommonMark` and adds support for autolink literals,
-    /// footnotes, strikethrough, tables, and tasklists.
-    /// On the compilation side, GFM turns on the GFM tag filter.
-    /// The tagfilter is useless, but it’s included here for consistency.
-    ///
-    /// For more information, see the GFM specification:
-    /// <https://github.github.com/gfm/>
-    pub fn gfm() -> Self {
-        Self {
-            parse: ParseOptions::gfm(),
-            compile: CompileOptions::gfm(),
-        }
-    }
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
     use crate::markdown::alloc::format;
-    use crate::markdown::util::mdx::Signal;
 
     #[test]
     fn test_constructs() {
         Constructs::default();
-        Constructs::gfm();
-        Constructs::mdx();
 
         let constructs = Constructs::default();
         assert!(constructs.attention, "should default to `CommonMark` (1)");
@@ -1260,34 +1088,11 @@ mod tests {
             !constructs.frontmatter,
             "should default to `CommonMark` (4)"
         );
-
-        let constructs = Constructs::gfm();
-        assert!(constructs.attention, "should support `gfm` shortcut (1)");
-        assert!(
-            constructs.gfm_autolink_literal,
-            "should support `gfm` shortcut (2)"
-        );
-        assert!(
-            !constructs.mdx_jsx_flow,
-            "should support `gfm` shortcut (3)"
-        );
-        assert!(!constructs.frontmatter, "should support `gfm` shortcut (4)");
-
-        let constructs = Constructs::mdx();
-        assert!(constructs.attention, "should support `gfm` shortcut (1)");
-        assert!(
-            !constructs.gfm_autolink_literal,
-            "should support `mdx` shortcut (2)"
-        );
-        assert!(constructs.mdx_jsx_flow, "should support `mdx` shortcut (3)");
-        assert!(!constructs.frontmatter, "should support `mdx` shortcut (4)");
     }
 
     #[test]
     fn test_parse_options() {
         ParseOptions::default();
-        ParseOptions::gfm();
-        ParseOptions::mdx();
 
         let options = ParseOptions::default();
         assert!(
@@ -1303,34 +1108,6 @@ mod tests {
             "should default to `CommonMark` (3)"
         );
 
-        let options = ParseOptions::gfm();
-        assert!(
-            options.constructs.attention,
-            "should support `gfm` shortcut (1)"
-        );
-        assert!(
-            options.constructs.gfm_autolink_literal,
-            "should support `gfm` shortcut (2)"
-        );
-        assert!(
-            !options.constructs.mdx_jsx_flow,
-            "should support `gfm` shortcut (3)"
-        );
-
-        let options = ParseOptions::mdx();
-        assert!(
-            options.constructs.attention,
-            "should support `mdx` shortcut (1)"
-        );
-        assert!(
-            !options.constructs.gfm_autolink_literal,
-            "should support `mdx` shortcut (2)"
-        );
-        assert!(
-            options.constructs.mdx_jsx_flow,
-            "should support `mdx` shortcut (3)"
-        );
-
         assert_eq!(
             format!("{:?}", ParseOptions::default()),
             "ParseOptions { constructs: Constructs { attention: true, autolink: true, block_quote: true, character_escape: true, character_reference: true, code_indented: true, code_fenced: true, code_text: true, definition: true, frontmatter: false, gfm_autolink_literal: false, gfm_footnote_definition: false, gfm_label_start_footnote: false, gfm_strikethrough: false, gfm_table: false, gfm_task_list_item: false, hard_break_escape: true, hard_break_trailing: true, heading_atx: true, heading_setext: true, html_flow: true, html_text: true, label_start_image: true, label_start_link: true, label_end: true, list_item: true, math_flow: false, math_text: false, mdx_esm: false, mdx_expression_flow: false, mdx_expression_text: false, mdx_jsx_flow: false, mdx_jsx_text: false, thematic_break: true }, gfm_strikethrough_single_tilde: true, math_text_single_dollar: true, mdx_expression_parse: None, mdx_esm_parse: None }",
@@ -1338,12 +1115,6 @@ mod tests {
         );
         assert_eq!(
             format!("{:?}", ParseOptions {
-                mdx_esm_parse: Some(Box::new(|_value| {
-                    Signal::Ok
-                })),
-                mdx_expression_parse: Some(Box::new(|_value, _kind| {
-                    Signal::Ok
-                })),
                 ..Default::default()
             }),
             "ParseOptions { constructs: Constructs { attention: true, autolink: true, block_quote: true, character_escape: true, character_reference: true, code_indented: true, code_fenced: true, code_text: true, definition: true, frontmatter: false, gfm_autolink_literal: false, gfm_footnote_definition: false, gfm_label_start_footnote: false, gfm_strikethrough: false, gfm_table: false, gfm_task_list_item: false, hard_break_escape: true, hard_break_trailing: true, heading_atx: true, heading_setext: true, html_flow: true, html_text: true, label_start_image: true, label_start_link: true, label_end: true, list_item: true, math_flow: false, math_text: false, mdx_esm: false, mdx_expression_flow: false, mdx_expression_text: false, mdx_jsx_flow: false, mdx_jsx_text: false, thematic_break: true }, gfm_strikethrough_single_tilde: true, math_text_single_dollar: true, mdx_expression_parse: Some(\"[Function]\"), mdx_esm_parse: Some(\"[Function]\") }",
@@ -1354,7 +1125,6 @@ mod tests {
     #[test]
     fn test_compile_options() {
         CompileOptions::default();
-        CompileOptions::gfm();
 
         let options = CompileOptions::default();
         assert!(
@@ -1364,16 +1134,6 @@ mod tests {
         assert!(
             !options.gfm_tagfilter,
             "should default to safe `CommonMark` (2)"
-        );
-
-        let options = CompileOptions::gfm();
-        assert!(
-            !options.allow_dangerous_html,
-            "should support safe `gfm` shortcut (1)"
-        );
-        assert!(
-            options.gfm_tagfilter,
-            "should support safe `gfm` shortcut (1)"
         );
     }
 
@@ -1397,24 +1157,6 @@ mod tests {
         assert!(
             !options.compile.allow_dangerous_html,
             "should default to safe `CommonMark` (4)"
-        );
-
-        let options = Options::gfm();
-        assert!(
-            options.parse.constructs.attention,
-            "should support safe `gfm` shortcut (1)"
-        );
-        assert!(
-            options.parse.constructs.gfm_autolink_literal,
-            "should support safe `gfm` shortcut (2)"
-        );
-        assert!(
-            !options.parse.constructs.mdx_jsx_flow,
-            "should support safe `gfm` shortcut (3)"
-        );
-        assert!(
-            !options.compile.allow_dangerous_html,
-            "should support safe `gfm` shortcut (4)"
         );
     }
 }
