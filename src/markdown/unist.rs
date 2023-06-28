@@ -16,17 +16,6 @@ pub struct Point {
     pub offset: usize,
 }
 
-impl Point {
-    #[must_use]
-    pub fn new(line: usize, column: usize, offset: usize) -> Point {
-        Point {
-            line,
-            column,
-            offset,
-        }
-    }
-}
-
 impl fmt::Debug for Point {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "{}:{} ({})", self.line, self.column, self.offset)
@@ -44,23 +33,6 @@ pub struct Position {
     pub end: Point,
 }
 
-impl Position {
-    #[must_use]
-    pub fn new(
-        start_line: usize,
-        start_column: usize,
-        start_offset: usize,
-        end_line: usize,
-        end_column: usize,
-        end_offset: usize,
-    ) -> Position {
-        Position {
-            start: Point::new(start_line, start_column, start_offset),
-            end: Point::new(end_line, end_column, end_offset),
-        }
-    }
-}
-
 impl fmt::Debug for Position {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(
@@ -73,31 +45,5 @@ impl fmt::Debug for Position {
             self.start.offset,
             self.end.offset
         )
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-    use crate::markdown::alloc::format;
-
-    #[test]
-    fn point() {
-        let point = Point::new(1, 1, 0);
-        assert_eq!(
-            format!("{:?}", point),
-            "1:1 (0)",
-            "should support `Debug` on unist points"
-        );
-    }
-
-    #[test]
-    fn position() {
-        let position = Position::new(1, 1, 0, 1, 3, 2);
-        assert_eq!(
-            format!("{:?}", position),
-            "1:1-1:3 (0-2)",
-            "should support `Debug` on unist positions"
-        );
     }
 }

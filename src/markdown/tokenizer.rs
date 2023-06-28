@@ -411,7 +411,7 @@ impl<'a> Tokenizer<'a> {
         let info = (point.index, point.vs);
 
         #[cfg(feature = "log")]
-        log::debug!("position: define skip: {:?} -> ({:?})", point.line, info);
+        println!("position: define skip: {:?} -> ({:?})", point.line, info);
 
         let at = point.line - self.first_line;
 
@@ -485,7 +485,7 @@ impl<'a> Tokenizer<'a> {
                     self.account_for_potential_skip();
 
                     #[cfg(feature = "log")]
-                    log::debug!("position: after eol: `{:?}`", self.point);
+                    println!("position: after eol: `{:?}`", self.point);
                 } else {
                     self.point.column += 1;
                 }
@@ -543,7 +543,7 @@ impl<'a> Tokenizer<'a> {
         }
 
         #[cfg(feature = "log")]
-        log::debug!("exit:    `{:?}`", name);
+        println!("exit:    `{:?}`", name);
 
         let event = Event {
             kind: Kind::Exit,
@@ -675,7 +675,7 @@ fn enter_impl(tokenizer: &mut Tokenizer, name: Name, link: Option<Link>) {
     move_point_back(tokenizer, &mut point);
 
     #[cfg(feature = "log")]
-    log::debug!("enter:   `{:?}`", name);
+    println!("enter:   `{:?}`", name);
 
     tokenizer.stack.push(name.clone());
     tokenizer.events.push(Event {
@@ -707,6 +707,7 @@ fn push_impl(
             State::Error(_) => break,
             State::Ok | State::Nok => {
                 if let Some(attempt) = tokenizer.attempts.pop() {
+                    // Revert to the previous state.
                     if attempt.kind == AttemptKind::Check || state == State::Nok {
                         if let Some(progress) = attempt.progress {
                             tokenizer.free(progress);
@@ -722,7 +723,7 @@ fn push_impl(
                     };
 
                     #[cfg(feature = "log")]
-                    log::debug!("attempt: `{:?}` -> `{:?}`", state, next);
+                    println!("attempt: `{:?}` -> `{:?}`", state, next);
 
                     state = next;
                 } else {
@@ -751,7 +752,7 @@ fn push_impl(
                         };
 
                     #[cfg(feature = "log")]
-                    log::debug!("feed:    {} to {:?}", format_byte_opt(byte), name);
+                    println!("feed:    {} to {:?}", format_byte_opt(byte), name);
 
                     tokenizer.expect(byte);
                     state = call(tokenizer, name);
@@ -759,7 +760,7 @@ fn push_impl(
             }
             State::Retry(name) => {
                 #[cfg(feature = "log")]
-                log::debug!("retry:   `{:?}`", name);
+                println!("retry:   `{:?}`", name);
 
                 state = call(tokenizer, name);
             }

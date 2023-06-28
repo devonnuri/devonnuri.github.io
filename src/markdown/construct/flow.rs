@@ -63,7 +63,7 @@ pub fn start(tokenizer: &mut Tokenizer) -> State {
         Some(b'<') => {
             tokenizer.attempt(
                 State::Next(StateName::FlowAfter),
-                State::Next(StateName::FlowBeforeContent),
+                State::Next(StateName::FlowBeforeHeadingAtx),
             );
             State::Retry(StateName::HtmlFlowStart)
         }
@@ -125,7 +125,7 @@ pub fn before_raw(tokenizer: &mut Tokenizer) -> State {
 pub fn before_html(tokenizer: &mut Tokenizer) -> State {
     tokenizer.attempt(
         State::Next(StateName::FlowAfter),
-        State::Next(StateName::FlowBeforeContent),
+        State::Next(StateName::FlowBeforeHeadingAtx),
     );
     State::Retry(StateName::HtmlFlowStart)
 }
@@ -168,7 +168,7 @@ pub fn before_heading_setext(tokenizer: &mut Tokenizer) -> State {
 pub fn before_thematic_break(tokenizer: &mut Tokenizer) -> State {
     tokenizer.attempt(
         State::Next(StateName::FlowAfter),
-        State::Next(StateName::FlowBeforeContent),
+        State::Next(StateName::FlowBeforeGfmTable),
     );
     State::Retry(StateName::ThematicBreakStart)
 }

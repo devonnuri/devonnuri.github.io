@@ -4,7 +4,7 @@
 
 use crate::markdown::alloc::{vec, vec::Vec};
 use crate::markdown::event::{Event, Kind, Name};
-use crate::markdown::mdast::AlignKind;
+use crate::markdown::to_html::AlignKind;
 
 /// Figure out if a list is spread or not.
 ///

@@ -6,7 +6,6 @@ use crate::markdown::alloc::{
     vec::Vec,
 };
 use crate::markdown::event::{Event, Kind, Name};
-use crate::markdown::mdast::AlignKind;
 use crate::markdown::util::{
     character_reference::decode as decode_character_reference,
     constant::{SAFE_PROTOCOL_HREF, SAFE_PROTOCOL_SRC},
@@ -70,6 +69,58 @@ struct Definition {
     ///
     /// Interpreted string content.
     title: Option<String>,
+}
+
+/// GFM: alignment of phrasing content.
+///
+/// Used to align the contents of table cells within a table.
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+#[cfg_attr(
+    feature = "serde",
+    derive(serde::Serialize, serde::Deserialize),
+    serde(rename_all = "lowercase")
+)]
+pub enum AlignKind {
+    /// Left alignment.
+    ///
+    /// See the `left` value of the `text-align` CSS property.
+    ///
+    /// ```markdown
+    ///   | | aaa |
+    /// > | | :-- |
+    ///       ^^^
+    /// ```
+    Left,
+    /// Right alignment.
+    ///
+    /// See the `right` value of the `text-align` CSS property.
+    ///
+    /// ```markdown
+    ///   | | aaa |
+    /// > | | --: |
+    ///       ^^^
+    /// ```
+    Right,
+    /// Center alignment.
+    ///
+    /// See the `center` value of the `text-align` CSS property.
+    ///
+    /// ```markdown
+    ///   | | aaa |
+    /// > | | :-: |
+    ///       ^^^
+    /// ```
+    Center,
+    /// No alignment.
+    ///
+    /// Phrasing content is aligned as defined by the host environment.
+    ///
+    /// ```markdown
+    ///   | | aaa |
+    /// > | | --- |
+    ///       ^^^
+    /// ```
+    None,
 }
 
 /// Context used to compile markdown.
@@ -332,11 +383,6 @@ fn enter(context: &mut CompileContext) {
         | Name::HeadingAtxText
         | Name::HeadingSetextText
         | Name::Label
-        | Name::MdxEsm
-        | Name::MdxFlowExpression
-        | Name::MdxTextExpression
-        | Name::MdxJsxFlowTag
-        | Name::MdxJsxTextTag
         | Name::ReferenceString
         | Name::ResourceTitleString => on_enter_buffer(context),
 
@@ -374,14 +420,9 @@ fn enter(context: &mut CompileContext) {
 /// Handle [`Exit`][Kind::Exit].
 fn exit(context: &mut CompileContext) {
     match context.events[context.index].name {
-        Name::CodeFencedFenceMeta
-        | Name::MathFlowFenceMeta
-        | Name::MdxJsxTextTag
-        | Name::MdxTextExpression
-        | Name::Resource => {
+        Name::CodeFencedFenceMeta | Name::MathFlowFenceMeta | Name::Resource => {
             on_exit_drop(context);
         }
-        Name::MdxEsm | Name::MdxFlowExpression | Name::MdxJsxFlowTag => on_exit_drop_slurp(context),
         Name::CharacterEscapeValue | Name::CodeTextData | Name::Data | Name::MathTextData => {
             on_exit_data(context);
         }
@@ -930,14 +971,6 @@ fn on_exit_raw_text(context: &mut CompileContext) {
 /// Resumes, and ignores what was resumed.
 fn on_exit_drop(context: &mut CompileContext) {
     context.resume();
-}
-
-/// Handle [`Exit`][Kind::Exit]:*.
-///
-/// Resumes, ignores what was resumed, and slurps the following line ending.
-fn on_exit_drop_slurp(context: &mut CompileContext) {
-    context.resume();
-    context.slurp_one_line_ending = true;
 }
 
 /// Handle [`Exit`][Kind::Exit]:{[`CodeTextData`][Name::CodeTextData],[`Data`][Name::Data],[`CharacterEscapeValue`][Name::CharacterEscapeValue]}.

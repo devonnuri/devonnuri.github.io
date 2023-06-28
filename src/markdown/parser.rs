@@ -5,7 +5,6 @@ use crate::markdown::event::{Event, Point};
 use crate::markdown::state::{Name as StateName, State};
 use crate::markdown::subtokenize::subtokenize;
 use crate::markdown::tokenizer::Tokenizer;
-use crate::markdown::util::location::Location;
 use crate::markdown::ParseOptions;
 
 /// Info needed, in all content types, when parsing markdown.
@@ -14,8 +13,6 @@ use crate::markdown::ParseOptions;
 /// It also references the input value as bytes (`u8`).
 #[derive(Debug)]
 pub struct ParseState<'a> {
-    /// Configuration.
-    pub location: Option<Location>,
     /// Configuration.
     pub options: &'a ParseOptions,
     /// List of chars.
@@ -38,7 +35,6 @@ pub fn parse<'a>(
     let mut parse_state = ParseState {
         options,
         bytes,
-        location: None,
         definitions: vec![],
         gfm_footnote_definitions: vec![],
     };

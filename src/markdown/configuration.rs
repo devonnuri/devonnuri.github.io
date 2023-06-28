@@ -1,7 +1,5 @@
-use crate::markdown::alloc::{boxed::Box, fmt, string::String};
-use crate::markdown::util::{
-    line_ending::LineEnding,
-};
+use crate::markdown::alloc::{fmt, string::String};
+use crate::markdown::util::line_ending::LineEnding;
 
 /// Control which constructs are enabled.
 ///
@@ -376,7 +374,6 @@ impl Default for Constructs {
         }
     }
 }
-
 
 /// Configuration that describes how to compile to HTML.
 ///
@@ -1006,7 +1003,6 @@ pub struct ParseOptions {
     /// # }
     /// ```
     pub math_text_single_dollar: bool,
-
     // Note: when adding fields, don’t forget to add them to `fmt::Debug` below.
 }
 
@@ -1034,9 +1030,7 @@ impl Default for ParseOptions {
     }
 }
 
-impl ParseOptions {
-    
-}
+impl ParseOptions {}
 
 /// Configuration that describes how to parse from markdown and compile to
 /// HTML.

@@ -5,5 +5,8 @@ edition = "2021"
 homepage = "https://wiki.onnuri.dev"
 repository = "https://github.com/devonnuri/devonnuri.github.io/"
 
+[features]
+log=[]
+
 [dependencies]
 unicode-id = { version = "0.3", features = ["no_std"] }
