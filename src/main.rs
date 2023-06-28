@@ -24,7 +24,6 @@ fn to_html(value: &str) -> (String, HashMap<String, String>) {
     };
 
     let (events, parse_state) = parser::parse(value, &options.parse).unwrap();
-    // println!("{:#?}", events);
 
     Ok::<(String, HashMap<String, String>), (String, HashMap<String, String>)>(to_html::compile(
         &events,
@@ -33,19 +32,27 @@ fn to_html(value: &str) -> (String, HashMap<String, String>) {
     )).unwrap()
 }
 
-fn write_html(directory_path: &String, html: String, frontmatter: &HashMap<String, String>, category: String) {
+fn write_html(directory_path: &String, md_path: &String, html: String, frontmatter: &HashMap<String, String>, category: String) {
     // Make directories recursively in '_build' directory
     fs::create_dir_all(&directory_path).unwrap();
 
     // Write html file from the template file
     let template = fs::read_to_string("./_template/entry.html").unwrap();
+
+    let category_html = if category.is_empty() {
+        "".to_string()
+    } else {
+        "<p>Category : ".to_string() + &category + "</p>"
+    };
+
     let html = template
         .replace("{{title}}", &frontmatter.get("title").unwrap_or(&"".to_string()))
         .replace("{{subtitle}}", &frontmatter.get("subtitle").unwrap_or(&"".to_string()))
         .replace("{{created_at}}", &frontmatter.get("created_at").unwrap_or(&"".to_string()))
         .replace("{{updated_at}}", &frontmatter.get("updated_at").unwrap_or(&"".to_string()))
         .replace("{{content}}", &html)
-        .replace("{{category}}", &category);
+        .replace("{{category}}", &category_html)
+        .replace("{{md_path}}", &md_path[2..]); // remove './' from the path
 
     fs::write(directory_path.clone() + "/index.html", html).unwrap();
 }
@@ -90,13 +97,15 @@ fn main() {
 
         let parent_directory = directory_pathbuf.parent().unwrap().file_name().unwrap_or(OsStr::new("")).to_str().unwrap();
         let index_category = category_map.get(parent_directory).map(String::as_str).unwrap_or("").to_string();
-        let current_category = if index_category == "" {
+        let current_category = if index_entry_filename == "_wiki" {
+            "".to_string()      // Root directory
+        } else if index_category == "" {
             frontmatter.get("title").unwrap_or(&"".to_string()).clone()
         } else {
             index_category.clone() + " > " + frontmatter.get("title").unwrap_or(&"".to_string())
         };
 
-        write_html(&index_entry_directory, html, &frontmatter, index_category.clone());
+        write_html(&index_entry_directory, &index_path, html, &frontmatter, index_category.clone());
 
         category_map.insert(index_entry_filename.to_string(), current_category.clone());
 
@@ -123,7 +132,7 @@ fn main() {
 
             let content = fs::read_to_string(path.clone()).unwrap();
             let (html, frontmatter) = to_html(&content);
-            write_html(&entry_directory, html, &frontmatter, current_category.clone());
+            write_html(&entry_directory, &path.to_str().unwrap().to_string(), html, &frontmatter, current_category.clone());
         }
     }
 }
