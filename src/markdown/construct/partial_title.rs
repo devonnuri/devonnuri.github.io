@@ -35,7 +35,9 @@
 //! [character_reference]: crate::construct::character_reference
 //! [label_end]: crate::construct::label_end
 
-use crate::markdown::construct::partial_space_or_tab_eol::{space_or_tab_eol_with_options, Options};
+use crate::markdown::construct::partial_space_or_tab_eol::{
+    space_or_tab_eol_with_options, Options,
+};
 use crate::markdown::event::{Content, Link, Name};
 use crate::markdown::state::{Name as StateName, State};
 use crate::markdown::subtokenize::link;

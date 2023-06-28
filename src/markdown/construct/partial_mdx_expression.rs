@@ -56,13 +56,13 @@
 //! [mdx_expression_text]: crate::construct::mdx_expression_text
 //! [interleaving]: https://mdxjs.com/docs/what-is-mdx/#interleaving
 
+use crate::markdown::alloc::format;
 use crate::markdown::construct::partial_space_or_tab::space_or_tab_min_max;
 use crate::markdown::event::Name;
 use crate::markdown::state::{Name as StateName, State};
 use crate::markdown::tokenizer::Tokenizer;
 use crate::markdown::util::{constant::TAB_SIZE, mdx_collect::collect};
 use crate::markdown::{MdxExpressionKind, MdxExpressionParse, MdxSignal};
-use crate::markdown::alloc::format;
 
 /// Start of an MDX expression.
 ///

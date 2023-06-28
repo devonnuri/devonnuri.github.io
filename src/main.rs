@@ -1,13 +1,13 @@
 mod markdown;
 
 use std::collections::HashMap;
+use std::ffi::OsStr;
 use std::fs;
 use std::path::PathBuf;
-use std::ffi::OsStr;
 
-use crate::markdown::{Options, ParseOptions, Constructs};
 use crate::markdown::parser;
 use crate::markdown::to_html;
+use crate::markdown::{Constructs, Options, ParseOptions};
 
 fn to_html(value: &str) -> (String, HashMap<String, String>) {
     let options = Options {
@@ -29,10 +29,17 @@ fn to_html(value: &str) -> (String, HashMap<String, String>) {
         &events,
         parse_state.bytes,
         &options.compile,
-    )).unwrap()
+    ))
+    .unwrap()
 }
 
-fn write_html(directory_path: &String, md_path: &String, html: String, frontmatter: &HashMap<String, String>, category: String) {
+fn write_html(
+    directory_path: &String,
+    md_path: &String,
+    html: String,
+    frontmatter: &HashMap<String, String>,
+    category: String,
+) {
     // Make directories recursively in '_build' directory
     fs::create_dir_all(&directory_path).unwrap();
 
@@ -46,10 +53,22 @@ fn write_html(directory_path: &String, md_path: &String, html: String, frontmatt
     };
 
     let html = template
-        .replace("{{title}}", &frontmatter.get("title").unwrap_or(&"".to_string()))
-        .replace("{{subtitle}}", &frontmatter.get("subtitle").unwrap_or(&"".to_string()))
-        .replace("{{created_at}}", &frontmatter.get("created_at").unwrap_or(&"".to_string()))
-        .replace("{{updated_at}}", &frontmatter.get("updated_at").unwrap_or(&"".to_string()))
+        .replace(
+            "{{title}}",
+            &frontmatter.get("title").unwrap_or(&"".to_string()),
+        )
+        .replace(
+            "{{subtitle}}",
+            &frontmatter.get("subtitle").unwrap_or(&"".to_string()),
+        )
+        .replace(
+            "{{created_at}}",
+            &frontmatter.get("created_at").unwrap_or(&"".to_string()),
+        )
+        .replace(
+            "{{updated_at}}",
+            &frontmatter.get("updated_at").unwrap_or(&"".to_string()),
+        )
         .replace("{{content}}", &html)
         .replace("{{category}}", &category_html)
         .replace("{{md_path}}", &md_path[2..]); // remove './' from the path
@@ -82,34 +101,57 @@ fn main() {
     while let Some(directory_path) = directory_queue.pop() {
         let index_path = directory_path.clone() + "/_index.md";
 
-        println!("found index : {}", &index_path);
+        println!("index : {}", &index_path);
 
         let index_content = fs::read_to_string(&index_path).unwrap();
         let (html, frontmatter) = to_html(&index_content);
 
         let directory_pathbuf = PathBuf::from(directory_path.clone());
         let index_entry_filename = directory_pathbuf.file_name().unwrap().to_str().unwrap();
-        let index_entry_directory = if index_entry_filename == "_wiki" { 
+        let index_entry_directory = if index_entry_filename == "_wiki" {
             "./_build/".to_string()
         } else {
             "./_build/".to_string() + index_entry_filename + "/"
         };
 
-        let parent_directory = directory_pathbuf.parent().unwrap().file_name().unwrap_or(OsStr::new("")).to_str().unwrap();
-        let index_category = category_map.get(parent_directory).map(String::as_str).unwrap_or("").to_string();
+        let parent_directory = directory_pathbuf
+            .parent()
+            .unwrap()
+            .file_name()
+            .unwrap_or(OsStr::new(""))
+            .to_str()
+            .unwrap();
+        let index_category = category_map
+            .get(parent_directory)
+            .map(String::as_str)
+            .unwrap_or("")
+            .to_string();
         let current_category = if index_entry_filename == "_wiki" {
-            "".to_string()      // Root directory
+            "".to_string() // Root directory
         } else if index_category == "" {
-            "<a href=\"/".to_string() + index_entry_filename + "/\">" + frontmatter.get("title").unwrap_or(&"".to_string()) + "</a>"
+            "<a href=\"/".to_string()
+                + index_entry_filename
+                + "/\">"
+                + frontmatter.get("title").unwrap_or(&"".to_string())
+                + "</a>"
         } else {
-            index_category.clone() + " &gt; <a href=\"/" + index_entry_filename + "/\">" + frontmatter.get("title").unwrap_or(&"".to_string()) + "</a>"
+            index_category.clone()
+                + " &gt; <a href=\"/"
+                + index_entry_filename
+                + "/\">"
+                + frontmatter.get("title").unwrap_or(&"".to_string())
+                + "</a>"
         };
 
-        write_html(&index_entry_directory, &index_path, html, &frontmatter, index_category.clone());
+        write_html(
+            &index_entry_directory,
+            &index_path,
+            html,
+            &frontmatter,
+            index_category.clone(),
+        );
 
         category_map.insert(index_entry_filename.to_string(), current_category.clone());
-
-        println!("parent: {}, current: {}", parent_directory, index_entry_filename);
 
         let dir = fs::read_dir(&directory_path).unwrap();
 
@@ -126,13 +168,19 @@ fn main() {
                 continue;
             }
 
-            println!("found md file : {}", path.to_str().unwrap());
+            println!("md : {}", path.to_str().unwrap());
             let entry_filename = path.file_stem().unwrap().to_str().unwrap();
             let entry_directory = "./_build/".to_string() + entry_filename + "/";
 
             let content = fs::read_to_string(path.clone()).unwrap();
             let (html, frontmatter) = to_html(&content);
-            write_html(&entry_directory, &path.to_str().unwrap().to_string(), html, &frontmatter, current_category.clone());
+            write_html(
+                &entry_directory,
+                &path.to_str().unwrap().to_string(),
+                html,
+                &frontmatter,
+                current_category.clone(),
+            );
         }
     }
 }

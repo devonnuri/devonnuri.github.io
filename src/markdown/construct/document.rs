@@ -9,12 +9,12 @@
 //! *   [List item][crate::construct::list_item]
 //! *   [GFM: Footnote definition][crate::construct::gfm_footnote_definition]
 
+use crate::markdown::alloc::{boxed::Box, string::String, vec::Vec};
 use crate::markdown::event::{Content, Event, Kind, Link, Name};
 use crate::markdown::state::{Name as StateName, State};
 use crate::markdown::subtokenize::divide_events;
 use crate::markdown::tokenizer::{Container, ContainerState, Tokenizer};
 use crate::markdown::util::skip;
-use crate::markdown::alloc::{boxed::Box, string::String, vec::Vec};
 
 /// Phases where we can exit containers.
 #[derive(Debug, PartialEq)]

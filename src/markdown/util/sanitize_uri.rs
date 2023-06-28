@@ -1,7 +1,7 @@
 //! Make urls safe.
 
-use crate::markdown::util::encode::encode;
 use crate::markdown::alloc::{format, string::String, vec::Vec};
+use crate::markdown::util::encode::encode;
 
 /// Make a value safe for injection as a URL.
 ///

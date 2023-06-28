@@ -2,12 +2,12 @@
 //!
 //! [mdast]: https://github.com/syntax-tree/mdast
 
-use crate::markdown::unist::Position;
 use crate::markdown::alloc::{
     fmt,
     string::{String, ToString},
     vec::Vec,
 };
+use crate::markdown::unist::Position;
 
 /// MDX: relative byte index into a string, to an absolute byte index into the
 /// whole document.
@@ -1365,8 +1365,8 @@ pub struct MdxJsxAttribute {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::markdown::unist::Position;
     use crate::markdown::alloc::{format, string::ToString, vec};
+    use crate::markdown::unist::Position;
 
     // Literals.
 

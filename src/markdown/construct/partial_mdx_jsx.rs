@@ -161,6 +161,7 @@
 //! [mdx_jsx_text]: crate::construct::mdx_jsx_text
 //! [interleaving]: https://mdxjs.com/docs/what-is-mdx/#interleaving
 
+use crate::markdown::alloc::format;
 use crate::markdown::event::Name;
 use crate::markdown::state::{Name as StateName, State};
 use crate::markdown::tokenizer::Tokenizer;
@@ -171,7 +172,6 @@ use crate::markdown::util::{
     },
     identifier::{id_cont, id_start},
 };
-use crate::markdown::alloc::format;
 use core::str;
 
 /// Start of MDX: JSX.

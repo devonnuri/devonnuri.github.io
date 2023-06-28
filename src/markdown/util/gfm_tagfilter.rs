@@ -1,7 +1,7 @@
 //! Make dangerous HTML a tiny bit safer.
 
-use crate::markdown::util::constant::{GFM_HTML_TAGFILTER_NAMES, GFM_HTML_TAGFILTER_SIZE_MAX};
 use crate::markdown::alloc::string::String;
+use crate::markdown::util::constant::{GFM_HTML_TAGFILTER_NAMES, GFM_HTML_TAGFILTER_SIZE_MAX};
 use core::str;
 
 /// Make dangerous HTML a tiny bit safer.

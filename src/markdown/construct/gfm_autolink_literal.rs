@@ -144,6 +144,7 @@
 //! [sanitize_uri]: crate::util::sanitize_uri
 //! [html_a]: https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element
 
+use crate::markdown::alloc::vec::Vec;
 use crate::markdown::event::{Event, Kind, Name};
 use crate::markdown::state::{Name as StateName, State};
 use crate::markdown::tokenizer::Tokenizer;
@@ -151,7 +152,6 @@ use crate::markdown::util::{
     char::{kind_after_index, Kind as CharacterKind},
     slice::{Position, Slice},
 };
-use crate::markdown::alloc::vec::Vec;
 
 /// Start of protocol autolink literal.
 ///

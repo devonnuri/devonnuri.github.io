@@ -17,12 +17,12 @@
 //! whole document needs to be parsed up to the level of definitions, before
 //! any level that can include references can be parsed.
 
+use crate::markdown::alloc::{string::String, vec, vec::Vec};
 use crate::markdown::event::{Content, Event, Kind, Name, VOID_EVENTS};
 use crate::markdown::parser::ParseState;
 use crate::markdown::state::{Name as StateName, State};
 use crate::markdown::tokenizer::Tokenizer;
 use crate::markdown::util::{edit_map::EditMap, skip};
-use crate::markdown::alloc::{string::String, vec, vec::Vec};
 
 #[derive(Debug)]
 pub struct Subresult {

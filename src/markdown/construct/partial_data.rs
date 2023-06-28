@@ -6,11 +6,11 @@
 //! [string]: crate::construct::string
 //! [text]: crate::construct::text
 
+use crate::markdown::alloc::vec;
 use crate::markdown::event::{Kind, Name};
 use crate::markdown::state::{Name as StateName, State};
 use crate::markdown::subtokenize::Subresult;
 use crate::markdown::tokenizer::Tokenizer;
-use crate::markdown::alloc::vec;
 
 /// At beginning of data.
 ///

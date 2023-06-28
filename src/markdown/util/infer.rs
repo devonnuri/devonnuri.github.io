@@ -2,9 +2,9 @@
 //!
 //! Used to share between `to_html` and `to_mdast`.
 
+use crate::markdown::alloc::{vec, vec::Vec};
 use crate::markdown::event::{Event, Kind, Name};
 use crate::markdown::mdast::AlignKind;
-use crate::markdown::alloc::{vec, vec::Vec};
 
 /// Figure out if a list is spread or not.
 ///

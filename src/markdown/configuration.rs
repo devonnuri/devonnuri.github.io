@@ -1,8 +1,8 @@
+use crate::markdown::alloc::{boxed::Box, fmt, string::String};
 use crate::markdown::util::{
     line_ending::LineEnding,
     mdx::{EsmParse as MdxEsmParse, ExpressionParse as MdxExpressionParse},
 };
-use crate::markdown::alloc::{boxed::Box, fmt, string::String};
 
 /// Control which constructs are enabled.
 ///
@@ -1237,8 +1237,8 @@ impl Options {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::markdown::util::mdx::Signal;
     use crate::markdown::alloc::format;
+    use crate::markdown::util::mdx::Signal;
 
     #[test]
     fn test_constructs() {

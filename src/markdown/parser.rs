@@ -1,12 +1,12 @@
 //! Turn bytes of markdown into events.
 
+use crate::markdown::alloc::{string::String, vec, vec::Vec};
 use crate::markdown::event::{Event, Point};
 use crate::markdown::state::{Name as StateName, State};
 use crate::markdown::subtokenize::subtokenize;
 use crate::markdown::tokenizer::Tokenizer;
 use crate::markdown::util::location::Location;
 use crate::markdown::ParseOptions;
-use crate::markdown::alloc::{string::String, vec, vec::Vec};
 
 /// Info needed, in all content types, when parsing markdown.
 ///

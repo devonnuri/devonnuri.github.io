@@ -29,12 +29,12 @@
 //! [flow]: crate::construct::flow
 //! [parse_options]: crate::ParseOptions
 
+use crate::markdown::alloc::format;
 use crate::markdown::event::Name;
 use crate::markdown::state::{Name as StateName, State};
 use crate::markdown::tokenizer::Tokenizer;
 use crate::markdown::util::{mdx_collect::collect, slice::Slice};
 use crate::markdown::MdxSignal;
-use crate::markdown::alloc::format;
 
 /// Start of MDX ESM.
 ///

@@ -17,8 +17,8 @@ use crate::markdown::subtokenize::Subresult;
 #[cfg(feature = "log")]
 use crate::markdown::util::char::format_byte_opt;
 
-use crate::markdown::util::{constant::TAB_SIZE, edit_map::EditMap};
 use crate::markdown::alloc::{boxed::Box, string::String, vec, vec::Vec};
+use crate::markdown::util::{constant::TAB_SIZE, edit_map::EditMap};
 
 /// Containers.
 ///

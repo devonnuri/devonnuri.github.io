@@ -1,8 +1,7 @@
 extern crate alloc;
 
-pub mod construct;
-pub mod util;
 pub mod configuration;
+pub mod construct;
 pub mod event;
 pub mod mdast;
 pub mod parser;
@@ -13,6 +12,7 @@ pub mod to_html;
 pub mod to_mdast;
 pub mod tokenizer;
 pub mod unist;
+pub mod util;
 
 #[doc(hidden)]
 pub use util::identifier::{id_cont, id_start};

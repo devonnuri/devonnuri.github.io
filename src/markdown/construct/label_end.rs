@@ -179,6 +179,7 @@
 //! [html_img]: https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element
 //! [html_sup]: https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-sub-and-sup-elements
 
+use crate::markdown::alloc::{string::String, vec};
 use crate::markdown::construct::partial_space_or_tab_eol::space_or_tab_eol;
 use crate::markdown::event::{Event, Kind, Name};
 use crate::markdown::resolve::Name as ResolveName;
@@ -191,7 +192,6 @@ use crate::markdown::util::{
     skip,
     slice::{Position, Slice},
 };
-use crate::markdown::alloc::{string::String, vec};
 
 /// Start of label end.
 ///

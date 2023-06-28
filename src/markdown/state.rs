@@ -1,8 +1,8 @@
 //! States of the state machine.
 
+use crate::markdown::alloc::string::String;
 use crate::markdown::construct;
 use crate::markdown::tokenizer::Tokenizer;
-use crate::markdown::alloc::string::String;
 
 /// Result of a state.
 #[derive(Clone, Debug, Eq, PartialEq)]

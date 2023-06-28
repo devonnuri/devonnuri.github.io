@@ -1,10 +1,10 @@
 //! Helpers for character references.
 
+use crate::markdown::alloc::string::String;
 use crate::markdown::util::constant::{
     CHARACTER_REFERENCES, CHARACTER_REFERENCES_HTML_4, CHARACTER_REFERENCE_DECIMAL_SIZE_MAX,
     CHARACTER_REFERENCE_HEXADECIMAL_SIZE_MAX, CHARACTER_REFERENCE_NAMED_SIZE_MAX,
 };
-use crate::markdown::alloc::string::String;
 use core::str;
 
 /// Decode named character references.

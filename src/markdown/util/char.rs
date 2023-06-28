@@ -1,7 +1,7 @@
 //! Deal with bytes, chars, and kinds.
 
-use crate::markdown::util::unicode::PUNCTUATION;
 use crate::markdown::alloc::{format, string::String};
+use crate::markdown::util::unicode::PUNCTUATION;
 use core::str;
 
 /// Character kinds.

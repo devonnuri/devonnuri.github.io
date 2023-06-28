@@ -1,5 +1,11 @@
 //! Turn events into a syntax tree.
 
+use crate::markdown::alloc::{
+    format,
+    string::{String, ToString},
+    vec,
+    vec::Vec,
+};
 use crate::markdown::event::{Event, Kind, Name, Point as EventPoint};
 use crate::markdown::mdast::{
     AttributeContent, AttributeValue, AttributeValueExpression, BlockQuote, Break, Code,
@@ -18,12 +24,6 @@ use crate::markdown::util::{
     mdx_collect::{collect, Result as CollectResult},
     normalize_identifier::normalize_identifier,
     slice::{Position as SlicePosition, Slice},
-};
-use crate::markdown::alloc::{
-    format,
-    string::{String, ToString},
-    vec,
-    vec::Vec,
 };
 use core::str;
 

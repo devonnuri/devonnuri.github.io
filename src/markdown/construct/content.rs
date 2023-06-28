@@ -23,12 +23,12 @@
 //! [definition]: crate::construct::definition
 //! [paragraph]: crate::construct::paragraph
 
+use crate::markdown::alloc::{string::String, vec};
 use crate::markdown::event::{Content, Kind, Link, Name};
 use crate::markdown::resolve::Name as ResolveName;
 use crate::markdown::state::{Name as StateName, State};
 use crate::markdown::subtokenize::{subtokenize, Subresult};
 use crate::markdown::tokenizer::Tokenizer;
-use crate::markdown::alloc::{string::String, vec};
 
 /// Before a content chunk.
 ///

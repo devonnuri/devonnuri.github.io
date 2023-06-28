@@ -58,6 +58,7 @@
 //! [html_ul]: https://html.spec.whatwg.org/multipage/grouping-content.html#the-ul-element
 //! [commonmark_block]: https://spec.commonmark.org/0.30/#phase-1-block-structure
 
+use crate::markdown::alloc::{vec, vec::Vec};
 use crate::markdown::construct::partial_space_or_tab::space_or_tab_min_max;
 use crate::markdown::event::{Kind, Name};
 use crate::markdown::resolve::Name as ResolveName;
@@ -69,7 +70,6 @@ use crate::markdown::util::{
     skip,
     slice::{Position, Slice},
 };
-use crate::markdown::alloc::{vec, vec::Vec};
 
 /// Start of list item.
 ///

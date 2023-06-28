@@ -61,7 +61,9 @@
 //! [raw_text]: crate::construct::raw_text
 //! [link_reference_size_max]: crate::util::constant::LINK_REFERENCE_SIZE_MAX
 
-use crate::markdown::construct::partial_space_or_tab_eol::{space_or_tab_eol_with_options, Options};
+use crate::markdown::construct::partial_space_or_tab_eol::{
+    space_or_tab_eol_with_options, Options,
+};
 use crate::markdown::event::{Content, Link, Name};
 use crate::markdown::state::{Name as StateName, State};
 use crate::markdown::subtokenize::link;

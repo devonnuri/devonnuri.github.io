@@ -57,13 +57,13 @@
 //! [hard_break_prefix_size_min]: crate::util::constant::HARD_BREAK_PREFIX_SIZE_MIN
 //! [html]: https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-br-element
 
+use crate::markdown::alloc::vec;
 use crate::markdown::event::{Event, Kind, Name};
 use crate::markdown::tokenizer::Tokenizer;
 use crate::markdown::util::{
     constant::HARD_BREAK_PREFIX_SIZE_MIN,
     slice::{Position, Slice},
 };
-use crate::markdown::alloc::vec;
 
 /// Resolve whitespace.
 pub fn resolve_whitespace(tokenizer: &mut Tokenizer, hard_break: bool, trim_whole: bool) {

@@ -4,8 +4,8 @@
 //! * Convert between byte indices into a string which is built up of several
 //!   slices in a whole document, and byte indices into that whole document.
 
-use crate::markdown::unist::Point;
 use crate::markdown::alloc::{vec, vec::Vec};
+use crate::markdown::unist::Point;
 
 /// Each stop represents a new slice, which contains the byte index into the
 /// corresponding string where the slice starts (`0`), and the byte index into

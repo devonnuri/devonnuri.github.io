@@ -1,4 +1,10 @@
 //! Turn events into a string of HTML.
+use crate::markdown::alloc::{
+    format,
+    string::{String, ToString},
+    vec,
+    vec::Vec,
+};
 use crate::markdown::event::{Event, Kind, Name};
 use crate::markdown::mdast::AlignKind;
 use crate::markdown::util::{
@@ -13,12 +19,6 @@ use crate::markdown::util::{
     slice::{Position, Slice},
 };
 use crate::markdown::{CompileOptions, LineEnding};
-use crate::markdown::alloc::{
-    format,
-    string::{String, ToString},
-    vec,
-    vec::Vec,
-};
 use core::str;
 use std::collections::HashMap;
 
@@ -208,7 +208,11 @@ impl<'a> CompileContext<'a> {
 }
 
 /// Turn events and bytes into a string of HTML and a frontmatter.
-pub fn compile(events: &[Event], bytes: &[u8], options: &CompileOptions) -> (String, HashMap<String, String>) {
+pub fn compile(
+    events: &[Event],
+    bytes: &[u8],
+    options: &CompileOptions,
+) -> (String, HashMap<String, String>) {
     let mut index = 0;
     let mut line_ending_inferred = None;
 
@@ -295,12 +299,14 @@ pub fn compile(events: &[Event], bytes: &[u8], options: &CompileOptions) -> (Str
     }
 
     debug_assert_eq!(context.buffers.len(), 1, "expected 1 final buffer");
-    (context
-        .buffers
-        .get(0)
-        .expect("expected 1 final buffer")
-        .into(),
-    context.frontmatter)
+    (
+        context
+            .buffers
+            .get(0)
+            .expect("expected 1 final buffer")
+            .into(),
+        context.frontmatter,
+    )
 }
 
 /// Handle the event at `index`.
@@ -1004,7 +1010,9 @@ fn on_exit_frontmatter_chunk(context: &mut CompileContext) {
     let mut splitter = line.as_str().splitn(2, ':');
     let key = splitter.next().unwrap().trim();
     let value = splitter.next().unwrap().trim();
-    context.frontmatter.insert(key.to_string(), value.to_string());
+    context
+        .frontmatter
+        .insert(key.to_string(), value.to_string());
 }
 
 /// Handle [`Exit`][Kind::Exit]:[`GfmAutolinkLiteralEmail`][Name::GfmAutolinkLiteralEmail].

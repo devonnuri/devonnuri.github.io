@@ -76,6 +76,7 @@
 //! [html-strong]: https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-strong-element
 //! [html-del]: https://html.spec.whatwg.org/multipage/edits.html#the-del-element
 
+use crate::markdown::alloc::{vec, vec::Vec};
 use crate::markdown::event::{Event, Kind, Name, Point};
 use crate::markdown::resolve::Name as ResolveName;
 use crate::markdown::state::{Name as StateName, State};
@@ -85,7 +86,6 @@ use crate::markdown::util::char::{
     after_index as char_after_index, before_index as char_before_index, classify_opt,
     Kind as CharacterKind,
 };
-use crate::markdown::alloc::{vec, vec::Vec};
 
 /// Attentention sequence that we can take markers from.
 #[derive(Debug)]

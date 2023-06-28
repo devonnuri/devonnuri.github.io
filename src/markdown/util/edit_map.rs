@@ -8,8 +8,8 @@
 //! And, in other cases, it’s needed to parse subcontent: pass some events
 //! through another tokenizer and inject the result.
 
-use crate::markdown::event::Event;
 use crate::markdown::alloc::{vec, vec::Vec};
+use crate::markdown::event::Event;
 
 /// Shift `previous` and `next` links according to `jumps`.
 ///

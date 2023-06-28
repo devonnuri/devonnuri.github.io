@@ -62,6 +62,7 @@
 //! [wiki_setext]: https://en.wikipedia.org/wiki/Setext
 //! [atx]: http://www.aaronsw.com/2002/atx/
 
+use crate::markdown::alloc::vec;
 use crate::markdown::construct::partial_space_or_tab::{space_or_tab, space_or_tab_min_max};
 use crate::markdown::event::{Content, Event, Kind, Link, Name};
 use crate::markdown::resolve::Name as ResolveName;
@@ -69,7 +70,6 @@ use crate::markdown::state::{Name as StateName, State};
 use crate::markdown::subtokenize::Subresult;
 use crate::markdown::tokenizer::Tokenizer;
 use crate::markdown::util::constant::{HEADING_ATX_OPENING_FENCE_SIZE_MAX, TAB_SIZE};
-use crate::markdown::alloc::vec;
 
 /// Start of a heading (atx).
 ///

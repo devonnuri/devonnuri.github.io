@@ -1,8 +1,8 @@
 //! Collect info for MDX.
 
+use crate::markdown::alloc::{string::String, vec, vec::Vec};
 use crate::markdown::event::{Event, Kind, Name};
 use crate::markdown::util::slice::{Position, Slice};
-use crate::markdown::alloc::{string::String, vec, vec::Vec};
 
 pub type Stop = (usize, usize);
 

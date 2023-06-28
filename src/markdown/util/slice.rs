@@ -1,8 +1,8 @@
 //! Deal with bytes.
 
+use crate::markdown::alloc::{format, string::String, vec};
 use crate::markdown::event::{Event, Kind, Point};
 use crate::markdown::util::constant::TAB_SIZE;
-use crate::markdown::alloc::{format, string::String, vec};
 use core::str;
 
 /// A range between two points.

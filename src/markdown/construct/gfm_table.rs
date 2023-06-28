@@ -225,6 +225,7 @@
 //! [html_thead]: https://html.spec.whatwg.org/multipage/tables.html#the-thead-element
 //! [html_tr]: https://html.spec.whatwg.org/multipage/tables.html#the-tr-element
 
+use crate::markdown::alloc::vec;
 use crate::markdown::construct::partial_space_or_tab::{space_or_tab, space_or_tab_min_max};
 use crate::markdown::event::{Content, Event, Kind, Link, Name};
 use crate::markdown::resolve::Name as ResolveName;
@@ -232,7 +233,6 @@ use crate::markdown::state::{Name as StateName, State};
 use crate::markdown::subtokenize::Subresult;
 use crate::markdown::tokenizer::Tokenizer;
 use crate::markdown::util::{constant::TAB_SIZE, skip::opt_back as skip_opt_back};
-use crate::markdown::alloc::vec;
 
 /// Start of a GFM table.
 ///

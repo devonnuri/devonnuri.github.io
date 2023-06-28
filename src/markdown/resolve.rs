@@ -1,9 +1,9 @@
 //! Resolve events.
 
+use crate::markdown::alloc::string::String;
 use crate::markdown::construct;
 use crate::markdown::subtokenize::Subresult;
 use crate::markdown::tokenizer::Tokenizer;
-use crate::markdown::alloc::string::String;
 
 /// Names of resolvers.
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
