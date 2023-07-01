@@ -8,3 +8,5 @@ There was no static site generator that pleases my fussy palate. So, I made it b
 - [ ] multi-language support
 - [ ] internal link support (including auto language fallback)
 - [ ] prevent mathjax to load if there is no math expression
+- [ ] add icon in sidebar
+- [ ] more elaborate (un)ordered list (*just like the latex's one*)

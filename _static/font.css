@@ -1,0 +1,42 @@
+@font-face {
+    font-family: 'Tex Gyre Termes';
+    font-style: normal;
+    font-weight: 400;
+    src: url('https://fonts.cdnfonts.com/s/431/texgyretermes-regular.woff') format('woff');
+}
+@font-face {
+    font-family: 'Tex Gyre Termes';
+    font-style: italic;
+    font-weight: 400;
+    src: url('https://fonts.cdnfonts.com/s/431/texgyretermes-italic.woff') format('woff');
+}
+@font-face {
+    font-family: 'Tex Gyre Termes';
+    font-style: normal;
+    font-weight: 700;
+    src: url('https://fonts.cdnfonts.com/s/431/texgyretermes-bold.woff') format('woff');
+}
+@font-face {
+    font-family: 'Tex Gyre Termes';
+    font-style: italic;
+    font-weight: 700;
+    src: url('https://fonts.cdnfonts.com/s/431/texgyretermes-bolditalic.woff') format('woff');
+}
+@font-face {
+    font-family: 'KoPubBatang';
+    font-style: normal;
+    font-weight: 400;
+    src: url(//cdn.jsdelivr.net/npm/font-kopub@1.0/fonts/KoPubBatang-Light.eot);
+    src: url(//cdn.jsdelivr.net/npm/font-kopub@1.0/fonts/KoPubBatang-Light.eot?#iefix) format('embedded-opentype'),
+         url(//cdn.jsdelivr.net/npm/font-kopub@1.0/fonts/KoPubBatang-Light.woff) format('woff'),
+         url(//cdn.jsdelivr.net/npm/font-kopub@1.0/fonts/KoPubBatang-Light.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'KoPubBatang';
+    font-style: normal;
+    font-weight: 700;
+    src: url(//cdn.jsdelivr.net/npm/font-kopub@1.0/fonts/KoPubBatang-Bold.eot);
+    src: url(//cdn.jsdelivr.net/npm/font-kopub@1.0/fonts/KoPubBatang-Bold.eot?#iefix) format('embedded-opentype'),
+         url(//cdn.jsdelivr.net/npm/font-kopub@1.0/fonts/KoPubBatang-Bold.woff) format('woff'),
+         url(//cdn.jsdelivr.net/npm/font-kopub@1.0/fonts/KoPubBatang-Bold.ttf) format('truetype');
+}
