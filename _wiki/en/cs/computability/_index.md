@@ -16,4 +16,4 @@ Although there is considerable overlap in terms of knowledge and methods, mathem
 
 # Subcontents
 
-* [Gödel's Incompleteness Theorems](/en:godel_incompleteness_theorems)
+* [Gödel's Incompleteness Theorems](/en/godel_incompleteness_theorems)

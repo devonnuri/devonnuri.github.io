@@ -7,4 +7,4 @@ updated_at: 2023-06-27 00:45:57
 
 # Contents
 
-* [Computer Science](/cs)
+* [Computer Science](/en/cs)

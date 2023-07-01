@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}} - devonnuri.wiki</title>
+    <link rel="stylesheet" href="/font.css">
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$']],
+                displayMath: [['$$', '$$']],
+            },
+        };
+    </script>
+</head>
+<body>
+    <div id="container">
+        <div id="logo">
+            <a href="/{{language}}/">
+                <img src="/logo.svg" alt="devonnuri">
+            </a>
+        </div>
+
+        <div>
+            <input type="text" class="search-input" placeholder="어디로 떠나실래요?">
+        </div>
+        
+        <div class="content">
+            <div class="header">
+                <h1>{{title}}</h1>
+                <h2>{{subtitle}}</h2>
+            </div>
+
+            <div class="details">
+                <p>문서 생성일 : {{created_at}}, 최종 수정일 : {{updated_at}}</p>
+                <p>{{category}}</p>
+                <p>
+                    <a href="#">언어</a>
+                    <a href="https://github.com/devonnuri/devonnuri.github.io/edit/main/{{md_path}}" target="_blank">수정</a>
+                    <a href="https://github.com/devonnuri/devonnuri.github.io/commits/main/{{md_path}}" target="_blank">역사</a>
+                </p>
+            </div>
+
+            <div class="body-content">
+                {{content}}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

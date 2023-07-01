@@ -12,4 +12,4 @@ updated_at: 2023-06-27 00:45:57
 
 # Contents
 
-* [Computability](/computability)
+* [Computability](/en/computability)

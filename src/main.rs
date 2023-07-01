@@ -39,6 +39,7 @@ fn to_html(value: &str) -> (String, HashMap<String, String>) {
 fn write_html(
     directory_path: &String,
     md_path: &String,
+    language: &String,
     html: String,
     frontmatter: &HashMap<String, String>,
     category: String,
@@ -47,7 +48,8 @@ fn write_html(
     fs::create_dir_all(&directory_path).unwrap();
 
     // Write html file from the template file
-    let template = fs::read_to_string("./_template/entry.html").unwrap();
+    let template =
+        fs::read_to_string("./_template/entry_".to_string() + &language + ".html").unwrap();
 
     let category_html = if category.is_empty() {
         "".to_string()
@@ -72,6 +74,7 @@ fn write_html(
             "{{updated_at}}",
             &frontmatter.get("updated_at").unwrap_or(&"".to_string()),
         )
+        .replace("{{language}}", &language)
         .replace("{{content}}", &html)
         .replace("{{category}}", &category_html)
         .replace("{{md_path}}", &md_path[2..]); // remove './' from the path
@@ -80,8 +83,9 @@ fn write_html(
 }
 
 fn main() {
-    let mut directory_queue = Vec::new();
-    directory_queue.push("./_wiki".to_string());
+    let mut directory_queue: Vec<(String, String)> = Vec::new();
+    directory_queue.push(("./_wiki/en".to_string(), "en".to_string()));
+    directory_queue.push(("./_wiki/ko".to_string(), "ko".to_string()));
 
     // Create '_build' directory if not exists, and clear it.
     if fs::metadata("./_build").is_ok() {
@@ -101,20 +105,18 @@ fn main() {
     let mut category_map: HashMap<String, String> = HashMap::new();
 
     // Iterate over all files in the directory.
-    while let Some(directory_path) = directory_queue.pop() {
+    while let Some((directory_path, language)) = directory_queue.pop() {
         let index_path = directory_path.clone() + "/_index.md";
-
-        println!("index : {}", &index_path);
 
         let index_content = fs::read_to_string(&index_path).unwrap();
         let (html, frontmatter) = to_html(&index_content);
 
         let directory_pathbuf = PathBuf::from(directory_path.clone());
         let index_entry_filename = directory_pathbuf.file_name().unwrap().to_str().unwrap();
-        let index_entry_directory = if index_entry_filename == "_wiki" {
-            "./_build/".to_string()
+        let index_entry_directory = if index_entry_filename == language.as_str() {
+            "./_build/".to_string() + language.as_str() + "/"
         } else {
-            "./_build/".to_string() + index_entry_filename + "/"
+            "./_build/".to_string() + language.as_str() + "/" + index_entry_filename + "/"
         };
 
         let parent_directory = directory_pathbuf
@@ -129,7 +131,7 @@ fn main() {
             .map(String::as_str)
             .unwrap_or("")
             .to_string();
-        let current_category = if index_entry_filename == "_wiki" {
+        let current_category = if index_entry_filename == language.as_str() {
             "".to_string() // Root directory
         } else if index_category == "" {
             "<a href=\"/".to_string()
@@ -149,6 +151,7 @@ fn main() {
         write_html(
             &index_entry_directory,
             &index_path,
+            &language,
             html,
             &frontmatter,
             index_category.clone(),
@@ -161,7 +164,7 @@ fn main() {
         for dir_entry in dir {
             let path = dir_entry.unwrap().path();
             if path.is_dir() {
-                directory_queue.push(path.to_str().unwrap().to_string());
+                directory_queue.push((path.to_str().unwrap().to_string(), language.clone()));
                 continue;
             }
             if path.extension().unwrap() != "md" {
@@ -173,13 +176,15 @@ fn main() {
 
             println!("md : {}", path.to_str().unwrap());
             let entry_filename = path.file_stem().unwrap().to_str().unwrap();
-            let entry_directory = "./_build/".to_string() + entry_filename + "/";
+            let entry_directory =
+                "./_build/".to_string() + language.as_str() + "/" + entry_filename + "/";
 
             let content = fs::read_to_string(path.clone()).unwrap();
             let (html, frontmatter) = to_html(&content);
             write_html(
                 &entry_directory,
                 &path.to_str().unwrap().to_string(),
+                &language,
                 html,
                 &frontmatter,
                 current_category.clone(),
