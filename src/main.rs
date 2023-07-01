@@ -75,7 +75,10 @@ fn write_html(
             &frontmatter.get("updated_at").unwrap_or(&"".to_string()),
         )
         .replace("{{language}}", &language)
-        .replace("{{content}}", &html)
+        .replace(
+            "{{content}}",
+            &html.replace("`", "&#8216;").replace("'", "&#8217;"),
+        )
         .replace("{{category}}", &category_html)
         .replace("{{md_path}}", &md_path[2..]); // remove './' from the path
 

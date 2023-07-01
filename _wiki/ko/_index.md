@@ -1,10 +1,15 @@
 ---
 title: 환영합니다
 created_at: 2023-06-27 00:45:57
-updated_at: 2023-06-27 00:45:57
+updated_at: 2023-07-01 20:59:45
 ---
 # 여기는 어디인가요?
 
+> A Box for Divertissement
+
+이곳은 기분 전환을 위한 상자입니다. 컴퓨터 과학, 언어학, 심리학 등 다양한 지식에 대한 보관 공간이 되길 기대합니다.
+
 # 하위 문서
 
-* [Computer Science](/ko/cs)
+* [컴퓨터 과학](/ko/computer_science/)
+* [심리학](/ko/psychology/)

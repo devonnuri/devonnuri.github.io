@@ -53,6 +53,18 @@ input {
     background: black;
 }
 
+.content {
+    line-height: 1.5;
+}
+
+.content .footnotes {
+    border-top: 1px solid black;
+}
+
+.content p {
+    margin: 0;
+}
+
 .content .header h1 {
     font-size: 2em;
     font-weight: bold;
@@ -124,8 +136,4 @@ input {
 .content .body-content h2.nocount:before {
     content: none;
     counter-increment: none;
-}
-
-.content .footnotes {
-    border-top: 1px solid black;
 }
