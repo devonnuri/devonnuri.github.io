@@ -54,7 +54,7 @@ fn write_html(
     let category_html = if category.is_empty() {
         "".to_string()
     } else {
-        "<p>Category : ".to_string() + &category + "</p>"
+        category.clone()
     };
 
     let html = template

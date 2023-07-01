@@ -1616,31 +1616,7 @@ fn on_exit_thematic_break(context: &mut CompileContext) {
 /// Generate a footnote section.
 fn generate_footnote_section(context: &mut CompileContext) {
     context.line_ending_if_needed();
-    context.push("<section data-footnotes=\"\" class=\"footnotes\"><");
-    if let Some(ref value) = context.options.gfm_footnote_label_tag_name {
-        context.push(&encode(value, context.encode_html));
-    } else {
-        context.push("h2");
-    }
-    context.push(" id=\"footnote-label\" ");
-    if let Some(ref value) = context.options.gfm_footnote_label_attributes {
-        context.push(value);
-    } else {
-        context.push("class=\"sr-only\"");
-    }
-    context.push(">");
-    if let Some(ref value) = context.options.gfm_footnote_label {
-        context.push(&encode(value, context.encode_html));
-    } else {
-        context.push("Footnotes");
-    }
-    context.push("</");
-    if let Some(ref value) = context.options.gfm_footnote_label_tag_name {
-        context.push(&encode(value, context.encode_html));
-    } else {
-        context.push("h2");
-    }
-    context.push(">");
+    context.push("<section data-footnotes=\"\" class=\"footnotes\">");
     context.line_ending();
     context.push("<ol>");
 

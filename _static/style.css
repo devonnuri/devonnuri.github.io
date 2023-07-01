@@ -125,3 +125,7 @@ input {
     content: none;
     counter-increment: none;
 }
+
+.content .footnotes {
+    border-top: 1px solid black;
+}
