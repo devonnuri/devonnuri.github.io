@@ -23,7 +23,7 @@
     src: url('https://fonts.cdnfonts.com/s/431/texgyretermes-bolditalic.woff') format('woff');
 }
 @font-face {
-    font-family: 'KoPubBatang';
+    font-family: 'KoPub';
     font-style: normal;
     font-weight: 400;
     src: url(//cdn.jsdelivr.net/npm/font-kopub@1.0/fonts/KoPubBatang-Light.eot);
@@ -32,11 +32,29 @@
          url(//cdn.jsdelivr.net/npm/font-kopub@1.0/fonts/KoPubBatang-Light.ttf) format('truetype');
 }
 @font-face {
-    font-family: 'KoPubBatang';
+    font-family: 'KoPub';
     font-style: normal;
     font-weight: 700;
     src: url(//cdn.jsdelivr.net/npm/font-kopub@1.0/fonts/KoPubBatang-Bold.eot);
     src: url(//cdn.jsdelivr.net/npm/font-kopub@1.0/fonts/KoPubBatang-Bold.eot?#iefix) format('embedded-opentype'),
          url(//cdn.jsdelivr.net/npm/font-kopub@1.0/fonts/KoPubBatang-Bold.woff) format('woff'),
          url(//cdn.jsdelivr.net/npm/font-kopub@1.0/fonts/KoPubBatang-Bold.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'KoPub';
+    font-style: italic;
+    font-weight: 400;
+    src: url(//cdn.jsdelivr.net/npm/font-kopub@1.0/fonts/KoPubDotum-Light.eot);
+    src: url(//cdn.jsdelivr.net/npm/font-kopub@1.0/fonts/KoPubDotum-Light.eot?#iefix) format('embedded-opentype'),
+         url(//cdn.jsdelivr.net/npm/font-kopub@1.0/fonts/KoPubDotum-Light.woff) format('woff'),
+         url(//cdn.jsdelivr.net/npm/font-kopub@1.0/fonts/KoPubDotum-Light.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'KoPub';
+    font-style: italic;
+    font-weight: 700;
+    src: url(//cdn.jsdelivr.net/npm/font-kopub@1.0/fonts/KoPubDotum-Bold.eot);
+    src: url(//cdn.jsdelivr.net/npm/font-kopub@1.0/fonts/KoPubDotum-Bold.eot?#iefix) format('embedded-opentype'),
+         url(//cdn.jsdelivr.net/npm/font-kopub@1.0/fonts/KoPubDotum-Bold.woff) format('woff'),
+         url(//cdn.jsdelivr.net/npm/font-kopub@1.0/fonts/KoPubDotum-Bold.ttf) format('truetype');
 }
