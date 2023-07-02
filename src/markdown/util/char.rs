@@ -3,6 +3,9 @@
 use crate::markdown::alloc::string::String;
 use crate::markdown::util::unicode::PUNCTUATION;
 
+#[cfg(feature = "log")]
+use core::str;
+
 /// Character kinds.
 #[derive(Debug, PartialEq, Eq)]
 pub enum Kind {
@@ -104,6 +107,29 @@ pub fn classify(char: char) -> Kind {
 /// Like [`classify`], but supports eof as whitespace.
 pub fn classify_opt(char_opt: Option<char>) -> Kind {
     char_opt.map_or(Kind::Whitespace, classify)
+}
+
+#[cfg(feature = "log")]
+pub fn format_byte_opt(byte: Option<u8>) -> String {
+    byte.map_or("end of file".into(), |byte| {
+        format!("byte {}", format_byte(byte))
+    })
+}
+
+#[cfg(feature = "log")]
+pub fn format_byte(byte: u8) -> String {
+    let representation = format!("U+{:>04X}", byte);
+    let printable = match byte {
+        b'`' => Some("`` ` ``".into()),
+        b'!'..=b'~' => Some(format!("`{}`", str::from_utf8(&[byte]).unwrap())),
+        _ => None,
+    };
+
+    if let Some(char) = printable {
+        format!("{} ({})", char, representation)
+    } else {
+        representation
+    }
 }
 
 #[cfg(test)]

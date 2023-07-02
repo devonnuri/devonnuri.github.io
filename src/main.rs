@@ -75,10 +75,7 @@ fn write_html(
             &frontmatter.get("updated_at").unwrap_or(&"".to_string()),
         )
         .replace("{{language}}", &language)
-        .replace(
-            "{{content}}",
-            &html.replace("`", "&#8216;").replace("'", "&#8217;"),
-        )
+        .replace("{{content}}", &html)
         .replace("{{category}}", &category_html)
         .replace("{{md_path}}", &md_path[2..]); // remove './' from the path
 
@@ -121,6 +118,8 @@ fn main() {
         } else {
             "./_build/".to_string() + language.as_str() + "/" + index_entry_filename + "/"
         };
+
+        println!("index : {}", &index_path);
 
         let parent_directory = directory_pathbuf
             .parent()
