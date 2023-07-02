@@ -60,6 +60,6 @@ $$ \chi_R = \begin{cases}
 
     *증명.* **R2**에 의해 $\chi_P(\overline{a})=\chi_Q\left(H_1(\overline{a}),\cdots,H_k(\overline{a})\right)$는 재귀적인 함수이다.
 
-# 참고자료
+# 참고 문헌
 
 1. Byunghan Kim, *Complete Proofs of Gödel's Incompleteness Theorems* (Lecture Note). [Link](https://web.yonsei.ac.kr/bkim/goedel.pdf)

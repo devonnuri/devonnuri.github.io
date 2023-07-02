@@ -75,12 +75,11 @@ input {
 }
 
 .content p {
-    margin: 0;
+    margin: 0.8rem 0;
     text-indent: 1em;
 }
 
 .content blockquote {
-    margin: 1rem 0;
     padding: 0 0 0 1em;
     border-left: 0.2rem solid gray;
 }
@@ -90,6 +89,7 @@ input {
 .content ul p,
 .content ol p {
     text-indent: 0;
+    margin: 0;
 }
 
 .content a {
