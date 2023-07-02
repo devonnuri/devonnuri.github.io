@@ -20,6 +20,18 @@ input {
     min-height: 100vh;
 }
 
+@media screen and (max-width: 48rem) {
+    body {
+        padding: 0 0.5rem;
+    }
+
+    #container {
+        width: 100%;
+        border: none;
+        padding: 0;
+    }
+}
+
 #logo {
     width: 100%;
     text-align: center;
@@ -73,7 +85,10 @@ input {
     border-left: 0.2rem solid gray;
 }
 
-.content blockquote p, .content .footnotes p {
+.content blockquote p,
+.content .footnotes p,
+.content ul p,
+.content ol p {
     text-indent: 0;
 }
 
