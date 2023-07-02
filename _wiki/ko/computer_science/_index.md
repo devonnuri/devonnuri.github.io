@@ -10,6 +10,7 @@ updated_at: 2023-06-27 00:45:57
 > 
 > qwer
 
-# 문서 목록
+# 하위 항목
 
-* [계산 가능성](/ko/computability)
+* [계산 이론](/ko/computation_theory/)
+    * [계산 가능성 이론](/ko/computability_theory/)
