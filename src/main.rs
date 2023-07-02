@@ -137,6 +137,8 @@ fn main() {
             "".to_string() // Root directory
         } else if index_category == "" {
             "<a href=\"/".to_string()
+                + language.as_str()
+                + "/"
                 + index_entry_filename
                 + "/\">"
                 + frontmatter.get("title").unwrap_or(&"".to_string())
@@ -144,6 +146,8 @@ fn main() {
         } else {
             index_category.clone()
                 + " &gt; <a href=\"/"
+                + language.as_str()
+                + "/"
                 + index_entry_filename
                 + "/\">"
                 + frontmatter.get("title").unwrap_or(&"".to_string())
