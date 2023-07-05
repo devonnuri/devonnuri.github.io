@@ -48,7 +48,7 @@ fn write_html(
     // Write html file from the template file
     let template = fs::read_to_string("./_template/entry_".to_string() + &language + ".html")?;
 
-    let html = template
+    let final_html = template
         .replace(
             "{{title}}",
             &frontmatter.get("title").unwrap_or(&"Untitled".to_string()),
@@ -81,7 +81,7 @@ fn write_html(
                 .ok_or("Failed to convert file name to string.")?,
         ); // remove './' from the path
 
-    fs::write(directory_path.to_owned().join("index.html"), html).unwrap();
+    fs::write(directory_path.join("index.html"), final_html).unwrap();
 
     Ok(())
 }
@@ -156,6 +156,7 @@ fn main() {
                     .get("title")
                     .unwrap_or(&"Untitled".to_string()),
             );
+            current_category.push_str("</a>");
         }
 
         write_html(
@@ -178,13 +179,10 @@ fn main() {
                 directory_queue.push((path, language.clone()));
                 continue;
             }
-            if path.extension().is_some_and(|ext| ext != "md") {
+            if path.extension().unwrap() != "md" {
                 continue;
             }
-            if path
-                .file_name()
-                .is_some_and(|filename| filename == "_index.md")
-            {
+            if path.file_name().unwrap() == "_index.md" {
                 continue;
             }
 
