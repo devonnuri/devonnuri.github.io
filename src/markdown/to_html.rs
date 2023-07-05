@@ -258,12 +258,17 @@ impl<'a> CompileContext<'a> {
     }
 }
 
+#[derive(Debug)]
+pub struct CompileResult {
+    pub frontmatter: HashMap<String, String>,
+}
+
 /// Turn events and bytes into a string of HTML and a frontmatter.
 pub fn compile(
     events: &[Event],
     bytes: &[u8],
     options: &CompileOptions,
-) -> (String, HashMap<String, String>) {
+) -> (String, CompileResult) {
     let mut index = 0;
     let mut line_ending_inferred = None;
 
@@ -356,7 +361,9 @@ pub fn compile(
             .get(0)
             .expect("expected 1 final buffer")
             .into(),
-        context.frontmatter,
+        CompileResult {
+            frontmatter: context.frontmatter,
+        },
     )
 }
 

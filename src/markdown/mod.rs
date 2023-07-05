@@ -18,3 +18,5 @@ pub use util::sanitize_uri::sanitize;
 pub use util::line_ending::LineEnding;
 
 pub use configuration::{CompileOptions, Constructs, Options, ParseOptions};
+
+pub use to_html::CompileResult;
