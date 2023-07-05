@@ -1,12 +1,12 @@
-mod markdown;
+mod onnurmark;
 
 use std::collections::HashMap;
 use std::fs;
 use std::path::PathBuf;
 
-use crate::markdown::parser;
-use crate::markdown::to_html;
-use crate::markdown::{CompileResult, Constructs, Options, ParseOptions};
+use crate::onnurmark::parser;
+use crate::onnurmark::to_html;
+use crate::onnurmark::{CompileResult, Constructs, Options, ParseOptions};
 
 fn to_html(value: &str) -> Option<(String, CompileResult)> {
     let options = Options {
