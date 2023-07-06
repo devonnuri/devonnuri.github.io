@@ -36,7 +36,7 @@ fn to_html(value: &str) -> Option<(String, CompileResult)> {
 
 fn write_html(
     directory_path: &PathBuf,
-    md_path: &PathBuf,
+    onm_path: &PathBuf,
     language: &String,
     html: String,
     frontmatter: &HashMap<String, String>,
@@ -73,10 +73,10 @@ fn write_html(
         .replace("{{content}}", &html)
         .replace("{{category}}", &category)
         .replace(
-            "{{md_path}}",
-            md_path
+            "{{onm_path}}",
+            onm_path
                 .file_name()
-                .ok_or("Failed to extract file name from md_path.")?
+                .ok_or("Failed to extract file name from onm_path.")?
                 .to_str()
                 .ok_or("Failed to convert file name to string.")?,
         ); // remove './' from the path
@@ -119,7 +119,7 @@ fn main() {
 
     // Iterate over all files in the directory.
     while let Some((directory_pathbuf, language)) = directory_queue.pop() {
-        let index_pathbuf = directory_pathbuf.join("_index.md");
+        let index_pathbuf = directory_pathbuf.join("_index.onm");
 
         let index_content = fs::read_to_string(&index_pathbuf).unwrap();
         let (html, compile_result) = to_html(&index_content).unwrap();
@@ -179,14 +179,14 @@ fn main() {
                 directory_queue.push((path, language.clone()));
                 continue;
             }
-            if path.extension().unwrap() != "md" {
+            if path.extension().unwrap() != "onm" {
                 continue;
             }
-            if path.file_name().unwrap() == "_index.md" {
+            if path.file_name().unwrap() == "_index.onm" {
                 continue;
             }
 
-            println!("md : {}", path.to_str().unwrap());
+            println!("onm : {}", path.to_str().unwrap());
             let entry_filename = path.file_stem().unwrap().to_str().unwrap();
             let entry_directory = PathBuf::from("./_build/")
                 .join(&language)

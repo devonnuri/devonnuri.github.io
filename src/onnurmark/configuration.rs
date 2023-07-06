@@ -244,79 +244,6 @@ pub struct Constructs {
     ///       ^^^
     /// ```
     pub math_text: bool,
-    /// MDX: ESM.
-    ///
-    /// ```markdown
-    /// > | import a from 'b'
-    ///     ^^^^^^^^^^^^^^^^^
-    /// ```
-    ///
-    /// > 👉 **Note**: to support ESM, you *must* pass
-    /// > [`mdx_esm_parse`][MdxEsmParse] in [`ParseOptions`][] too.
-    /// > Otherwise, ESM is treated as normal markdown.
-    pub mdx_esm: bool,
-    /// MDX: expression (flow).
-    ///
-    /// ```markdown
-    /// > | {Math.PI}
-    ///     ^^^^^^^^^
-    /// ```
-    ///
-    /// > 👉 **Note**: You *can* pass
-    /// > [`mdx_expression_parse`][MdxExpressionParse] in [`ParseOptions`][]
-    /// > too, to parse expressions according to a certain grammar (typically,
-    /// > a programming language).
-    /// > Otherwise, expressions are parsed with a basic algorithm that only
-    /// > cares about braces.
-    pub mdx_expression_flow: bool,
-    /// MDX: expression (text).
-    ///
-    /// ```markdown
-    /// > | a {Math.PI} c
-    ///       ^^^^^^^^^
-    /// ```
-    ///
-    /// > 👉 **Note**: You *can* pass
-    /// > [`mdx_expression_parse`][MdxExpressionParse] in [`ParseOptions`][]
-    /// > too, to parse expressions according to a certain grammar (typically,
-    /// > a programming language).
-    /// > Otherwise, expressions are parsed with a basic algorithm that only
-    /// > cares about braces.
-    pub mdx_expression_text: bool,
-    /// MDX: JSX (flow).
-    ///
-    /// ```markdown
-    /// > | <Component />
-    ///     ^^^^^^^^^^^^^
-    /// ```
-    ///
-    /// > 👉 **Note**: You *must* pass `html_flow: false` to use this,
-    /// > as it’s preferred when on over `mdx_jsx_flow`.
-    ///
-    /// > 👉 **Note**: You *can* pass
-    /// > [`mdx_expression_parse`][MdxExpressionParse] in [`ParseOptions`][]
-    /// > too, to parse expressions in JSX according to a certain grammar
-    /// > (typically, a programming language).
-    /// > Otherwise, expressions are parsed with a basic algorithm that only
-    /// > cares about braces.
-    pub mdx_jsx_flow: bool,
-    /// MDX: JSX (text).
-    ///
-    /// ```markdown
-    /// > | a <Component /> c
-    ///       ^^^^^^^^^^^^^
-    /// ```
-    ///
-    /// > 👉 **Note**: You *must* pass `html_text: false` to use this,
-    /// > as it’s preferred when on over `mdx_jsx_text`.
-    ///
-    /// > 👉 **Note**: You *can* pass
-    /// > [`mdx_expression_parse`][MdxExpressionParse] in [`ParseOptions`][]
-    /// > too, to parse expressions in JSX according to a certain grammar
-    /// > (typically, a programming language).
-    /// > Otherwise, expressions are parsed with a basic algorithm that only
-    /// > cares about braces.
-    pub mdx_jsx_text: bool,
     /// Thematic break.
     ///
     /// ```markdown
@@ -365,11 +292,6 @@ impl Default for Constructs {
             list_item: true,
             math_flow: false,
             math_text: false,
-            mdx_esm: false,
-            mdx_expression_flow: false,
-            mdx_expression_text: false,
-            mdx_jsx_flow: false,
-            mdx_jsx_text: false,
             thematic_break: true,
         }
     }
@@ -937,10 +859,6 @@ mod tests {
             "should default to `CommonMark` (2)"
         );
         assert!(
-            !constructs.mdx_jsx_flow,
-            "should default to `CommonMark` (3)"
-        );
-        assert!(
             !constructs.frontmatter,
             "should default to `CommonMark` (4)"
         );
@@ -959,21 +877,17 @@ mod tests {
             !options.constructs.gfm_autolink_literal,
             "should default to `CommonMark` (2)"
         );
-        assert!(
-            !options.constructs.mdx_jsx_flow,
-            "should default to `CommonMark` (3)"
-        );
 
         assert_eq!(
             format!("{:?}", ParseOptions::default()),
-            "ParseOptions { constructs: Constructs { attention: true, autolink: true, block_quote: true, character_escape: true, character_reference: true, code_indented: true, code_fenced: true, code_text: true, definition: true, frontmatter: false, gfm_autolink_literal: false, gfm_footnote_definition: false, gfm_label_start_footnote: false, gfm_strikethrough: false, gfm_table: false, gfm_task_list_item: false, hard_break_escape: true, hard_break_trailing: true, heading_atx: true, heading_setext: true, html_flow: true, html_text: true, label_start_image: true, label_start_link: true, label_end: true, list_item: true, math_flow: false, math_text: false, mdx_esm: false, mdx_expression_flow: false, mdx_expression_text: false, mdx_jsx_flow: false, mdx_jsx_text: false, thematic_break: true }, gfm_strikethrough_single_tilde: true, math_text_single_dollar: true, mdx_expression_parse: None, mdx_esm_parse: None }",
+            "ParseOptions { constructs: Constructs { attention: true, autolink: true, block_quote: true, character_escape: true, character_reference: true, code_indented: true, code_fenced: true, code_text: true, definition: true, frontmatter: false, gfm_autolink_literal: false, gfm_footnote_definition: false, gfm_label_start_footnote: false, gfm_strikethrough: false, gfm_table: false, gfm_task_list_item: false, hard_break_escape: true, hard_break_trailing: true, heading_atx: true, heading_setext: true, html_flow: true, html_text: true, label_start_image: true, label_start_link: true, label_end: true, list_item: true, math_flow: false, math_text: false, thematic_break: true }, gfm_strikethrough_single_tilde: true, math_text_single_dollar: true }",
             "should support `Debug` trait"
         );
         assert_eq!(
             format!("{:?}", ParseOptions {
                 ..Default::default()
             }),
-            "ParseOptions { constructs: Constructs { attention: true, autolink: true, block_quote: true, character_escape: true, character_reference: true, code_indented: true, code_fenced: true, code_text: true, definition: true, frontmatter: false, gfm_autolink_literal: false, gfm_footnote_definition: false, gfm_label_start_footnote: false, gfm_strikethrough: false, gfm_table: false, gfm_task_list_item: false, hard_break_escape: true, hard_break_trailing: true, heading_atx: true, heading_setext: true, html_flow: true, html_text: true, label_start_image: true, label_start_link: true, label_end: true, list_item: true, math_flow: false, math_text: false, mdx_esm: false, mdx_expression_flow: false, mdx_expression_text: false, mdx_jsx_flow: false, mdx_jsx_text: false, thematic_break: true }, gfm_strikethrough_single_tilde: true, math_text_single_dollar: true, mdx_expression_parse: Some(\"[Function]\"), mdx_esm_parse: Some(\"[Function]\") }",
+            "ParseOptions { constructs: Constructs { attention: true, autolink: true, block_quote: true, character_escape: true, character_reference: true, code_indented: true, code_fenced: true, code_text: true, definition: true, frontmatter: false, gfm_autolink_literal: false, gfm_footnote_definition: false, gfm_label_start_footnote: false, gfm_strikethrough: false, gfm_table: false, gfm_task_list_item: false, hard_break_escape: true, hard_break_trailing: true, heading_atx: true, heading_setext: true, html_flow: true, html_text: true, label_start_image: true, label_start_link: true, label_end: true, list_item: true, math_flow: false, math_text: false, thematic_break: true }, gfm_strikethrough_single_tilde: true, math_text_single_dollar: true }",
             "should support `Debug` trait on mdx functions"
         );
     }
@@ -1005,10 +919,6 @@ mod tests {
         assert!(
             !options.parse.constructs.gfm_autolink_literal,
             "should default to safe `CommonMark` (2)"
-        );
-        assert!(
-            !options.parse.constructs.mdx_jsx_flow,
-            "should default to safe `CommonMark` (3)"
         );
         assert!(
             !options.compile.allow_dangerous_html,
