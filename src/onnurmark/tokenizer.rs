@@ -700,7 +700,6 @@ fn push_impl(
 
     loop {
         match state {
-            State::Error(_) => break,
             State::Ok | State::Nok => {
                 if let Some(attempt) = tokenizer.attempts.pop() {
                     // Revert to the previous state.
@@ -766,12 +765,9 @@ fn push_impl(
     tokenizer.consumed = true;
 
     if flush {
-        debug_assert!(matches!(state, State::Ok | State::Error(_)), "must be ok");
+        debug_assert!(matches!(state, State::Ok), "must be ok");
     } else {
-        debug_assert!(
-            matches!(state, State::Next(_) | State::Error(_)),
-            "must have a next state"
-        );
+        debug_assert!(matches!(state, State::Next(_)), "must have a next state");
     }
 
     state

@@ -18,8 +18,6 @@
 //! *   [Label start (image)][crate::construct::label_start_image]
 //! *   [Label start (link)][crate::construct::label_start_link]
 //! *   [Label end][crate::construct::label_end]
-//! *   [MDX: expression (text)][crate::construct::mdx_expression_text]
-//! *   [MDX: JSX (text)][crate::construct::mdx_jsx_text]
 //!
 //! > 👉 **Note**: for performance reasons, hard break (trailing) is formed by
 //! > [whitespace][crate::construct::partial_whitespace].
@@ -32,12 +30,12 @@ use crate::onnurmark::subtokenize::Subresult;
 use crate::onnurmark::tokenizer::Tokenizer;
 
 /// Characters that can start something in text.
-const MARKERS: [u8; 16] = [
+const MARKERS: [u8; 15] = [
     b'!',  // `label_start_image`
     b'$',  // `raw_text` (math (text))
     b'&',  // `character_reference`
     b'*',  // `attention` (emphasis, strong)
-    b'<',  // `autolink`, `html_text`, `mdx_jsx_text`
+    b'<',  // `autolink`, `html_text`
     b'H',  // `gfm_autolink_literal` (`protocol` kind)
     b'W',  // `gfm_autolink_literal` (`www.` kind)
     b'[',  // `label_start_link`
@@ -47,7 +45,6 @@ const MARKERS: [u8; 16] = [
     b'`',  // `raw_text` (code (text))
     b'h',  // `gfm_autolink_literal` (`protocol` kind)
     b'w',  // `gfm_autolink_literal` (`www.` kind)
-    b'{',  // `mdx_expression_text`
     b'~',  // `attention` (gfm strikethrough)
 ];
 
@@ -113,7 +110,7 @@ pub fn before(tokenizer: &mut Tokenizer) -> State {
             );
             State::Retry(StateName::AttentionStart)
         }
-        // `autolink`, `html_text` (order does not matter), `mdx_jsx_text` (order matters).
+        // `autolink`, `html_text` (order does not matter).
         Some(b'<') => {
             tokenizer.attempt(
                 State::Next(StateName::TextBefore),

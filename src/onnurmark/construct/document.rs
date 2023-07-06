@@ -266,9 +266,7 @@ pub fn container_new_after(tokenizer: &mut Tokenizer) -> State {
     if tokenizer.tokenize_state.document_continued
         != tokenizer.tokenize_state.document_container_stack.len()
     {
-        if let Err(message) = exit_containers(tokenizer, &Phase::Prefix) {
-            return State::Error(message);
-        }
+        exit_containers(tokenizer, &Phase::Prefix).unwrap();
     }
 
     // We are “piercing” into the flow with a new container.
@@ -452,9 +450,7 @@ pub fn flow_end(tokenizer: &mut Tokenizer) -> State {
     match tokenizer.current {
         None => {
             tokenizer.tokenize_state.document_continued = 0;
-            if let Err(message) = exit_containers(tokenizer, &Phase::Eof) {
-                return State::Error(message);
-            }
+            exit_containers(tokenizer, &Phase::Eof).unwrap();
             resolve(tokenizer);
             State::Ok
         }

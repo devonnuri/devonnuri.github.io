@@ -15,9 +15,6 @@
 //! *   [Heading (atx)][crate::construct::heading_atx]
 //! *   [Heading (setext)][crate::construct::heading_setext]
 //! *   [HTML (flow)][crate::construct::html_flow]
-//! *   [MDX esm][crate::construct::mdx_esm]
-//! *   [MDX expression (flow)][crate::construct::mdx_expression_flow]
-//! *   [MDX JSX (flow)][crate::construct::mdx_jsx_flow]
 //! *   [Raw (flow)][crate::construct::raw_flow] (code (fenced), math (flow))
 //! *   [Thematic break][crate::construct::thematic_break]
 

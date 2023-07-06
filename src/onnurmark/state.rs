@@ -7,10 +7,6 @@ use crate::onnurmark::tokenizer::Tokenizer;
 /// Result of a state.
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum State {
-    /// Syntax error.
-    ///
-    /// Only used by MDX.
-    Error(String),
     /// Move to [`Name`][] next.
     Next(Name),
     /// Retry in [`Name`][].
@@ -34,7 +30,6 @@ impl State {
                 unreachable!("cannot turn intermediate state into result")
             }
             State::Ok => Ok(()),
-            State::Error(x) => Err(x.into()),
         }
     }
 }

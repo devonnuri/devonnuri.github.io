@@ -619,7 +619,6 @@ pub struct CompileOptions {
 ///
 /// *   To control what markdown constructs are turned on and off
 /// *   To control some of those constructs
-/// *   To add support for certain programming languages when parsing MDX
 ///
 /// In most cases, you will want to use the default trait or `gfm` method.
 ///
@@ -882,13 +881,6 @@ mod tests {
             format!("{:?}", ParseOptions::default()),
             "ParseOptions { constructs: Constructs { attention: true, autolink: true, block_quote: true, character_escape: true, character_reference: true, code_indented: true, code_fenced: true, code_text: true, definition: true, frontmatter: false, gfm_autolink_literal: false, gfm_footnote_definition: false, gfm_label_start_footnote: false, gfm_strikethrough: false, gfm_table: false, gfm_task_list_item: false, hard_break_escape: true, hard_break_trailing: true, heading_atx: true, heading_setext: true, html_flow: true, html_text: true, label_start_image: true, label_start_link: true, label_end: true, list_item: true, math_flow: false, math_text: false, thematic_break: true }, gfm_strikethrough_single_tilde: true, math_text_single_dollar: true }",
             "should support `Debug` trait"
-        );
-        assert_eq!(
-            format!("{:?}", ParseOptions {
-                ..Default::default()
-            }),
-            "ParseOptions { constructs: Constructs { attention: true, autolink: true, block_quote: true, character_escape: true, character_reference: true, code_indented: true, code_fenced: true, code_text: true, definition: true, frontmatter: false, gfm_autolink_literal: false, gfm_footnote_definition: false, gfm_label_start_footnote: false, gfm_strikethrough: false, gfm_table: false, gfm_task_list_item: false, hard_break_escape: true, hard_break_trailing: true, heading_atx: true, heading_setext: true, html_flow: true, html_text: true, label_start_image: true, label_start_link: true, label_end: true, list_item: true, math_flow: false, math_text: false, thematic_break: true }, gfm_strikethrough_single_tilde: true, math_text_single_dollar: true }",
-            "should support `Debug` trait on mdx functions"
         );
     }
 
