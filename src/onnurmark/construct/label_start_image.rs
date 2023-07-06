@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! Label start (image) forms with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! label_start_image ::= '!' '['
@@ -28,8 +28,8 @@
 //! *   [`label-start-image.js` in `micromark`](https://github.com/micromark/micromark/blob/main/packages/micromark-core-commonmark/dev/lib/label-start-image.js)
 //! *   [*§ 6.4 Images* in `CommonMark`](https://spec.commonmark.org/0.30/#images)
 //!
-//! [text]: crate::construct::text
-//! [label_end]: crate::construct::label_end
+//! [text]: crate::onnurmark::construct::text
+//! [label_end]: crate::onnurmark::construct::label_end
 //! [html_img]: https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element
 
 use crate::onnurmark::event::Name;

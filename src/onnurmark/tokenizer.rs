@@ -23,17 +23,17 @@ use crate::onnurmark::util::{constant::TAB_SIZE, edit_map::EditMap};
 /// Containers.
 ///
 /// Containers are found when tokenizing
-/// [document content][crate::construct::document].
+/// [document content][crate::onnurmark::construct::document].
 /// They parse a portion at the start of one or more lines.
 /// The rest of those lines is a different content type (specifically, flow),
 /// which they “contain”.
 #[derive(Debug, Eq, PartialEq)]
 pub enum Container {
-    /// [Block quote][crate::construct::block_quote].
+    /// [Block quote][crate::onnurmark::construct::block_quote].
     BlockQuote,
-    /// [List item][crate::construct::list_item].
+    /// [List item][crate::onnurmark::construct::list_item].
     ListItem,
-    /// [GFM: Footnote definition][crate::construct::gfm_footnote_definition].
+    /// [GFM: Footnote definition][crate::onnurmark::construct::gfm_footnote_definition].
     GfmFootnoteDefinition,
 }
 
@@ -73,7 +73,7 @@ pub enum LabelKind {
     ///       ^^
     /// ```
     ///
-    /// Construct: [Label start (image)][crate::construct::label_start_image].
+    /// Construct: [Label start (image)][crate::onnurmark::construct::label_start_image].
     Image,
     /// Label (image) link.
     ///
@@ -82,7 +82,7 @@ pub enum LabelKind {
     ///       ^
     /// ```
     ///
-    /// Construct: [Label start (link)][crate::construct::label_start_link].
+    /// Construct: [Label start (link)][crate::onnurmark::construct::label_start_link].
     Link,
     /// GFM: Label (footnote) link.
     ///
@@ -91,7 +91,7 @@ pub enum LabelKind {
     ///       ^^
     /// ```
     ///
-    /// Construct: [GFM: Label start (footnote)][crate::construct::gfm_label_start_footnote].
+    /// Construct: [GFM: Label start (footnote)][crate::onnurmark::construct::gfm_label_start_footnote].
     GfmFootnote,
     /// GFM: Label (footnote) link, not matching a footnote definition, so
     /// handled as a label (link) start.
@@ -101,7 +101,7 @@ pub enum LabelKind {
     ///       ^^
     /// ```
     ///
-    /// Construct: [Label end][crate::construct::label_end].
+    /// Construct: [Label end][crate::onnurmark::construct::label_end].
     GfmUndefinedFootnote,
 }
 
@@ -215,15 +215,15 @@ pub struct TokenizeState<'a> {
     // Couple of media related fields.
     /// List of usable label starts.
     ///
-    /// Used when tokenizing [text content][crate::construct::text].
+    /// Used when tokenizing [text content][crate::onnurmark::construct::text].
     pub label_starts: Vec<LabelStart>,
     /// List of unusable label starts.
     ///
-    /// Used when tokenizing [text content][crate::construct::text].
+    /// Used when tokenizing [text content][crate::onnurmark::construct::text].
     pub label_starts_loose: Vec<LabelStart>,
     /// Stack of images and links.
     ///
-    /// Used when tokenizing [text content][crate::construct::text].
+    /// Used when tokenizing [text content][crate::onnurmark::construct::text].
     pub labels: Vec<Label>,
 
     /// List of defined definition identifiers.
@@ -304,16 +304,16 @@ pub struct Tokenizer<'a> {
     pub tokenize_state: TokenizeState<'a>,
     /// Whether we would be interrupting something.
     ///
-    /// Used when tokenizing [flow content][crate::construct::flow].
+    /// Used when tokenizing [flow content][crate::onnurmark::construct::flow].
     pub interrupt: bool,
     /// Whether containers cannot “pierce” into the current construct.
     ///
-    /// Used when tokenizing [document content][crate::construct::document].
+    /// Used when tokenizing [document content][crate::onnurmark::construct::document].
     pub concrete: bool,
     /// Whether this row is piercing into the current construct with more
     /// containers.
     ///
-    /// Used when tokenizing [document content][crate::construct::document].
+    /// Used when tokenizing [document content][crate::onnurmark::construct::document].
     pub pierce: bool,
     /// Whether this line is lazy: there are less containers than before.
     pub lazy: bool,

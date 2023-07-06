@@ -5,8 +5,8 @@
 //!
 //! The constructs found in flow are:
 //!
-//! *   [Definition][crate::construct::definition]
-//! *   [Paragraph][crate::construct::paragraph]
+//! *   [Definition][crate::onnurmark::construct::definition]
+//! *   [Paragraph][crate::onnurmark::construct::paragraph]
 //!
 //! ## Tokens
 //!
@@ -19,9 +19,9 @@
 //!
 //! *   [`content.js` in `micromark`](https://github.com/micromark/micromark/blob/main/packages/micromark-core-commonmark/dev/lib/content.js)
 //!
-//! [flow]: crate::construct::flow
-//! [definition]: crate::construct::definition
-//! [paragraph]: crate::construct::paragraph
+//! [flow]: crate::onnurmark::construct::flow
+//! [definition]: crate::onnurmark::construct::definition
+//! [paragraph]: crate::onnurmark::construct::paragraph
 
 use crate::onnurmark::alloc::{string::String, vec};
 use crate::onnurmark::event::{Content, Kind, Link, Name};

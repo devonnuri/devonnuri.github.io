@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! Space or tab (eol) forms with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! space_or_tab_eol ::= 1*space_or_tab | *space_or_tab eol *space_or_tab
@@ -15,9 +15,9 @@
 //!
 //! *   [`micromark-factory-space/index.js` in `micromark`](https://github.com/micromark/micromark/blob/main/packages/micromark-factory-space/dev/index.js)
 //!
-//! [destination]: crate::construct::partial_destination
-//! [label]: crate::construct::partial_label
-//! [title]: crate::construct::partial_title
+//! [destination]: crate::onnurmark::construct::partial_destination
+//! [label]: crate::onnurmark::construct::partial_label
+//! [title]: crate::onnurmark::construct::partial_title
 
 use crate::onnurmark::construct::partial_space_or_tab::{
     space_or_tab_with_options, Options as SpaceOrTabOptions,

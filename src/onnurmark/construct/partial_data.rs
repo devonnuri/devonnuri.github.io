@@ -3,8 +3,8 @@
 //! It can include anything (except for line endings) and stops at certain
 //! characters.
 //!
-//! [string]: crate::construct::string
-//! [text]: crate::construct::text
+//! [string]: crate::onnurmark::construct::string
+//! [text]: crate::onnurmark::construct::text
 
 use crate::onnurmark::alloc::vec;
 use crate::onnurmark::event::{Kind, Name};

@@ -68,11 +68,6 @@
 //! *   [gfm label start footnote][gfm_label_start_footnote]
 //! *   [gfm table][gfm_table]
 //! *   [gfm task list item check][gfm_task_list_item_check]
-//! *   [mdx esm][mdx_esm]
-//! *   [mdx expression (flow)][mdx_expression_flow]
-//! *   [mdx expression (text)][mdx_expression_text]
-//! *   [mdx jsx (flow)][mdx_jsx_flow]
-//! *   [mdx jsx (text)][mdx_jsx_text]
 //!
 //! There are also several small subroutines typically used in different places:
 //!
@@ -80,8 +75,6 @@
 //! *   [data][partial_data]
 //! *   [destination][partial_destination]
 //! *   [label][partial_label]
-//! *   [mdx expression][partial_mdx_expression]
-//! *   [mdx jsx][partial_mdx_jsx]
 //! *   [non lazy continuation][partial_non_lazy_continuation]
 //! *   [space or tab][partial_space_or_tab]
 //! *   [space or tab, eol][partial_space_or_tab_eol]

@@ -97,8 +97,8 @@ pub fn sanitize_with_protocols(value: &str, protocols: &[&str]) -> String {
 ///
 /// *   [`micromark-util-sanitize-uri` in `micromark`](https://github.com/micromark/micromark/tree/main/packages/micromark-util-sanitize-uri)
 ///
-/// [definition]: crate::construct::definition
-/// [label_end]: crate::construct::label_end
+/// [definition]: crate::onnurmark::construct::definition
+/// [label_end]: crate::onnurmark::construct::label_end
 fn normalize(value: &str) -> String {
     let chars = value.chars().collect::<Vec<_>>();
     // Note: it’ll grow bigger for each non-ascii or non-safe character.

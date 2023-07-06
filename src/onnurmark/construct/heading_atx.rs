@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! Heading (atx) forms with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! heading_atx ::= 1*6'#' [ 1*space_or_tab line [ 1*space_or_tab 1*'#' ] ] *space_or_tab
@@ -55,9 +55,9 @@
 //! *   [`heading-atx.js` in `micromark`](https://github.com/micromark/micromark/blob/main/packages/micromark-core-commonmark/dev/lib/heading-atx.js)
 //! *   [*§ 4.2 ATX headings* in `CommonMark`](https://spec.commonmark.org/0.30/#atx-headings)
 //!
-//! [flow]: crate::construct::flow
-//! [heading_setext]: crate::construct::heading_setext
-//! [hard_break_escape]: crate::construct::hard_break_escape
+//! [flow]: crate::onnurmark::construct::flow
+//! [heading_setext]: crate::onnurmark::construct::heading_setext
+//! [hard_break_escape]: crate::onnurmark::construct::hard_break_escape
 //! [html]: https://html.spec.whatwg.org/multipage/sections.html#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
 //! [wiki_setext]: https://en.wikipedia.org/wiki/Setext
 //! [atx]: http://www.aaronsw.com/2002/atx/

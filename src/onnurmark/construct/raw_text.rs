@@ -4,7 +4,7 @@
 //! ## Grammar
 //!
 //! Raw (text) forms with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! ; Restriction: the number of markers in the closing sequence must be equal
@@ -108,10 +108,10 @@
 //!
 //! > 👉 **Note**: math is not specified anywhere.
 //!
-//! [flow]: crate::construct::flow
-//! [text]: crate::construct::text
-//! [code_indented]: crate::construct::code_indented
-//! [raw_flow]: crate::construct::raw_flow
+//! [flow]: crate::onnurmark::construct::flow
+//! [text]: crate::onnurmark::construct::text
+//! [code_indented]: crate::onnurmark::construct::code_indented
+//! [raw_flow]: crate::onnurmark::construct::raw_flow
 //! [html_code]: https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-code-element
 //! [parse_options]: crate::ParseOptions
 

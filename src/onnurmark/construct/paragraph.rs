@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! Paragraph forms with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! ; Restriction: lines cannot start other flow constructs.
@@ -35,10 +35,10 @@
 //! *   [`content.js` in `micromark`](https://github.com/micromark/micromark/blob/main/packages/micromark-core-commonmark/dev/lib/content.js)
 //! *   [*§ 4.8 Paragraphs* in `CommonMark`](https://spec.commonmark.org/0.30/#paragraphs)
 //!
-//! [content]: crate::construct::content
-//! [text]: crate::construct::text
-//! [autolink]: crate::construct::autolink
-//! [raw_text]: crate::construct::raw_text
+//! [content]: crate::onnurmark::construct::content
+//! [text]: crate::onnurmark::construct::text
+//! [autolink]: crate::onnurmark::construct::autolink
+//! [raw_text]: crate::onnurmark::construct::raw_text
 //! [html]: https://html.spec.whatwg.org/multipage/grouping-content.html#the-p-element
 
 use crate::onnurmark::event::{Content, Link, Name};

@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! Byte order mark forms with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! byte_order_mark ::= 0xEF 0xBB 0xBF

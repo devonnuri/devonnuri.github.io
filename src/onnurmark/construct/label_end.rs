@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! Label end forms with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! label_end ::= ']' [resource | reference_full | reference_collapsed]
@@ -163,18 +163,18 @@
 //! > See [`github/cmark-gfm#270`](https://github.com/github/cmark-gfm/issues/270)
 //! > for the related issue.
 //!
-//! [string]: crate::construct::string
-//! [text]: crate::construct::text
-//! [destination]: crate::construct::partial_destination
-//! [title]: crate::construct::partial_title
-//! [label]: crate::construct::partial_label
-//! [label_start_image]: crate::construct::label_start_image
-//! [label_start_link]: crate::construct::label_start_link
-//! [gfm_label_start_footnote]: crate::construct::gfm_label_start_footnote
-//! [definition]: crate::construct::definition
-//! [autolink]: crate::construct::autolink
-//! [sanitize_uri]: crate::util::sanitize_uri::sanitize
-//! [normalize_identifier]: crate::util::normalize_identifier::normalize_identifier
+//! [string]: crate::onnurmark::construct::string
+//! [text]: crate::onnurmark::construct::text
+//! [destination]: crate::onnurmark::construct::partial_destination
+//! [title]: crate::onnurmark::construct::partial_title
+//! [label]: crate::onnurmark::construct::partial_label
+//! [label_start_image]: crate::onnurmark::construct::label_start_image
+//! [label_start_link]: crate::onnurmark::construct::label_start_link
+//! [gfm_label_start_footnote]: crate::onnurmark::construct::gfm_label_start_footnote
+//! [definition]: crate::onnurmark::construct::definition
+//! [autolink]: crate::onnurmark::construct::autolink
+//! [sanitize_uri]: crate::onnurmark::util::sanitize_uri::sanitize
+//! [normalize_identifier]: crate::onnurmark::util::normalize_identifier::normalize_identifier
 //! [html_a]: https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element
 //! [html_img]: https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element
 //! [html_sup]: https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-sub-and-sup-elements

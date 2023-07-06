@@ -1,26 +1,26 @@
 //! The text content type.
 //!
 //! **Text** contains phrasing content such as
-//! [attention][crate::construct::attention] (emphasis, gfm strikethrough, strong),
-//! [raw (text)][crate::construct::raw_text] (code (text), math (text)), and actual text.
+//! [attention][crate::onnurmark::construct::attention] (emphasis, gfm strikethrough, strong),
+//! [raw (text)][crate::onnurmark::construct::raw_text] (code (text), math (text)), and actual text.
 //!
 //! The constructs found in text are:
 //!
-//! *   [Attention][crate::construct::attention] (emphasis, gfm strikethrough, strong)
-//! *   [Autolink][crate::construct::autolink]
-//! *   [Character escape][crate::construct::character_escape]
-//! *   [Character reference][crate::construct::character_reference]
-//! *   [Raw (text)][crate::construct::raw_text] (code (text), math (text))
-//! *   [GFM: Label start (footnote)][crate::construct::gfm_label_start_footnote]
-//! *   [GFM: Task list item check][crate::construct::gfm_task_list_item_check]
-//! *   [Hard break (escape)][crate::construct::hard_break_escape]
-//! *   [HTML (text)][crate::construct::html_text]
-//! *   [Label start (image)][crate::construct::label_start_image]
-//! *   [Label start (link)][crate::construct::label_start_link]
-//! *   [Label end][crate::construct::label_end]
+//! *   [Attention][crate::onnurmark::construct::attention] (emphasis, gfm strikethrough, strong)
+//! *   [Autolink][crate::onnurmark::construct::autolink]
+//! *   [Character escape][crate::onnurmark::construct::character_escape]
+//! *   [Character reference][crate::onnurmark::construct::character_reference]
+//! *   [Raw (text)][crate::onnurmark::construct::raw_text] (code (text), math (text))
+//! *   [GFM: Label start (footnote)][crate::onnurmark::construct::gfm_label_start_footnote]
+//! *   [GFM: Task list item check][crate::onnurmark::construct::gfm_task_list_item_check]
+//! *   [Hard break (escape)][crate::onnurmark::construct::hard_break_escape]
+//! *   [HTML (text)][crate::onnurmark::construct::html_text]
+//! *   [Label start (image)][crate::onnurmark::construct::label_start_image]
+//! *   [Label start (link)][crate::onnurmark::construct::label_start_link]
+//! *   [Label end][crate::onnurmark::construct::label_end]
 //!
 //! > 👉 **Note**: for performance reasons, hard break (trailing) is formed by
-//! > [whitespace][crate::construct::partial_whitespace].
+//! > [whitespace][crate::onnurmark::construct::partial_whitespace].
 
 use crate::onnurmark::construct::gfm_autolink_literal::resolve as resolve_gfm_autolink_literal;
 use crate::onnurmark::construct::partial_whitespace::resolve_whitespace;

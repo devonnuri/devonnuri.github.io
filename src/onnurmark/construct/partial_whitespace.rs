@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! Trailing whitespace forms with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! ; Restriction: the start and end here count as an eol in the case of `text`.
@@ -50,11 +50,11 @@
 //! *   [`initialize/text.js` in `micromark`](https://github.com/micromark/micromark/blob/main/packages/micromark/dev/lib/initialize/text.js)
 //! *   [*§ 6.7 Hard line breaks* in `CommonMark`](https://spec.commonmark.org/0.30/#hard-line-breaks)
 //!
-//! [string]: crate::construct::string
-//! [text]: crate::construct::text
-//! [hard_break_escape]: crate::construct::hard_break_escape
-//! [character_escape]: crate::construct::character_escape
-//! [hard_break_prefix_size_min]: crate::util::constant::HARD_BREAK_PREFIX_SIZE_MIN
+//! [string]: crate::onnurmark::construct::string
+//! [text]: crate::onnurmark::construct::text
+//! [hard_break_escape]: crate::onnurmark::construct::hard_break_escape
+//! [character_escape]: crate::onnurmark::construct::character_escape
+//! [hard_break_prefix_size_min]: crate::onnurmark::util::constant::HARD_BREAK_PREFIX_SIZE_MIN
 //! [html]: https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-br-element
 
 use crate::onnurmark::alloc::vec;

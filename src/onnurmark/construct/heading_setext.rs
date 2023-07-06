@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! Heading (setext) forms with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! heading_setext ::= paragraph eol *space_or_tab (1*'-' | 1*'=') *space_or_tab
@@ -61,11 +61,11 @@
 //! *   [`setext-underline.js` in `micromark`](https://github.com/micromark/micromark/blob/main/packages/micromark-core-commonmark/dev/lib/setext-underline.js)
 //! *   [*§ 4.3 Setext headings* in `CommonMark`](https://spec.commonmark.org/0.30/#setext-headings)
 //!
-//! [flow]: crate::construct::flow
-//! [paragraph]: crate::construct::paragraph
-//! [heading_atx]: crate::construct::heading_atx
-//! [thematic_break]: crate::construct::thematic_break
-//! [hard_break_escape]: crate::construct::hard_break_escape
+//! [flow]: crate::onnurmark::construct::flow
+//! [paragraph]: crate::onnurmark::construct::paragraph
+//! [heading_atx]: crate::onnurmark::construct::heading_atx
+//! [thematic_break]: crate::onnurmark::construct::thematic_break
+//! [hard_break_escape]: crate::onnurmark::construct::hard_break_escape
 //! [html]: https://html.spec.whatwg.org/multipage/sections.html#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
 //! [wiki_setext]: https://en.wikipedia.org/wiki/Setext
 //! [atx]: http://www.aaronsw.com/2002/atx/

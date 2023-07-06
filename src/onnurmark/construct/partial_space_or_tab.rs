@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! Space or tab forms with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! space_or_tab ::= 1*('\t' | ' ')

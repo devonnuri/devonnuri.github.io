@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! Autolink literals form with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! gfm_autolink_literal ::= gfm_protocol_autolink | gfm_www_autolink | gfm_email_autolink
@@ -136,12 +136,12 @@
 //! > 👉 **Note**: `mailto:` and `xmpp:` protocols before email autolinks were
 //! > added in `cmark-gfm@0.29.0.gfm.5` and are as of yet undocumented.
 //!
-//! [text]: crate::construct::text
-//! [definition]: crate::construct::definition
-//! [attention]: crate::construct::attention
-//! [label_start_link]: crate::construct::label_start_link
-//! [label_end]: crate::construct::label_end
-//! [sanitize_uri]: crate::util::sanitize_uri
+//! [text]: crate::onnurmark::construct::text
+//! [definition]: crate::onnurmark::construct::definition
+//! [attention]: crate::onnurmark::construct::attention
+//! [label_start_link]: crate::onnurmark::construct::label_start_link
+//! [label_end]: crate::onnurmark::construct::label_end
+//! [sanitize_uri]: crate::onnurmark::util::sanitize_uri
 //! [html_a]: https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element
 
 use crate::onnurmark::alloc::vec::Vec;

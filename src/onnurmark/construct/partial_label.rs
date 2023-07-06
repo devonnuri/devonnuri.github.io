@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! Label forms with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! ; Restriction: maximum `999` codes allowed between brackets.
@@ -50,16 +50,16 @@
 //!
 //! *   [`micromark-factory-label/index.js` in `micromark`](https://github.com/micromark/micromark/blob/main/packages/micromark-factory-label/dev/index.js)
 //!
-//! [definition]: crate::construct::definition
-//! [string]: crate::construct::string
-//! [attention]: crate::construct::attention
-//! [character_escape]: crate::construct::character_escape
-//! [character_reference]: crate::construct::character_reference
-//! [label_start_image]: crate::construct::label_start_image
-//! [label_start_link]: crate::construct::label_start_link
-//! [label_end]: crate::construct::label_end
-//! [raw_text]: crate::construct::raw_text
-//! [link_reference_size_max]: crate::util::constant::LINK_REFERENCE_SIZE_MAX
+//! [definition]: crate::onnurmark::construct::definition
+//! [string]: crate::onnurmark::construct::string
+//! [attention]: crate::onnurmark::construct::attention
+//! [character_escape]: crate::onnurmark::construct::character_escape
+//! [character_reference]: crate::onnurmark::construct::character_reference
+//! [label_start_image]: crate::onnurmark::construct::label_start_image
+//! [label_start_link]: crate::onnurmark::construct::label_start_link
+//! [label_end]: crate::onnurmark::construct::label_end
+//! [raw_text]: crate::onnurmark::construct::raw_text
+//! [link_reference_size_max]: crate::onnurmark::util::constant::LINK_REFERENCE_SIZE_MAX
 
 use crate::onnurmark::construct::partial_space_or_tab_eol::{
     space_or_tab_eol_with_options, Options,

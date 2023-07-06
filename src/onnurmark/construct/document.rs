@@ -5,9 +5,9 @@
 //!
 //! The constructs found in flow are:
 //!
-//! *   [Block quote][crate::construct::block_quote]
-//! *   [List item][crate::construct::list_item]
-//! *   [GFM: Footnote definition][crate::construct::gfm_footnote_definition]
+//! *   [Block quote][crate::onnurmark::construct::block_quote]
+//! *   [List item][crate::onnurmark::construct::list_item]
+//! *   [GFM: Footnote definition][crate::onnurmark::construct::gfm_footnote_definition]
 
 use crate::onnurmark::alloc::{boxed::Box, string::String, vec::Vec};
 use crate::onnurmark::event::{Content, Event, Kind, Link, Name};

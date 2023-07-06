@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! Label start (link) forms with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! label_start_link ::= '['
@@ -27,8 +27,8 @@
 //! *   [`label-start-link.js` in `micromark`](https://github.com/micromark/micromark/blob/main/packages/micromark-core-commonmark/dev/lib/label-start-link.js)
 //! *   [*§ 6.3 Links* in `CommonMark`](https://spec.commonmark.org/0.30/#links)
 //!
-//! [text]: crate::construct::text
-//! [label_end]: crate::construct::label_end
+//! [text]: crate::onnurmark::construct::text
+//! [label_end]: crate::onnurmark::construct::label_end
 //! [html_a]: https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element
 
 use crate::onnurmark::event::Name;

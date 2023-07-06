@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! Hard break (escape) forms with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! ; Restriction: followed by a line ending  (that is part of the content
@@ -38,10 +38,10 @@
 //! *   [`hard-break-escape.js` in `micromark`](https://github.com/micromark/micromark/blob/main/packages/micromark-core-commonmark/dev/lib/hard-break-escape.js)
 //! *   [*§ 6.7 Hard line breaks* in `CommonMark`](https://spec.commonmark.org/0.30/#hard-line-breaks)
 //!
-//! [text]: crate::construct::text
-//! [character_escape]: crate::construct::character_escape
-//! [character_reference]: crate::construct::character_reference
-//! [hard_break_trailing]: crate::construct::partial_whitespace
+//! [text]: crate::onnurmark::construct::text
+//! [character_escape]: crate::onnurmark::construct::character_escape
+//! [character_reference]: crate::onnurmark::construct::character_reference
+//! [hard_break_trailing]: crate::onnurmark::construct::partial_whitespace
 //! [html]: https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-br-element
 
 use crate::onnurmark::event::Name;

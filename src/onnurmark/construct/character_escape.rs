@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! Character escapes form with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! character_escape ::= '\\' ascii_punctuation
@@ -36,10 +36,10 @@
 //! *   [`character-escape.js` in `micromark`](https://github.com/micromark/micromark/blob/main/packages/micromark-core-commonmark/dev/lib/character-escape.js)
 //! *   [*§ 2.4 Backslash escapes* in `CommonMark`](https://spec.commonmark.org/0.30/#backslash-escapes)
 //!
-//! [string]: crate::construct::string
-//! [text]: crate::construct::text
-//! [character_reference]: crate::construct::character_reference
-//! [hard_break_escape]: crate::construct::hard_break_escape
+//! [string]: crate::onnurmark::construct::string
+//! [text]: crate::onnurmark::construct::text
+//! [character_reference]: crate::onnurmark::construct::character_reference
+//! [hard_break_escape]: crate::onnurmark::construct::hard_break_escape
 
 use crate::onnurmark::event::Name;
 use crate::onnurmark::state::{Name as StateName, State};

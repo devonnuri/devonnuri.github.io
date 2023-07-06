@@ -4,7 +4,7 @@
 //! ## Grammar
 //!
 //! Attention sequences form with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! attention_sequence ::= 1*'*' | 1*'_'
@@ -71,7 +71,7 @@
 //! *   [*§ 6.2 Emphasis and strong emphasis* in `CommonMark`](https://spec.commonmark.org/0.30/#emphasis-and-strong-emphasis)
 //! *   [*§ 6.5 Strikethrough (extension)* in `GFM`](https://github.github.com/gfm/#strikethrough-extension-)
 //!
-//! [text]: crate::construct::text
+//! [text]: crate::onnurmark::construct::text
 //! [html-em]: https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-em-element
 //! [html-strong]: https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-strong-element
 //! [html-del]: https://html.spec.whatwg.org/multipage/edits.html#the-del-element

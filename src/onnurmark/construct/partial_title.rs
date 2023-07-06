@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! Title forms with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! ; Restriction: no blank lines.
@@ -29,11 +29,11 @@
 //!
 //! *   [`micromark-factory-title/index.js` in `micromark`](https://github.com/micromark/micromark/blob/main/packages/micromark-factory-title/dev/index.js)
 //!
-//! [definition]: crate::construct::definition
-//! [string]: crate::construct::string
-//! [character_escape]: crate::construct::character_escape
-//! [character_reference]: crate::construct::character_reference
-//! [label_end]: crate::construct::label_end
+//! [definition]: crate::onnurmark::construct::definition
+//! [string]: crate::onnurmark::construct::string
+//! [character_escape]: crate::onnurmark::construct::character_escape
+//! [character_reference]: crate::onnurmark::construct::character_reference
+//! [label_end]: crate::onnurmark::construct::label_end
 
 use crate::onnurmark::construct::partial_space_or_tab_eol::{
     space_or_tab_eol_with_options, Options,

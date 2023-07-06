@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! Definition forms with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! definition ::= label ':' [ space_or_tab_eol ] destination [ space_or_tab_eol title ] [ space_or_tab ]
@@ -88,16 +88,16 @@
 //! *   [`definition.js` in `micromark`](https://github.com/micromark/micromark/blob/main/packages/micromark-core-commonmark/dev/lib/definition.js)
 //! *   [*§ 4.7 Link reference definitions* in `CommonMark`](https://spec.commonmark.org/0.30/#link-reference-definitions)
 //!
-//! [content]: crate::construct::content
-//! [string]: crate::construct::string
-//! [character_escape]: crate::construct::character_escape
-//! [character_reference]: crate::construct::character_reference
-//! [destination]: crate::construct::partial_destination
-//! [label]: crate::construct::partial_label
-//! [label_end]: crate::construct::label_end
-//! [title]: crate::construct::partial_title
-//! [sanitize_uri]: crate::util::sanitize_uri::sanitize
-//! [normalize_identifier]: crate::util::normalize_identifier
+//! [content]: crate::onnurmark::construct::content
+//! [string]: crate::onnurmark::construct::string
+//! [character_escape]: crate::onnurmark::construct::character_escape
+//! [character_reference]: crate::onnurmark::construct::character_reference
+//! [destination]: crate::onnurmark::construct::partial_destination
+//! [label]: crate::onnurmark::construct::partial_label
+//! [label_end]: crate::onnurmark::construct::label_end
+//! [title]: crate::onnurmark::construct::partial_title
+//! [sanitize_uri]: crate::onnurmark::util::sanitize_uri::sanitize
+//! [normalize_identifier]: crate::onnurmark::util::normalize_identifier
 //! [html_a]: https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element
 //! [html_img]: https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element
 

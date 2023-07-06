@@ -3,7 +3,7 @@
 //! To deal with content in content, *you* (a `markdown-rs` contributor) add
 //! info on events.
 //! Events are a flat list, but they can be connected to each other with a
-//! [`Link`][crate::event::Link].
+//! [`Link`][crate::onnurmark::event::Link].
 //! Links must occur on [`Enter`][Kind::Enter] events only, which are void
 //! (they are followed by their corresponding [`Exit`][Kind::Exit] event).
 //!

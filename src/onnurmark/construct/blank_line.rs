@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! Blank lines form with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! blank_line ::= *space_or_tab
@@ -37,17 +37,17 @@
 //!
 //! ## Tokens
 //!
-//! *   [`SpaceOrTab`][crate::event::Name::SpaceOrTab]
+//! *   [`SpaceOrTab`][crate::onnurmark::event::Name::SpaceOrTab]
 //!
 //! ## References
 //!
 //! *   [`blank-line.js` in `micromark`](https://github.com/micromark/micromark/blob/main/packages/micromark-core-commonmark/dev/lib/blank-line.js)
 //! *   [*§ 4.9 Blank lines* in `CommonMark`](https://spec.commonmark.org/0.30/#blank-lines)
 //!
-//! [heading_atx]: crate::construct::heading_atx
-//! [list_item]: crate::construct::list_item
-//! [paragraph]: crate::construct::paragraph
-//! [flow]: crate::construct::flow
+//! [heading_atx]: crate::onnurmark::construct::heading_atx
+//! [list_item]: crate::onnurmark::construct::list_item
+//! [paragraph]: crate::onnurmark::construct::paragraph
+//! [flow]: crate::onnurmark::construct::flow
 
 use crate::onnurmark::construct::partial_space_or_tab::space_or_tab;
 use crate::onnurmark::state::{Name as StateName, State};

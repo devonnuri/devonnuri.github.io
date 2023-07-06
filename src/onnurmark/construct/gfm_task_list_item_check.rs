@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! Checks form with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! gfm_task_list_item_check ::= '[' (0x09 | ' ' | 'X' | 'x') ']'
@@ -41,7 +41,7 @@
 //! *   [`micromark-extension-gfm-task-list-item`](https://github.com/micromark/micromark-extension-gfm-task-list-item)
 //! *   [*§ 5.3 Task list items (extension)* in `GFM`](https://github.github.com/gfm/#task-list-items-extension-)
 //!
-//! [text]: crate::construct::text
+//! [text]: crate::onnurmark::construct::text
 //! [html-input-checkbox]: https://html.spec.whatwg.org/multipage/input.html#checkbox-state-(type=checkbox)
 
 use crate::onnurmark::construct::partial_space_or_tab::space_or_tab;

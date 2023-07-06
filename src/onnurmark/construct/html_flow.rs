@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! HTML (flow) forms with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! html_flow ::= raw | comment | instruction | declaration | cdata | basic | complete
@@ -91,11 +91,11 @@
 //! *   [`html-flow.js` in `micromark`](https://github.com/micromark/micromark/blob/main/packages/micromark-core-commonmark/dev/lib/html-flow.js)
 //! *   [*§ 4.6 HTML blocks* in `CommonMark`](https://spec.commonmark.org/0.30/#html-blocks)
 //!
-//! [flow]: crate::construct::flow
-//! [html_text]: crate::construct::html_text
-//! [paragraph]: crate::construct::paragraph
-//! [html_raw_names]: crate::util::constant::HTML_RAW_NAMES
-//! [html_block_names]: crate::util::constant::HTML_BLOCK_NAMES
+//! [flow]: crate::onnurmark::construct::flow
+//! [html_text]: crate::onnurmark::construct::html_text
+//! [paragraph]: crate::onnurmark::construct::paragraph
+//! [html_raw_names]: crate::onnurmark::util::constant::HTML_RAW_NAMES
+//! [html_block_names]: crate::onnurmark::util::constant::HTML_BLOCK_NAMES
 //! [html_parsing]: https://html.spec.whatwg.org/multipage/parsing.html#parsing
 
 use crate::onnurmark::construct::partial_space_or_tab::{

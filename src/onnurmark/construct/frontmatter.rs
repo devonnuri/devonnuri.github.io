@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! Frontmatter forms with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! frontmatter ::= fence_open *( eol *byte ) eol fence_close
@@ -54,7 +54,7 @@
 //!
 //! *   [`micromark-extension-frontmatter`](https://github.com/micromark/micromark-extension-frontmatter)
 //!
-//! [constructs]: crate::Constructs
+//! [constructs]: crate::onnurmark::construct
 
 use crate::onnurmark::construct::partial_space_or_tab::space_or_tab;
 use crate::onnurmark::event::Name;

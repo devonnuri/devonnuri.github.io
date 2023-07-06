@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! Footnote definitions form with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! ; Restriction: `label` must start with `^` (and not be empty after it).
@@ -149,13 +149,13 @@
 //! > See [`github/cmark-gfm#270`](https://github.com/github/cmark-gfm/issues/270)
 //! > for the related issue.
 //!
-//! [document]: crate::construct::document
-//! [string]: crate::construct::string
-//! [character_reference]: crate::construct::character_reference
-//! [character_escape]: crate::construct::character_escape
-//! [label]: crate::construct::partial_label
-//! [label_end]: crate::construct::label_end
-//! [gfm_label_start_footnote]: crate::construct::gfm_label_start_footnote
+//! [document]: crate::onnurmark::construct::document
+//! [string]: crate::onnurmark::construct::string
+//! [character_reference]: crate::onnurmark::construct::character_reference
+//! [character_escape]: crate::onnurmark::construct::character_escape
+//! [label]: crate::onnurmark::construct::partial_label
+//! [label_end]: crate::onnurmark::construct::label_end
+//! [gfm_label_start_footnote]: crate::onnurmark::construct::gfm_label_start_footnote
 //! [commonmark_block]: https://spec.commonmark.org/0.30/#phase-1-block-structure
 //! [html_a]: https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element
 //! [html_h]: https://html.spec.whatwg.org/multipage/sections.html#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements

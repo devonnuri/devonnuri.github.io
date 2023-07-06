@@ -7,10 +7,10 @@
 //!
 //! The constructs found in string are:
 //!
-//! *   [Character escape][crate::construct::character_escape]
-//! *   [Character reference][crate::construct::character_reference]
+//! *   [Character escape][crate::onnurmark::construct::character_escape]
+//! *   [Character reference][crate::onnurmark::construct::character_reference]
 //!
-//! [text]: crate::construct::text
+//! [text]: crate::onnurmark::construct::text
 
 use crate::onnurmark::construct::partial_whitespace::resolve_whitespace;
 use crate::onnurmark::resolve::Name as ResolveName;

@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! HTML (text) forms with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! html_text ::= comment | instruction | declaration | cdata | tag_close | tag_open
@@ -47,8 +47,8 @@
 //! *   [`html-text.js` in `micromark`](https://github.com/micromark/micromark/blob/main/packages/micromark-core-commonmark/dev/lib/html-text.js)
 //! *   [*§ 6.6 Raw HTML* in `CommonMark`](https://spec.commonmark.org/0.30/#raw-html)
 //!
-//! [text]: crate::construct::text
-//! [html_flow]: crate::construct::html_flow
+//! [text]: crate::onnurmark::construct::text
+//! [html_flow]: crate::onnurmark::construct::html_flow
 //! [html_parsing]: https://html.spec.whatwg.org/multipage/parsing.html#parsing
 
 use crate::onnurmark::construct::partial_space_or_tab::space_or_tab;
@@ -164,7 +164,7 @@ pub fn comment_open_inside(tokenizer: &mut Tokenizer) -> State {
 ///           ^
 /// ```
 ///
-/// [html_flow]: crate::construct::html_flow
+/// [html_flow]: crate::onnurmark::construct::html_flow
 pub fn comment_start(tokenizer: &mut Tokenizer) -> State {
     match tokenizer.current {
         Some(b'>') => State::Nok,
@@ -188,7 +188,7 @@ pub fn comment_start(tokenizer: &mut Tokenizer) -> State {
 ///            ^
 /// ```
 ///
-/// [html_flow]: crate::construct::html_flow
+/// [html_flow]: crate::onnurmark::construct::html_flow
 pub fn comment_start_dash(tokenizer: &mut Tokenizer) -> State {
     match tokenizer.current {
         Some(b'>') => State::Nok,

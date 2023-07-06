@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! Code (indented) forms with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! code_indented ::= filled_line *( eol *( blank_line eol ) filled_line )
@@ -46,10 +46,10 @@
 //! *   [`code-indented.js` in `micromark`](https://github.com/micromark/micromark/blob/main/packages/micromark-core-commonmark/dev/lib/code-indented.js)
 //! *   [*§ 4.4 Indented code blocks* in `CommonMark`](https://spec.commonmark.org/0.30/#indented-code-blocks)
 //!
-//! [flow]: crate::construct::flow
-//! [text]: crate::construct::text
-//! [raw_flow]: crate::construct::raw_flow
-//! [raw_text]: crate::construct::raw_text
+//! [flow]: crate::onnurmark::construct::flow
+//! [text]: crate::onnurmark::construct::text
+//! [raw_flow]: crate::onnurmark::construct::raw_flow
+//! [raw_text]: crate::onnurmark::construct::raw_text
 //! [html_code]: https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-code-element
 //! [html_pre]: https://html.spec.whatwg.org/multipage/grouping-content.html#the-pre-element
 

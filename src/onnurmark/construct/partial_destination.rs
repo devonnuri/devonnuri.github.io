@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! Destination forms with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! destination ::= destination_enclosed | destination_raw
@@ -74,12 +74,12 @@
 //!
 //! *   [`micromark-factory-destination/index.js` in `micromark`](https://github.com/micromark/micromark/blob/main/packages/micromark-factory-destination/dev/index.js)
 //!
-//! [definition]: crate::construct::definition
-//! [string]: crate::construct::string
-//! [character_escape]: crate::construct::character_escape
-//! [character_reference]: crate::construct::character_reference
-//! [label_end]: crate::construct::label_end
-//! [sanitize_uri]: crate::util::sanitize_uri
+//! [definition]: crate::onnurmark::construct::definition
+//! [string]: crate::onnurmark::construct::string
+//! [character_escape]: crate::onnurmark::construct::character_escape
+//! [character_reference]: crate::onnurmark::construct::character_reference
+//! [label_end]: crate::onnurmark::construct::label_end
+//! [sanitize_uri]: crate::onnurmark::util::sanitize_uri
 
 use crate::onnurmark::event::{Content, Link, Name};
 use crate::onnurmark::state::{Name as StateName, State};

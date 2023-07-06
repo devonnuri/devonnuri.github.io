@@ -39,8 +39,8 @@ use crate::onnurmark::alloc::string::String;
 ///
 /// *   [`micromark-util-normalize-identifier` in `micromark`](https://github.com/micromark/micromark/tree/main/packages/micromark-util-normalize-identifier)
 ///
-/// [definition]: crate::construct::definition
-/// [label_end]: crate::construct::label_end
+/// [definition]: crate::onnurmark::construct::definition
+/// [label_end]: crate::onnurmark::construct::label_end
 pub fn normalize_identifier(value: &str) -> String {
     // Note: it’ll grow a bit smaller for consecutive whitespace.
     let mut result = String::with_capacity(value.len());

@@ -4,7 +4,7 @@
 //! ## Grammar
 //!
 //! Code (fenced) forms with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! raw_flow ::= fence_open *( eol *byte ) [ eol fence_close ]
@@ -128,13 +128,13 @@
 //!
 //! > 👉 **Note**: math is not specified anywhere.
 //!
-//! [flow]: crate::construct::flow
-//! [string]: crate::construct::string
-//! [text]: crate::construct::text
-//! [character_escape]: crate::construct::character_escape
-//! [character_reference]: crate::construct::character_reference
-//! [code_indented]: crate::construct::code_indented
-//! [raw_text]: crate::construct::raw_text
+//! [flow]: crate::onnurmark::construct::flow
+//! [string]: crate::onnurmark::construct::string
+//! [text]: crate::onnurmark::construct::text
+//! [character_escape]: crate::onnurmark::construct::character_escape
+//! [character_reference]: crate::onnurmark::construct::character_reference
+//! [code_indented]: crate::onnurmark::construct::code_indented
+//! [raw_text]: crate::onnurmark::construct::raw_text
 //! [html_code]: https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-code-element
 //! [html_pre]: https://html.spec.whatwg.org/multipage/grouping-content.html#the-pre-element
 

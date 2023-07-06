@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! Autolink forms with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! autolink ::= '<' (url | email) '>'
@@ -112,13 +112,13 @@
 //! *   [`autolink.js` in `micromark`](https://github.com/micromark/micromark/blob/main/packages/micromark-core-commonmark/dev/lib/autolink.js)
 //! *   [*§ 6.4 Autolinks* in `CommonMark`](https://spec.commonmark.org/0.30/#autolinks)
 //!
-//! [text]: crate::construct::text
-//! [definition]: crate::construct::definition
-//! [label_start_link]: crate::construct::label_start_link
-//! [label_end]: crate::construct::label_end
-//! [autolink_scheme_size_max]: crate::util::constant::AUTOLINK_SCHEME_SIZE_MAX
-//! [autolink_domain_size_max]: crate::util::constant::AUTOLINK_DOMAIN_SIZE_MAX
-//! [sanitize_uri]: crate::util::sanitize_uri
+//! [text]: crate::onnurmark::construct::text
+//! [definition]: crate::onnurmark::construct::definition
+//! [label_start_link]: crate::onnurmark::construct::label_start_link
+//! [label_end]: crate::onnurmark::construct::label_end
+//! [autolink_scheme_size_max]: crate::onnurmark::util::constant::AUTOLINK_SCHEME_SIZE_MAX
+//! [autolink_domain_size_max]: crate::onnurmark::util::constant::AUTOLINK_DOMAIN_SIZE_MAX
+//! [sanitize_uri]: crate::onnurmark::util::sanitize_uri
 //! [html_a]: https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element
 
 use crate::onnurmark::event::Name;

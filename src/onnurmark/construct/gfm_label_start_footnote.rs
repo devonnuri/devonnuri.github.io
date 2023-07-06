@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! Label start (footnote) forms with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! gfm_label_start_footnote ::= '[' '^'
@@ -32,8 +32,8 @@
 //! > See [`github/cmark-gfm#270`](https://github.com/github/cmark-gfm/issues/270)
 //! > for the related issue.
 //!
-//! [text]: crate::construct::text
-//! [label_end]: crate::construct::label_end
+//! [text]: crate::onnurmark::construct::text
+//! [label_end]: crate::onnurmark::construct::label_end
 //! [html_a]: https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element
 //! [html_sup]: https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-sub-and-sup-elements
 

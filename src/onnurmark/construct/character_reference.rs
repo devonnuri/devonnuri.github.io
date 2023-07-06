@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! Character references form with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! character_reference ::= '&' (numeric | named) ';'
@@ -61,11 +61,11 @@
 //! *   [`character-reference.js` in `micromark`](https://github.com/micromark/micromark/blob/main/packages/micromark-core-commonmark/dev/lib/character-reference.js)
 //! *   [*§ 2.5 Entity and numeric character references* in `CommonMark`](https://spec.commonmark.org/0.30/#entity-and-numeric-character-references)
 //!
-//! [string]: crate::construct::string
-//! [text]: crate::construct::text
-//! [character_escape]: crate::construct::character_reference
-//! [decode_numeric]: crate::util::character_reference::decode_numeric
-//! [character_references]: crate::util::constant::CHARACTER_REFERENCES
+//! [string]: crate::onnurmark::construct::string
+//! [text]: crate::onnurmark::construct::text
+//! [character_escape]: crate::onnurmark::construct::character_reference
+//! [decode_numeric]: crate::onnurmark::util::character_reference::decode_numeric
+//! [character_references]: crate::onnurmark::util::constant::CHARACTER_REFERENCES
 //! [html]: https://html.spec.whatwg.org/multipage/parsing.html#character-reference-state
 
 use crate::onnurmark::event::Name;

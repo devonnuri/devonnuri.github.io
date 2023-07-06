@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! List item forms with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! ; Restriction: if there is no space after the marker, the start must be followed by an `eol`.
@@ -52,7 +52,7 @@
 //! *   [*§ 5.2 List items* in `CommonMark`](https://spec.commonmark.org/0.30/#list-items)
 //! *   [*§ 5.3 Lists* in `CommonMark`](https://spec.commonmark.org/0.30/#lists)
 //!
-//! [document]: crate::construct::document
+//! [document]: crate::onnurmark::construct::document
 //! [html_li]: https://html.spec.whatwg.org/multipage/grouping-content.html#the-li-element
 //! [html_ol]: https://html.spec.whatwg.org/multipage/grouping-content.html#the-ol-element
 //! [html_ul]: https://html.spec.whatwg.org/multipage/grouping-content.html#the-ul-element

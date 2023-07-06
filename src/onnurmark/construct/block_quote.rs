@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! Block quotes form with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! block_quote_start ::= '>' [ space_or_tab ]
@@ -42,7 +42,7 @@
 //! *   [`block-quote.js` in `micromark`](https://github.com/micromark/micromark/blob/main/packages/micromark-core-commonmark/dev/lib/block-quote.js)
 //! *   [*§ 5.1 Block quotes* in `CommonMark`](https://spec.commonmark.org/0.30/#block-quotes)
 //!
-//! [document]: crate::construct::document
+//! [document]: crate::onnurmark::construct::document
 //! [html-blockquote]: https://html.spec.whatwg.org/multipage/grouping-content.html#the-blockquote-element
 //! [commonmark-block]: https://spec.commonmark.org/0.30/#phase-1-block-structure
 

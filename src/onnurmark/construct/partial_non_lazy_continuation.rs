@@ -5,10 +5,10 @@
 //! For example, [html (flow)][html_flow] and ([raw (flow)][raw_flow],
 //! [indented][code_indented]), stop when the next line is lazy.
 //!
-//! [flow]: crate::construct::flow
-//! [raw_flow]: crate::construct::raw_flow
-//! [code_indented]: crate::construct::code_indented
-//! [html_flow]: crate::construct::html_flow
+//! [flow]: crate::onnurmark::construct::flow
+//! [raw_flow]: crate::onnurmark::construct::raw_flow
+//! [code_indented]: crate::onnurmark::construct::code_indented
+//! [html_flow]: crate::onnurmark::construct::html_flow
 
 use crate::onnurmark::event::Name;
 use crate::onnurmark::state::{Name as StateName, State};

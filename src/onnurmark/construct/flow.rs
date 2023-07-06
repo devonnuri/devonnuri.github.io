@@ -10,13 +10,13 @@
 //!
 //! The constructs found in flow are:
 //!
-//! *   [Blank line][crate::construct::blank_line]
-//! *   [Code (indented)][crate::construct::code_indented]
-//! *   [Heading (atx)][crate::construct::heading_atx]
-//! *   [Heading (setext)][crate::construct::heading_setext]
-//! *   [HTML (flow)][crate::construct::html_flow]
-//! *   [Raw (flow)][crate::construct::raw_flow] (code (fenced), math (flow))
-//! *   [Thematic break][crate::construct::thematic_break]
+//! *   [Blank line][crate::onnurmark::construct::blank_line]
+//! *   [Code (indented)][crate::onnurmark::construct::code_indented]
+//! *   [Heading (atx)][crate::onnurmark::construct::heading_atx]
+//! *   [Heading (setext)][crate::onnurmark::construct::heading_setext]
+//! *   [HTML (flow)][crate::onnurmark::construct::html_flow]
+//! *   [Raw (flow)][crate::onnurmark::construct::raw_flow] (code (fenced), math (flow))
+//! *   [Thematic break][crate::onnurmark::construct::thematic_break]
 
 use crate::onnurmark::event::Name;
 use crate::onnurmark::state::{Name as StateName, State};

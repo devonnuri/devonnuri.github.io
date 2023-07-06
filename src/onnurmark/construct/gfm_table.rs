@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! Tables form with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! gfm_table ::= gfm_table_head 0*(eol gfm_table_body_row)
@@ -214,10 +214,10 @@
 //! *   [`micromark-extension-gfm-table`](https://github.com/micromark/micromark-extension-gfm-table)
 //! *   [*§ 4.10 Tables (extension)* in `GFM`](https://github.github.com/gfm/#tables-extension-)
 //!
-//! [flow]: crate::construct::flow
-//! [text]: crate::construct::text
-//! [attention]: crate::construct::attention
-//! [raw_text]: crate::construct::raw_text
+//! [flow]: crate::onnurmark::construct::flow
+//! [text]: crate::onnurmark::construct::text
+//! [attention]: crate::onnurmark::construct::attention
+//! [raw_text]: crate::onnurmark::construct::raw_text
 //! [html_table]: https://html.spec.whatwg.org/multipage/tables.html#the-table-element
 //! [html_tbody]: https://html.spec.whatwg.org/multipage/tables.html#the-tbody-element
 //! [html_td]: https://html.spec.whatwg.org/multipage/tables.html#the-td-element

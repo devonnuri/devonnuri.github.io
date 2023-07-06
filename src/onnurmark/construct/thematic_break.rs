@@ -3,7 +3,7 @@
 //! ## Grammar
 //!
 //! Thematic break forms with the following BNF
-//! (<small>see [construct][crate::construct] for character groups</small>):
+//! (<small>see [construct][crate::onnurmark::construct] for character groups</small>):
 //!
 //! ```bnf
 //! ; Restriction: all markers must be identical.
@@ -51,9 +51,9 @@
 //! *   [`thematic-break.js` in `micromark`](https://github.com/micromark/micromark/blob/main/packages/micromark-core-commonmark/dev/lib/thematic-break.js)
 //! *   [*§ 4.1 Thematic breaks* in `CommonMark`](https://spec.commonmark.org/0.30/#thematic-breaks)
 //!
-//! [flow]: crate::construct::flow
-//! [heading_setext]: crate::construct::heading_setext
-//! [list-item]: crate::construct::list_item
+//! [flow]: crate::onnurmark::construct::flow
+//! [heading_setext]: crate::onnurmark::construct::heading_setext
+//! [list-item]: crate::onnurmark::construct::list_item
 //! [html]: https://html.spec.whatwg.org/multipage/grouping-content.html#the-hr-element
 
 use crate::onnurmark::construct::partial_space_or_tab::{space_or_tab, space_or_tab_min_max};
