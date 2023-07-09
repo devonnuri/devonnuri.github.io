@@ -17,7 +17,7 @@
 //! ; Restriction: the marker in the closing fence sequence must match the
 //! ; marker in the opening fence sequence
 //! fence_close ::= sequence *space_or_tab
-//! sequence ::= 3*'`' | 3*'~' | 2*'$'
+//! sequence ::= 3*'`' | 2*'$'
 //! ; Restriction: the marker cannot occur in `info` if it is the `$` or `` ` `` character.
 //! info ::= 1*text
 //! ; Restriction: the marker cannot occur in `meta` if it is the `$` or `` ` `` character.
@@ -175,7 +175,7 @@ pub fn start(tokenizer: &mut Tokenizer) -> State {
             ));
         }
 
-        if matches!(tokenizer.current, Some(b'$' | b'`' | b'~')) {
+        if matches!(tokenizer.current, Some(b'$' | b'`')) {
             return State::Retry(StateName::RawFlowBeforeSequenceOpen);
         }
     }
@@ -207,7 +207,7 @@ pub fn before_sequence_open(tokenizer: &mut Tokenizer) -> State {
 
     // Code (fenced).
     if (tokenizer.parse_state.options.constructs.code_fenced
-        && matches!(tokenizer.current, Some(b'`' | b'~')))
+        && matches!(tokenizer.current, Some(b'`')))
         // Math (flow).
         || (tokenizer.parse_state.options.constructs.math_flow && tokenizer.current == Some(b'$'))
     {
