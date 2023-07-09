@@ -75,11 +75,11 @@ fn write_html(
         .replace(
             "{{onm_path}}",
             onm_path
-                .file_name()
-                .ok_or("Failed to extract file name from onm_path.")?
+                .strip_prefix("./")
+                .unwrap_or(onm_path)
                 .to_str()
                 .ok_or("Failed to convert file name to string.")?,
-        ); // remove './' from the path
+        );
 
     fs::write(directory_path.join("index.html"), final_html).unwrap();
 
