@@ -1,4 +1,5 @@
 mod onnurmark;
+mod util;
 
 use std::collections::HashMap;
 use std::fs;
@@ -111,14 +112,7 @@ fn main() {
     fs::create_dir("./_build").unwrap();
 
     // Copy all files from '_static' into '_build'
-    for entry in fs::read_dir("./_static").unwrap() {
-        let path = entry.unwrap().path();
-        fs::copy(
-            &path,
-            PathBuf::from("./_build/").join(&path.file_name().unwrap()),
-        )
-        .unwrap();
-    }
+    util::file::copy_dir_all("./_static", "./_build").unwrap();
 
     let mut category_map: HashMap<PathBuf, String> = HashMap::new();
 

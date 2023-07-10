@@ -4,7 +4,7 @@
 
 There was no static site generator that pleases my fussy palate. So, I made it based on [markdown-rs](https://github.com/wooorm/markdown-rs). The markup language is slightly different from CommonMark, so I named my own version of markdown as `onnurmark`. The name is reminiscent of both 'on your mark' and my nickname. The features that are (going to be) implemented are as follows:
 
-- [v] theorem box
+- [x] theorem box
 - [ ] multi-language support
 - [ ] internal link support (including auto language fallback)
 - [ ] prevent mathjax to load if there is no math expression
