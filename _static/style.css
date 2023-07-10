@@ -177,3 +177,37 @@ input {
     content: none;
     counter-increment: none;
 }
+
+.content .theorem .theorem-header {
+    border: 2px solid cornflowerblue;
+    display: inline-block;
+    position: relative;
+    top: 1rem;
+    left: 1rem;
+}
+
+.content .theorem .theorem-header .theorem-title {
+    display: inline-block;
+
+    background-color: cornflowerblue;
+    color: white;
+    padding: 0.1rem 0.4rem;
+    font-size: 1em;
+    font-weight: bold;
+    margin: 0;
+}
+
+.content .theorem .theorem-header .theorem-subtitle {
+    display: inline-block;
+
+    background-color: white;
+    color: black;
+    padding: 0.1rem 0.4rem;
+    font-size: 1em;
+    margin: 0;
+}
+
+.content .theorem .theorem-body {
+    border: 2px solid cornflowerblue;
+    padding: 1.25rem 0.5rem 0.5rem 0.5rem;
+}

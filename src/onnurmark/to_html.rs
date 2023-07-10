@@ -148,6 +148,8 @@ struct CompileContext<'a> {
     raw_text_inside: bool,
     /// Number of environment fences.
     environment_fences_count: Option<usize>,
+    /// Stack of name of environments
+    environment_name_stack: Vec<String>,
     /// Whether we are in image text.
     image_alt_inside: bool,
     /// Marker of character reference.
@@ -204,6 +206,7 @@ impl<'a> CompileContext<'a> {
             raw_flow_fences_count: None,
             raw_text_inside: false,
             environment_fences_count: None,
+            environment_name_stack: vec![],
             character_reference_marker: None,
             list_expect_first_marker: None,
             media_stack: vec![],
@@ -1026,17 +1029,25 @@ fn on_exit_environment_fence(context: &mut CompileContext) {
 /// Handle [`Exit`][Kind::Exit]:[`EnvironmentName`][Name::EnvironmentName].
 fn on_exit_environment_name(context: &mut CompileContext) {
     let name = context.resume();
-    context.push(" class=\"env-");
-    context.push(&name);
-    context.push("\"");
+    if name == "theorem" {
+        context.push(" class=\"theorem\"")
+    } else {
+        context.push(" class=\"env-");
+        context.push(&name);
+        context.push("\"");
+    }
+
+    context.environment_name_stack.push(name);
 }
 
 /// Handle [`Exit`][Kind::Exit]:[`EnvironmentOptions`][Name::EnvironmentOptions].
 fn on_exit_environment_options(context: &mut CompileContext) {
     let options = context.resume();
-    context.push(" data-options=\"");
-    context.push(&options);
-    context.push("\"");
+    if context.environment_name_stack.last() == Some(&"theorem".to_string()) {
+        context.push("><div class=\"theorem-header\"><span class=\"theorem-title\">Theorem </span><span class=\"theorem-subtitle\">");
+        context.push(&options);
+        context.push("</span></div><div class=\"theorem-body\"");
+    }
 }
 
 /// Handle [`Exit`][Kind::Exit]:[`Environment`][Name::Environment].
@@ -1044,6 +1055,7 @@ fn on_exit_environment(context: &mut CompileContext) {
     context.line_ending_if_needed();
     context.push("</div>");
     context.line_ending_if_needed();
+    context.environment_name_stack.pop();
 }
 
 /// Handle [`Exit`][Kind::Exit]:[`Definition`][Name::Definition].
