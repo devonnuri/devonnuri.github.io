@@ -88,8 +88,13 @@ fn write_html(
 
 fn main() {
     let mut directory_queue: Vec<(PathBuf, String)> = Vec::new();
+    let wiki_root = if cfg!(feature = "debug") {
+        fs::read_dir("./_wiki_debug")
+    } else {
+        fs::read_dir("./_wiki")
+    };
 
-    for entry in fs::read_dir("./_wiki").unwrap() {
+    for entry in wiki_root.unwrap() {
         let path = entry.unwrap().path();
         if path.is_dir() {
             directory_queue.push((
@@ -121,6 +126,8 @@ fn main() {
     while let Some((directory_pathbuf, language)) = directory_queue.pop() {
         let index_pathbuf = directory_pathbuf.join("_index.onm");
 
+        println!("index : {}", &index_pathbuf.to_str().unwrap());
+
         let index_content = fs::read_to_string(&index_pathbuf).unwrap();
         let (html, compile_result) = to_html(&index_content).unwrap();
 
@@ -130,8 +137,6 @@ fn main() {
         if index_entry_filename != language {
             index_entry_directory.push(&index_entry_filename);
         }
-
-        println!("index : {}", &index_pathbuf.to_str().unwrap());
 
         let parent_directory = directory_pathbuf.parent().unwrap();
         let index_category = category_map

@@ -146,6 +146,8 @@ struct CompileContext<'a> {
     raw_flow_fences_count: Option<usize>,
     /// Whether we are in code (text).
     raw_text_inside: bool,
+    /// Number of environment fences.
+    environment_fences_count: Option<usize>,
     /// Whether we are in image text.
     image_alt_inside: bool,
     /// Marker of character reference.
@@ -201,6 +203,7 @@ impl<'a> CompileContext<'a> {
             raw_flow_seen_data: None,
             raw_flow_fences_count: None,
             raw_text_inside: false,
+            environment_fences_count: None,
             character_reference_marker: None,
             list_expect_first_marker: None,
             media_stack: vec![],
@@ -384,6 +387,8 @@ fn enter(context: &mut CompileContext) {
         Name::CodeFencedFenceInfo
         | Name::CodeFencedFenceMeta
         | Name::MathFlowFenceMeta
+        | Name::EnvironmentName
+        | Name::EnvironmentOptions
         | Name::DefinitionLabelString
         | Name::DefinitionTitleString
         | Name::GfmFootnoteDefinitionPrefix
@@ -397,6 +402,7 @@ fn enter(context: &mut CompileContext) {
         Name::CodeIndented => on_enter_code_indented(context),
         Name::CodeFenced | Name::MathFlow => on_enter_raw_flow(context),
         Name::CodeText | Name::MathText => on_enter_raw_text(context),
+        Name::Environment => on_enter_environment(context),
         Name::Definition => on_enter_definition(context),
         Name::DefinitionDestinationString => on_enter_definition_destination_string(context),
         Name::Emphasis => on_enter_emphasis(context),
@@ -450,6 +456,10 @@ fn exit(context: &mut CompileContext) {
         Name::CodeFencedFenceInfo => on_exit_raw_flow_fence_info(context),
         Name::CodeFlowChunk | Name::MathFlowChunk => on_exit_raw_flow_chunk(context),
         Name::CodeText | Name::MathText => on_exit_raw_text(context),
+        Name::Environment => on_exit_environment(context),
+        Name::EnvironmentFence => on_exit_environment_fence(context),
+        Name::EnvironmentName => on_exit_environment_name(context),
+        Name::EnvironmentOptions => on_exit_environment_options(context),
         Name::Definition => on_exit_definition(context),
         Name::DefinitionDestinationString => on_exit_definition_destination_string(context),
         Name::DefinitionLabelString => on_exit_definition_label_string(context),
@@ -546,6 +556,13 @@ fn on_enter_raw_text(context: &mut CompileContext) {
         context.push(">");
     }
     context.buffer();
+}
+
+/// Handle [`Enter`][Kind::Enter]:[`Environment`][Name::Environment].
+fn on_enter_environment(context: &mut CompileContext) {
+    context.line_ending_if_needed();
+    context.push("<div");
+    context.environment_fences_count = Some(0);
 }
 
 /// Handle [`Enter`][Kind::Enter]:[`Definition`][Name::Definition].
@@ -990,6 +1007,43 @@ fn on_exit_data(context: &mut CompileContext) {
         .as_str(),
         context.encode_html,
     ));
+}
+
+/// Handle [`Exit`][Kind::Exit]:[`EnvironmentFence`][Name::EnvironmentFence].
+fn on_exit_environment_fence(context: &mut CompileContext) {
+    let count = context
+        .environment_fences_count
+        .expect("expected `environment_fences_count`");
+
+    if count == 0 {
+        context.push(">");
+        context.slurp_one_line_ending = true;
+    }
+
+    context.environment_fences_count = Some(count + 1);
+}
+
+/// Handle [`Exit`][Kind::Exit]:[`EnvironmentName`][Name::EnvironmentName].
+fn on_exit_environment_name(context: &mut CompileContext) {
+    let name = context.resume();
+    context.push(" class=\"env-");
+    context.push(&name);
+    context.push("\"");
+}
+
+/// Handle [`Exit`][Kind::Exit]:[`EnvironmentOptions`][Name::EnvironmentOptions].
+fn on_exit_environment_options(context: &mut CompileContext) {
+    let options = context.resume();
+    context.push(" data-options=\"");
+    context.push(&options);
+    context.push("\"");
+}
+
+/// Handle [`Exit`][Kind::Exit]:[`Environment`][Name::Environment].
+fn on_exit_environment(context: &mut CompileContext) {
+    context.line_ending_if_needed();
+    context.push("</div>");
+    context.line_ending_if_needed();
 }
 
 /// Handle [`Exit`][Kind::Exit]:[`Definition`][Name::Definition].

@@ -151,6 +151,7 @@ pub mod code_indented;
 pub mod content;
 pub mod definition;
 pub mod document;
+pub mod environment;
 pub mod flow;
 pub mod frontmatter;
 pub mod gfm_autolink_literal;

@@ -347,8 +347,6 @@ pub fn info(tokenizer: &mut Tokenizer) -> State {
         }
         Some(byte) => {
             // This looks like code (text) / math (text).
-            // Note: no reason to check for `~`, because 3 of them can‘t be
-            // used as strikethrough in text.
             if tokenizer.tokenize_state.marker == byte && matches!(byte, b'$' | b'`') {
                 tokenizer.concrete = false;
                 tokenizer.tokenize_state.marker = 0;
@@ -412,8 +410,6 @@ pub fn meta(tokenizer: &mut Tokenizer) -> State {
         }
         Some(byte) => {
             // This looks like code (text) / math (text).
-            // Note: no reason to check for `~`, because 3 of them can‘t be
-            // used as strikethrough in text.
             if tokenizer.tokenize_state.marker == byte && matches!(byte, b'$' | b'`') {
                 tokenizer.concrete = false;
                 tokenizer.tokenize_state.marker = 0;

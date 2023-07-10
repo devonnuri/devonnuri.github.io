@@ -41,7 +41,7 @@ pub fn start(tokenizer: &mut Tokenizer) -> State {
             );
             State::Retry(StateName::HeadingAtxStart)
         }
-        Some(b'$' | b'`' | b'~') => {
+        Some(b'$' | b'`') => {
             tokenizer.attempt(
                 State::Next(StateName::FlowAfter),
                 State::Next(StateName::FlowBeforeContent),

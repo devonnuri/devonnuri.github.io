@@ -1,6 +1,7 @@
 target/
 _build/
 _log/
+_wiki_debug/
 .vscode/
 Cargo.lock
 .DS_Store

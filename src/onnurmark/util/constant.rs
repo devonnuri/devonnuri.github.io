@@ -67,6 +67,13 @@ pub const CHARACTER_REFERENCE_NAMED_SIZE_MAX: usize = 31;
 /// [raw_flow]: crate::onnurmark::construct::raw_flow
 pub const CODE_FENCED_SEQUENCE_SIZE_MIN: usize = 3;
 
+/// The number of markers needed for [environment][environment_flow] to form.
+///
+/// Let's keep the number `3` just like [code (fenced)][raw_flow].
+///
+/// [environment_flow]: crate::onnurmark::construct::environment_flow
+pub const ENVIRONMENT_SEQUENCE_SIZE_MIN: usize = 3;
+
 /// The number of markers needed for [frontmatter][] to form.
 ///
 /// Like many things in markdown, the number is `3`.

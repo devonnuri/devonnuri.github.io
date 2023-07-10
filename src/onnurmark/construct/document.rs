@@ -98,10 +98,13 @@ pub fn container_existing_before(tokenizer: &mut Tokenizer) -> State {
         let container = &tokenizer.tokenize_state.document_container_stack
             [tokenizer.tokenize_state.document_continued];
 
-        let name = match container.kind {
-            Container::BlockQuote => StateName::BlockQuoteContStart,
-            Container::GfmFootnoteDefinition => StateName::GfmFootnoteDefinitionContStart,
-            Container::ListItem => StateName::ListItemContStart,
+        let state = match container.kind {
+            Container::BlockQuote => State::Retry(StateName::BlockQuoteContStart),
+            Container::GfmFootnoteDefinition => {
+                State::Retry(StateName::GfmFootnoteDefinitionContStart)
+            }
+            Container::ListItem => State::Retry(StateName::ListItemContStart),
+            Container::Environment => State::Nok,
         };
 
         tokenizer.attempt(
@@ -109,7 +112,7 @@ pub fn container_existing_before(tokenizer: &mut Tokenizer) -> State {
             State::Next(StateName::DocumentContainerNewBefore),
         );
 
-        State::Retry(name)
+        state
     }
     // Otherwise, check new containers.
     else {
@@ -226,14 +229,38 @@ pub fn container_new_before_not_list(tokenizer: &mut Tokenizer) -> State {
     State::Retry(StateName::GfmFootnoteDefinitionStart)
 }
 
-/// At new container, but not a block quote, list item, or footnote definition.
+/// At new container, but not a block quote, list item or footnote definition.
 //
 /// ```markdown
 /// > | a
 ///     ^
 /// ```
 pub fn container_new_before_not_footnote_definition(tokenizer: &mut Tokenizer) -> State {
-    // It wasn’t a new block quote, list item, or footnote definition.
+    // Environment?
+    // We replace the empty footnote definition container for this new
+    // environment one.
+    tokenizer.tokenize_state.document_container_stack
+        [tokenizer.tokenize_state.document_continued] = ContainerState {
+        kind: Container::Environment,
+        blank_initial: false,
+        size: 0,
+    };
+
+    tokenizer.attempt(
+        State::Next(StateName::DocumentContainerNewAfter),
+        State::Next(StateName::DocumentContainerNewBeforeNotEnvironment),
+    );
+    State::Retry(StateName::EnvironmentStart)
+}
+
+/// At new container, but not a block quote, list item, footnote definition or environment.
+//
+/// ```markdown
+/// > | a
+///     ^
+/// ```
+pub fn container_new_before_not_environment(tokenizer: &mut Tokenizer) -> State {
+    // It wasn’t a new block quote, list item, footnote definition or environment.
     // Swap the new container (in the middle) with the existing one (at the end).
     // Drop what was in the middle.
     tokenizer
@@ -491,11 +518,17 @@ fn exit_containers(tokenizer: &mut Tokenizer, phase: &Phase) -> Result<(), Strin
         let mut exits = Vec::with_capacity(stack_close.len());
 
         while !stack_close.is_empty() {
+            if stack_close.last().unwrap().kind == Container::Environment {
+                stack_close.pop();
+                continue;
+            }
             let container = stack_close.pop().unwrap();
+
             let name = match container.kind {
                 Container::BlockQuote => Name::BlockQuote,
                 Container::GfmFootnoteDefinition => Name::GfmFootnoteDefinition,
                 Container::ListItem => Name::ListItem,
+                Container::Environment => Name::Environment,
             };
 
             exits.push(Event {

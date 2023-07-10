@@ -35,6 +35,8 @@ pub enum Container {
     ListItem,
     /// [GFM: Footnote definition][crate::onnurmark::construct::gfm_footnote_definition].
     GfmFootnoteDefinition,
+    /// [Environment][crate::onnurmark::construct::environment].
+    Environment,
 }
 
 /// Info used to tokenize a container.
@@ -231,6 +233,10 @@ pub struct TokenizeState<'a> {
     /// List of defined GFM footnote definition identifiers.
     pub gfm_footnote_definitions: Vec<String>,
 
+    /// Whether an environment was opened.
+    /// Currently, not going to support nested environments.
+    pub environment_opened: bool,
+
     /// Whether to connect events.
     pub connect: bool,
     /// Marker.
@@ -347,6 +353,7 @@ impl<'a> Tokenizer<'a> {
                 document_at_first_paragraph_of_list_item: false,
                 definitions: vec![],
                 gfm_footnote_definitions: vec![],
+                environment_opened: false,
                 end: 0,
                 label_starts: vec![],
                 label_starts_loose: vec![],

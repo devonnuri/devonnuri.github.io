@@ -7,3 +7,4 @@ repository = "https://github.com/devonnuri/devonnuri.github.io/"
 
 [features]
 log=[]
+debug=[]

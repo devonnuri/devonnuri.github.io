@@ -554,6 +554,116 @@ pub enum Name {
     ///       ^ ^
     /// ```
     CodeTextSequence,
+    /// Whole environment.
+    ///
+    /// ## Info
+    ///
+    /// *   **Context**:
+    ///     [flow content][crate::onnurmark::construct::flow]
+    /// *   **Content model**:
+    ///     [`CodeFencedFence`][Name::CodeFencedFence],
+    ///     [`CodeFlowChunk`][Name::CodeFlowChunk],
+    ///     [`LineEnding`][Name::LineEnding],
+    ///     [`SpaceOrTab`][Name::SpaceOrTab]
+    /// *   **Construct**:
+    ///     [`raw_flow`][crate::onnurmark::construct::raw_flow]
+    ///
+    /// ## Example
+    ///
+    /// ````markdown
+    /// > | ```js
+    ///     ^^^^^
+    /// > | console.log(1)
+    ///     ^^^^^^^^^^^^^^
+    /// > | ```
+    ///     ^^^
+    /// ````
+    Environment,
+    /// An environment fence.
+    ///
+    /// ## Info
+    ///
+    /// *   **Context**:
+    ///     [`CodeFenced`][Name::CodeFenced]
+    /// *   **Content model**:
+    ///     [`CodeFencedFenceInfo`][Name::CodeFencedFenceInfo],
+    ///     [`CodeFencedFenceMeta`][Name::CodeFencedFenceMeta],
+    ///     [`CodeFencedFenceSequence`][Name::CodeFencedFenceSequence],
+    ///     [`SpaceOrTab`][Name::SpaceOrTab]
+    /// *   **Construct**:
+    ///     [`raw_flow`][crate::onnurmark::construct::raw_flow]
+    ///
+    /// ## Example
+    ///
+    /// ````markdown
+    /// > | ```js
+    ///     ^^^^^
+    ///   | console.log(1)
+    /// > | ```
+    ///     ^^^
+    /// ````
+    EnvironmentFence,
+    /// An environment name.
+    ///
+    /// ## Info
+    ///
+    /// *   **Context**:
+    ///     [`CodeFencedFence`][Name::CodeFencedFence]
+    /// *   **Content model**:
+    ///     [string content][crate::onnurmark::construct::string]
+    /// *   **Construct**:
+    ///     [`raw_flow`][crate::onnurmark::construct::raw_flow]
+    ///
+    /// ## Example
+    ///
+    /// ````markdown
+    /// > | ```js
+    ///        ^^
+    ///   | console.log(1)
+    ///   | ```
+    /// ````
+    EnvironmentName,
+    /// Options of an environment.
+    ///
+    /// ## Info
+    ///
+    /// *   **Context**:
+    ///     [`CodeFencedFence`][Name::CodeFencedFence]
+    /// *   **Content model**:
+    ///     [string content][crate::onnurmark::construct::string]
+    /// *   **Construct**:
+    ///     [`raw_flow`][crate::onnurmark::construct::raw_flow]
+    ///
+    /// ## Example
+    ///
+    /// ````markdown
+    /// > | ```js highlight="1"
+    ///           ^^^^^^^^^^^^^
+    ///   | console.log(1)
+    ///   | ```
+    /// ````
+    EnvironmentOptions,
+    /// An environment fence sequence.
+    ///
+    /// ## Info
+    ///
+    /// *   **Context**:
+    ///     [`CodeFencedFenceSequence`][Name::CodeFencedFenceSequence]
+    /// *   **Content model**:
+    ///     void
+    /// *   **Construct**:
+    ///     [`raw_flow`][crate::onnurmark::construct::raw_flow]
+    ///
+    /// ## Example
+    ///
+    /// ````markdown
+    /// > | ```js
+    ///     ^^^
+    ///   | console.log(1)
+    /// > | ```
+    ///     ^^^
+    /// ````
+    EnvironmentFenceSequence,
     /// Content.
     ///
     /// ## Info
