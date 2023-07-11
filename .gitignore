@@ -3,6 +3,7 @@ _build/
 _log/
 _wiki_debug/
 .vscode/
+.idea/
 Cargo.lock
 .DS_Store
 **/.DS_Store

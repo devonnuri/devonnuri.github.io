@@ -104,7 +104,7 @@ pub fn container_existing_before(tokenizer: &mut Tokenizer) -> State {
                 State::Retry(StateName::GfmFootnoteDefinitionContStart)
             }
             Container::ListItem => State::Retry(StateName::ListItemContStart),
-            Container::Environment => State::Nok,
+            Container::Environment => State::Ok,
         };
 
         tokenizer.attempt(
@@ -518,10 +518,6 @@ fn exit_containers(tokenizer: &mut Tokenizer, phase: &Phase) -> Result<(), Strin
         let mut exits = Vec::with_capacity(stack_close.len());
 
         while !stack_close.is_empty() {
-            if stack_close.last().unwrap().kind == Container::Environment {
-                stack_close.pop();
-                continue;
-            }
             let container = stack_close.pop().unwrap();
 
             let name = match container.kind {
@@ -537,6 +533,9 @@ fn exit_containers(tokenizer: &mut Tokenizer, phase: &Phase) -> Result<(), Strin
                 point: tokenizer.point.clone(),
                 link: None,
             });
+
+            #[cfg(feature = "log")]
+            println!("exitdoc: `{:?}`", name);
 
             let mut stack_index = tokenizer.stack.len();
             let mut found = false;

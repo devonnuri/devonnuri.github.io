@@ -1,7 +1,7 @@
 use crate::onnurmark::construct::partial_space_or_tab::space_or_tab;
 use crate::onnurmark::event::{Content, Link, Name};
 use crate::onnurmark::state::{Name as StateName, State};
-use crate::onnurmark::tokenizer::Tokenizer;
+use crate::onnurmark::tokenizer::{Container, ContainerState, Tokenizer};
 use crate::onnurmark::util::constant::{ENVIRONMENT_SEQUENCE_SIZE_MIN, TAB_SIZE};
 
 use super::partial_space_or_tab::space_or_tab_min_max;
@@ -292,7 +292,17 @@ pub fn sequence_close_after(tokenizer: &mut Tokenizer) -> State {
 ///        ^
 /// ```
 pub fn after(tokenizer: &mut Tokenizer) -> State {
-    tokenizer.exit(tokenizer.tokenize_state.token_1.clone());
+    // remove redundant closing environment
+    let closing_environment = tokenizer
+        .tokenize_state
+        .document_container_stack
+        .remove(tokenizer.tokenize_state.document_continued);
+    assert_eq!(
+        closing_environment.kind,
+        Container::Environment,
+        "expected the closing environment"
+    );
+
     tokenizer.tokenize_state.environment_opened = false;
     tokenizer.tokenize_state.marker = 0;
     tokenizer.tokenize_state.size = 0;
