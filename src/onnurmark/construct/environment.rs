@@ -1,7 +1,7 @@
 use crate::onnurmark::construct::partial_space_or_tab::space_or_tab;
 use crate::onnurmark::event::{Content, Link, Name};
 use crate::onnurmark::state::{Name as StateName, State};
-use crate::onnurmark::tokenizer::{Container, ContainerState, Tokenizer};
+use crate::onnurmark::tokenizer::{Container, Tokenizer};
 use crate::onnurmark::util::constant::{ENVIRONMENT_SEQUENCE_SIZE_MIN, TAB_SIZE};
 
 use super::partial_space_or_tab::space_or_tab_min_max;
@@ -303,6 +303,7 @@ pub fn after(tokenizer: &mut Tokenizer) -> State {
         "expected the closing environment"
     );
 
+    tokenizer.tokenize_state.document_continued -= 1;
     tokenizer.tokenize_state.environment_opened = false;
     tokenizer.tokenize_state.marker = 0;
     tokenizer.tokenize_state.size = 0;
@@ -313,7 +314,5 @@ pub fn after(tokenizer: &mut Tokenizer) -> State {
     tokenizer.tokenize_state.token_5 = Name::Data;
     // Feel free to interrupt.
     tokenizer.interrupt = false;
-    // No longer concrete.
-    tokenizer.concrete = false;
     State::Ok
 }

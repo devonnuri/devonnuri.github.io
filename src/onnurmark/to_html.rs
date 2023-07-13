@@ -1047,7 +1047,7 @@ fn on_exit_environment_options(context: &mut CompileContext) {
         let option_vec: Vec<_> = options.split('|').collect();
         context.push("><div class=\"theorem-header\"><span class=\"theorem-title\">");
         context.push(&option_vec.get(1).unwrap_or(&"Theorem"));
-        context.push("&nbsp;</span><span class=\"theorem-subtitle\">");
+        context.push("</span><span class=\"theorem-subtitle\">");
         context.push(&option_vec[0]);
         context.push("</span></div><div class=\"theorem-body\"");
     }
