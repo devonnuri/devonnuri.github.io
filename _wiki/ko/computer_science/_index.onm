@@ -13,4 +13,6 @@ updated_at: 2023-06-27 00:45:57
 # 하위 항목
 
 * [계산 이론](/ko/computation_theory/)
+    * [오토마타 이론](/ko/automata_theory/)
     * [계산 가능성 이론](/ko/computability_theory/)
+    * [복잡도 이론](/ko/complexity_theory/)
