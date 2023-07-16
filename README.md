@@ -13,3 +13,5 @@ There was no static site generator that pleases my fussy palate. So, I made it b
 - [ ] fix a bug of ignoring emphasis, strong, etc. if following character is non-ascii unicode (e.g. `*무엇*이`) due to byte-wise parser
 - [ ] render `` `asdf' `` to `‘asdf’`
 - [ ] syntax highlighting
+- [ ] table of contents
+- [ ] use local latex renderer instead of mathjax

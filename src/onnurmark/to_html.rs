@@ -898,7 +898,9 @@ fn on_exit_raw_flow_fence(context: &mut CompileContext) {
         .expect("expected `raw_flow_fences_count`");
 
     if count == 0 {
-        context.push(">");
+        if context.events[context.index].name != Name::MathFlowFence {
+            context.push(">");
+        }
         context.slurp_one_line_ending = true;
     }
 
@@ -1074,9 +1076,13 @@ fn on_exit_environment_options(context: &mut CompileContext) {
         let option_vec: Vec<_> = options.split('|').collect();
         context.push("><div class=\"theorem-header\"><span class=\"theorem-title\">");
         context.push(&option_vec.get(1).unwrap_or(&"Theorem"));
-        context.push("</span><span class=\"theorem-subtitle\">");
-        context.push(&option_vec[0]);
-        context.push("</span></div><div class=\"theorem-body\"");
+        context.push("</span>");
+        if !option_vec[0].is_empty() {
+            context.push("<span class=\"theorem-subtitle\">");
+            context.push(&option_vec[0]);
+            context.push("</span>");
+        }
+        context.push("</div><div class=\"theorem-body\"");
     }
 }
 
