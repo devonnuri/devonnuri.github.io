@@ -5,6 +5,8 @@ use std::collections::HashMap;
 use std::fs;
 use std::path::PathBuf;
 
+use toml;
+
 use crate::onnurmark::parser;
 use crate::onnurmark::to_html;
 use crate::onnurmark::{CompileResult, Constructs, Options, ParseOptions};
@@ -47,9 +49,12 @@ fn write_html(
     fs::create_dir_all(&directory_path)?;
 
     // Write html file from the template file
-    let template = fs::read_to_string("./template/entry_".to_string() + &language + ".html")?;
+    let template = fs::read_to_string("./template/entry.html")?;
 
-    let final_html = template
+    let locale_map: HashMap<String, String> =
+        toml::from_str(fs::read_to_string(format!("./locale/{}.toml", language))?.as_str())?;
+
+    let mut final_html = template
         .replace(
             "{{title}}",
             &frontmatter.get("title").unwrap_or(&"Untitled".to_string()),

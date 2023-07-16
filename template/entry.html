@@ -6,16 +6,6 @@
     <title>{{title}} - devonnuri.wiki</title>
     <link rel="stylesheet" href="/font.css">
     <link rel="stylesheet" href="/style.css">
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$']],
-                displayMath: [['$$', '$$']],
-            },
-        };
-    </script>
 </head>
 <body>
     <div id="container">
@@ -26,7 +16,7 @@
         </div>
 
         <div>
-            <input type="text" class="search-input" placeholder="Where do you want to wander?">
+            <input type="text" class="search-input" placeholder="{{!where_do_you_want_to_wander}}">
         </div>
         
         <div class="content">
@@ -36,22 +26,31 @@
             </div>
 
             <div class="details">
-                <p>Created at {{created_at}}, Updated at {{updated_at}}</p>
-                <p>Category : {{category}}</p>
+                <p>{{!created_at}} : {{created_at}}, {{!updated_at}} : {{updated_at}}</p>
+                <p>{{!category}} : {{category}}</p>
                 <p>
-                    <a href="#">Languages</a>
-                    <a href="https://github.com/devonnuri/devonnuri.github.io/edit/main/{{onm_path}}" target="_blank">Edit</a>
-                    <a href="https://github.com/devonnuri/devonnuri.github.io/commits/main/{{onm_path}}" target="_blank">History</a>
+                    <a href="#">{{!language}}</a>
+                    <a href="https://github.com/devonnuri/devonnuri.github.io/edit/main/{{onm_path}}" target="_blank">{{!edit}}</a>
+                    <a href="https://github.com/devonnuri/devonnuri.github.io/commits/main/{{onm_path}}" target="_blank">{{!history}}</a>
                 </p>
             </div>
 
             <div class="body-content">
                 {{content}}
             </div>
-            
+
             <div class="giscus"></div>
         </div>
     </div>
+    {{mathjax_script}}
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$']],
+                displayMath: [['$$', '$$']],
+            },
+        };
+    </script>
     <script src="https://giscus.app/client.js"
         data-repo="devonnuri/devonnuri.github.io"
         data-repo-id="R_kgDOJ0_Ryg"

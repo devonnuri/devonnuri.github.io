@@ -8,3 +8,6 @@ repository = "https://github.com/devonnuri/devonnuri.github.io/"
 [features]
 log=[]
 debug=[]
+
+[dependencies]
+toml="0.7.6"
