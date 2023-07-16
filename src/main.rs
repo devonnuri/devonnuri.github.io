@@ -67,6 +67,10 @@ fn write_html(
             &frontmatter.get("subtitle").unwrap_or(&"".to_string()),
         )
         .replace(
+            "{{summary}}",
+            &compile_result.summary,
+        )
+        .replace(
             "{{created_at}}",
             &frontmatter
                 .get("created_at")

@@ -189,6 +189,8 @@ struct CompileContext<'a> {
     frontmatter: HashMap<String, String>,
     /// Whether math expression is seen.
     contains_math: bool,
+    /// Summary for meta description
+    summary: String,
 }
 
 impl<'a> CompileContext<'a> {
@@ -228,6 +230,7 @@ impl<'a> CompileContext<'a> {
             index: 0,
             frontmatter: HashMap::new(),
             contains_math: false,
+            summary: String::new(),
             options,
         }
     }
@@ -271,6 +274,7 @@ impl<'a> CompileContext<'a> {
 pub struct CompileResult {
     pub frontmatter: HashMap<String, String>,
     pub contains_math: bool,
+    pub summary: String,
 }
 
 /// Turn events and bytes into a string of HTML and a frontmatter.
@@ -374,6 +378,7 @@ pub fn compile(
         CompileResult {
             frontmatter: context.frontmatter,
             contains_math: context.contains_math,
+            summary: context.summary,
         },
     )
 }
@@ -1018,14 +1023,20 @@ fn on_exit_drop(context: &mut CompileContext) {
 
 /// Handle [`Exit`][Kind::Exit]:{[`CodeTextData`][Name::CodeTextData],[`Data`][Name::Data],[`CharacterEscapeValue`][Name::CharacterEscapeValue]}.
 fn on_exit_data(context: &mut CompileContext) {
-    context.push(&encode(
-        Slice::from_position(
-            context.bytes,
-            &Position::from_exit_event(context.events, context.index),
-        )
-        .as_str(),
-        context.encode_html,
-    ));
+    let slice = Slice::from_position(
+        context.bytes,
+        &Position::from_exit_event(context.events, context.index),
+    );
+
+    if context.summary.len() < 160 {
+        context.summary.push_str(&slice.as_str());
+        if context.summary.chars().last().unwrap_or('\0') != ' ' {
+            context.summary.push(' ');
+        }
+        context.summary = context.summary.chars().take(160).collect::<String>();
+    }
+
+    context.push(&encode(slice.as_str(), context.encode_html));
 }
 
 /// Handle [`Exit`][Kind::Exit]:[`EnvironmentFence`][Name::EnvironmentFence].
