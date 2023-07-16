@@ -15,6 +15,8 @@ fn to_html(value: &str) -> Option<(String, CompileResult)> {
     let options = Options {
         parse: ParseOptions {
             constructs: Constructs {
+                math_flow: true,
+                math_text: true,
                 frontmatter: true,
                 gfm_footnote_definition: true,
                 gfm_label_start_footnote: true,
@@ -42,11 +44,12 @@ fn write_html(
     onm_path: &PathBuf,
     language: &String,
     html: String,
-    frontmatter: &HashMap<String, String>,
+    compile_result: &CompileResult,
     category: &String,
 ) -> Result<(), Box<dyn std::error::Error>> {
     // Make directories recursively in 'build' directory
     fs::create_dir_all(&directory_path)?;
+    let frontmatter = &compile_result.frontmatter;
 
     // Write html file from the template file
     let template = fs::read_to_string("./template/entry.html")?;
@@ -85,7 +88,19 @@ fn write_html(
                 .unwrap_or(onm_path)
                 .to_str()
                 .ok_or("Failed to convert file name to string.")?,
+        )
+        .replace(
+            "{{mathjax_script}}",
+            if compile_result.contains_math {
+                "<script id=\"MathJax-script\" async src=\"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js\"></script>"
+            } else {
+                ""
+            },
         );
+
+    for (key, value) in locale_map {
+        final_html = final_html.replace(&format!("{{{{!{}}}}}", key), &value);
+    }
 
     fs::write(directory_path.join("index.html"), final_html).unwrap();
 
@@ -168,7 +183,7 @@ fn main() {
             &index_pathbuf,
             &language,
             html,
-            &compile_result.frontmatter,
+            &compile_result,
             &index_category,
         )
         .unwrap();
@@ -203,7 +218,7 @@ fn main() {
                 &path,
                 &language,
                 html,
-                &compile_result.frontmatter,
+                &compile_result,
                 &current_category,
             )
             .unwrap();

@@ -187,6 +187,8 @@ struct CompileContext<'a> {
     index: usize,
     /// frontmatter
     frontmatter: HashMap<String, String>,
+    /// Whether math expression is seen.
+    contains_math: bool,
 }
 
 impl<'a> CompileContext<'a> {
@@ -225,6 +227,7 @@ impl<'a> CompileContext<'a> {
             buffers: vec![String::new()],
             index: 0,
             frontmatter: HashMap::new(),
+            contains_math: false,
             options,
         }
     }
@@ -267,6 +270,7 @@ impl<'a> CompileContext<'a> {
 #[derive(Debug)]
 pub struct CompileResult {
     pub frontmatter: HashMap<String, String>,
+    pub contains_math: bool,
 }
 
 /// Turn events and bytes into a string of HTML and a frontmatter.
@@ -369,6 +373,7 @@ pub fn compile(
             .into(),
         CompileResult {
             frontmatter: context.frontmatter,
+            contains_math: context.contains_math,
         },
     )
 }
@@ -539,12 +544,14 @@ fn on_enter_code_indented(context: &mut CompileContext) {
 fn on_enter_raw_flow(context: &mut CompileContext) {
     context.raw_flow_seen_data = Some(false);
     context.line_ending_if_needed();
-    // Note that no `>` is used, which is added later (due to info)
-    context.push("<pre><code");
     context.raw_flow_fences_count = Some(0);
 
     if context.events[context.index].name == Name::MathFlow {
-        context.push(" class=\"language-math math-display\"");
+        context.contains_math = true;
+        context.push("$$");
+    } else {
+        // Note that no `>` is used, which is added later (due to info)
+        context.push("<pre><code");
     }
 }
 
@@ -552,11 +559,12 @@ fn on_enter_raw_flow(context: &mut CompileContext) {
 fn on_enter_raw_text(context: &mut CompileContext) {
     context.raw_text_inside = true;
     if !context.image_alt_inside {
-        context.push("<code");
         if context.events[context.index].name == Name::MathText {
-            context.push(" class=\"language-math math-inline\"");
+            context.contains_math = true;
+            context.push("$");
+        } else {
+            context.push("<code>");
         }
-        context.push(">");
     }
     context.buffer();
 }
@@ -931,7 +939,11 @@ fn on_exit_raw_flow(context: &mut CompileContext) {
         context.line_ending_if_needed();
     }
 
-    context.push("</code></pre>");
+    if context.events[context.index].name == Name::MathFlow {
+        context.push("$$");
+    } else {
+        context.push("</code></pre>");
+    }
 
     if let Some(count) = context.raw_flow_fences_count.take() {
         if count < 2 {
@@ -989,7 +1001,11 @@ fn on_exit_raw_text(context: &mut CompileContext) {
     context.push(str::from_utf8(&bytes).unwrap());
 
     if !context.image_alt_inside {
-        context.push("</code>");
+        if context.events[context.index].name == Name::MathText {
+            context.push("$");
+        } else {
+            context.push("</code>");
+        }
     }
 }
 
