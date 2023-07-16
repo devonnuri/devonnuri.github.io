@@ -43,11 +43,11 @@ fn write_html(
     frontmatter: &HashMap<String, String>,
     category: &String,
 ) -> Result<(), Box<dyn std::error::Error>> {
-    // Make directories recursively in '_build' directory
+    // Make directories recursively in 'build' directory
     fs::create_dir_all(&directory_path)?;
 
     // Write html file from the template file
-    let template = fs::read_to_string("./_template/entry_".to_string() + &language + ".html")?;
+    let template = fs::read_to_string("./template/entry_".to_string() + &language + ".html")?;
 
     let final_html = template
         .replace(
@@ -90,9 +90,9 @@ fn write_html(
 fn main() {
     let mut directory_queue: Vec<(PathBuf, String)> = Vec::new();
     let wiki_root = if cfg!(feature = "debug") {
-        fs::read_dir("./_wiki_debug")
+        fs::read_dir("./wiki_debug")
     } else {
-        fs::read_dir("./_wiki")
+        fs::read_dir("./wiki")
     };
 
     for entry in wiki_root.unwrap() {
@@ -105,14 +105,14 @@ fn main() {
         }
     }
 
-    // Create '_build' directory if not exists, and clear it.
-    if fs::metadata("./_build").is_ok() {
-        fs::remove_dir_all("./_build").unwrap();
+    // Create 'build' directory if not exists, and clear it.
+    if fs::metadata("./build").is_ok() {
+        fs::remove_dir_all("./build").unwrap();
     }
-    fs::create_dir("./_build").unwrap();
+    fs::create_dir("./build").unwrap();
 
-    // Copy all files from '_static' into '_build'
-    util::file::copy_dir_all("./_static", "./_build").unwrap();
+    // Copy all files from 'static' into 'build'
+    util::file::copy_dir_all("./static", "./build").unwrap();
 
     let mut category_map: HashMap<PathBuf, String> = HashMap::new();
 
@@ -126,7 +126,7 @@ fn main() {
         let (html, compile_result) = to_html(&index_content).unwrap();
 
         let index_entry_filename = directory_pathbuf.file_name().unwrap().to_str().unwrap();
-        let mut index_entry_directory = PathBuf::from("./_build/");
+        let mut index_entry_directory = PathBuf::from("./build/");
         index_entry_directory.push(&language);
         if index_entry_filename != language {
             index_entry_directory.push(&index_entry_filename);
@@ -187,7 +187,7 @@ fn main() {
 
             println!("onm : {}", path.to_str().unwrap());
             let entry_filename = path.file_stem().unwrap().to_str().unwrap();
-            let entry_directory = PathBuf::from("./_build/")
+            let entry_directory = PathBuf::from("./build/")
                 .join(&language)
                 .join(entry_filename);
 

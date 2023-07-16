@@ -1,7 +1,7 @@
 target/
-_build/
-_log/
-_wiki_debug/
+build/
+log/
+wiki_debug/
 .vscode/
 .idea/
 Cargo.lock
