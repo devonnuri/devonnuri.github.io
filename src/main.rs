@@ -17,6 +17,8 @@ fn to_html(value: &str) -> Option<(String, CompileResult)> {
             constructs: Constructs {
                 math_flow: true,
                 math_text: true,
+                html_flow: true,
+                html_text: true,
                 frontmatter: true,
                 gfm_footnote_definition: true,
                 gfm_label_start_footnote: true,
@@ -47,8 +49,6 @@ fn write_html(
     compile_result: &CompileResult,
     category: &String,
 ) -> Result<(), Box<dyn std::error::Error>> {
-    // Make directories recursively in 'build' directory
-    fs::create_dir_all(&directory_path)?;
     let frontmatter = &compile_result.frontmatter;
 
     // Write html file from the template file
@@ -96,7 +96,8 @@ fn write_html(
         .replace(
             "{{mathjax_script}}",
             if compile_result.contains_math {
-                "<script id=\"MathJax-script\" async src=\"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js\"></script>"
+                "<script id=\"MathJax-script\" async src=\"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js\"></script>\n\
+                <script>window.MathJax={tex:{inlineMath:[['$','$']],displayMath:[['$$','$$']]}};</script>"
             } else {
                 ""
             },
@@ -156,6 +157,8 @@ fn main() {
             index_entry_directory.push(&index_entry_filename);
         }
 
+        fs::create_dir_all(&index_entry_directory).unwrap();
+
         let parent_directory = directory_pathbuf.parent().unwrap();
         let index_category = category_map
             .get(parent_directory)
@@ -202,18 +205,24 @@ fn main() {
                 directory_queue.push((path, language.clone()));
                 continue;
             }
-            if path.extension().unwrap() != "onm" {
-                continue;
-            }
+
             if path.file_name().unwrap() == "_index.onm" {
                 continue;
             }
 
-            println!("onm : {}", path.to_str().unwrap());
+            if path.extension().unwrap() != "onm" {
+                println!("file : {}", path.to_str().unwrap());
+                fs::copy(&path, index_entry_directory.join(path.file_name().unwrap())).unwrap();
+                continue;
+            }
+
             let entry_filename = path.file_stem().unwrap().to_str().unwrap();
             let entry_directory = PathBuf::from("./build/")
                 .join(&language)
                 .join(entry_filename);
+
+            println!("onm : {}", path.to_str().unwrap());
+            fs::create_dir_all(&entry_directory).unwrap();
 
             let content = fs::read_to_string(&path).unwrap();
             let (html, compile_result) = to_html(&content).unwrap();

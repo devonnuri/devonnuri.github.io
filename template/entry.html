@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property='description' content='{{summary}}'>
+    <meta name="description" content="{{summary}}">
     <title>{{title}} - devonnuri.wiki</title>
     <link rel="stylesheet" href="/font.css">
     <link rel="stylesheet" href="/style.css">
@@ -45,8 +45,8 @@
         </div>
     </div>
     {{mathjax_script}}
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
+    <script src="/highlight.min.js" defer></script>
+    <script>window.onload = function () { hljs.highlightAll(); }</script>
     <script src="https://giscus.app/client.js"
         data-repo="devonnuri/devonnuri.github.io"
         data-repo-id="R_kgDOJ0_Ryg"
