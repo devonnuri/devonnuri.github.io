@@ -212,3 +212,8 @@ input {
     border: 1px solid #0092C8;
     padding: 1rem 0.5rem 0.5rem 0.5rem;
 }
+
+.content pre > code {
+    font-family: 'Jetbrains Mono', monospace;
+    font-size: 0.9em;
+}

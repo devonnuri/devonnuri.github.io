@@ -7,6 +7,7 @@
     <title>{{title}} - devonnuri.wiki</title>
     <link rel="stylesheet" href="/font.css">
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/highlight.min.css">
 </head>
 <body>
     <div id="container">
@@ -44,14 +45,8 @@
         </div>
     </div>
     {{mathjax_script}}
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$']],
-                displayMath: [['$$', '$$']],
-            },
-        };
-    </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
     <script src="https://giscus.app/client.js"
         data-repo="devonnuri/devonnuri.github.io"
         data-repo-id="R_kgDOJ0_Ryg"
