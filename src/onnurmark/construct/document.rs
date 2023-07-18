@@ -133,11 +133,16 @@ pub fn container_existing_after(tokenizer: &mut Tokenizer) -> State {
     if container.kind == Container::Environment {
         tokenizer.tokenize_state.document_continued =
             tokenizer.tokenize_state.environment_opened as usize;
-        State::Retry(StateName::DocumentContainerNewBefore)
-    } else {
-        tokenizer.tokenize_state.document_continued += 1;
-        State::Retry(StateName::DocumentContainerExistingBefore)
+
+        return State::Retry(if tokenizer.tokenize_state.environment_opened {
+            StateName::DocumentContainerExistingBefore
+        } else {
+            StateName::DocumentContainerNewBefore
+        });
     }
+
+    tokenizer.tokenize_state.document_continued += 1;
+    State::Retry(StateName::DocumentContainerExistingBefore)
 }
 
 /// At new containers.
