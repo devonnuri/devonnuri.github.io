@@ -203,38 +203,7 @@ fn main() {
             let path = dir_entry.unwrap().path();
             if path.is_dir() {
                 directory_queue.push((path, language.clone()));
-                continue;
             }
-
-            if path.file_name().unwrap() == "_index.onm" {
-                continue;
-            }
-
-            if path.extension().unwrap() != "onm" {
-                println!("file : {}", path.to_str().unwrap());
-                fs::copy(&path, index_entry_directory.join(path.file_name().unwrap())).unwrap();
-                continue;
-            }
-
-            let entry_filename = path.file_stem().unwrap().to_str().unwrap();
-            let entry_directory = PathBuf::from("./build/")
-                .join(&language)
-                .join(entry_filename);
-
-            println!("onm : {}", path.to_str().unwrap());
-            fs::create_dir_all(&entry_directory).unwrap();
-
-            let content = fs::read_to_string(&path).unwrap();
-            let (html, compile_result) = to_html(&content).unwrap();
-            write_html(
-                &entry_directory,
-                &path,
-                &language,
-                html,
-                &compile_result,
-                &current_category,
-            )
-            .unwrap();
         }
     }
 }

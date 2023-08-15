@@ -15,3 +15,4 @@ There was no static site generator that pleases my fussy palate. So, I made it b
 - [x] syntax highlighting
 - [ ] table of contents
 - [ ] use local latex renderer instead of mathjax
+- [ ] search feature
