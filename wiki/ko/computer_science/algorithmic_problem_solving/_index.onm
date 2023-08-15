@@ -10,7 +10,7 @@ updated_at: 2023-07-19 01:52:50
 
 # 하위 문서
 
-* [완전탐색과 백트래킹](/ko/exhaustive_search_and_backtracking/)
+* [백트래킹](/ko/backtracking/)
 * [분할 정복](/ko/divide-and-conquer/)
     * [이분 탐색](/ko/binary_search/)
         * [병렬 이분 탐색](/ko/parallel_binary_search/)
