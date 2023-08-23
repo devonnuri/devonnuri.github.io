@@ -17,3 +17,4 @@ There was no static site generator that pleases my fussy palate. So, I made it b
 - [ ] use local latex renderer instead of mathjax
 - [ ] search feature
 - [ ] make links that point to non-existing document red
+- [ ] partial rendering for test

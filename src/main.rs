@@ -203,6 +203,12 @@ fn main() {
             let path = dir_entry.unwrap().path();
             if path.is_dir() {
                 directory_queue.push((path, language.clone()));
+            } else if path.extension().unwrap() != "onm" {
+                fs::copy(
+                    path.clone(),
+                    index_entry_directory.join(path.file_name().unwrap()),
+                )
+                .unwrap();
             }
         }
     }
