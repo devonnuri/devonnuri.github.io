@@ -16,3 +16,4 @@ There was no static site generator that pleases my fussy palate. So, I made it b
 - [ ] table of contents
 - [ ] use local latex renderer instead of mathjax
 - [ ] search feature
+- [ ] make links that point to non-existing document red
