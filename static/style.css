@@ -19,9 +19,9 @@ input {
     min-height: 100vh;
 }
 
-@media screen and (max-width: 48rem) {
+@media screen and (max-width: 52rem) {
     body {
-        padding: 0 0.5rem;
+        padding: 0 0.7rem;
     }
 
     #container {
@@ -79,6 +79,7 @@ input {
 }
 
 .content blockquote {
+    margin-left: 1rem;
     padding: 0 0 0 1em;
     border-left: 0.2rem solid dimgray;
 }
