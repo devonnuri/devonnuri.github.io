@@ -1,0 +1,124 @@
+---
+title: 복합과거 (le passé composé)
+created_at: 2023-10-03 16:23:31
+updated_at: 2023-10-03 16:23:31
+---
+
+프랑스어에서 과거를 말할 때 복합과거(passé composé)와 반과거(imparfait)가 있다. 단순과거는 문학이나 신문에서만 사용되고, 대과거는 상대적인 시제이기 때문에 사실 복합과거와 반과거만 제대로 할 줄 알면 과거시제는 다 배웠다고 해도 과언이 아니다. 그럼 언제 복합과거를 사용해야하고 반과거를 사용해야할까? 오늘 시간에는 복합과거를 어떻게 만드는지 또 어떻게 사용해야 하는지 알아볼 것이다.
+
+한편, 복합과거를 사용하다보면 반드시 **과거분사의 성수일치**를 빼놓으면 안된다. 어떤 경우에 성수일치를 하는지 이번 기회에 확실히 정리하고 DELF/DALF 시험 작문에서 실수하는 일이 없도록 하자.
+
+# 형태
+
+복합과거는 조동사(être / avoir)와 과거분사를 결합하여 만든다.
+
+<table style="text-align:center;"><!--[-->
+	<tbody>
+		<tr>
+			<td rowspan="2">주어</td>
+			<td rowspan="2">+</td>
+			<td style="text-align:center;">avoir</td>
+			<td rowspan="2">+</td>
+			<td rowspan="2">과거 분사</td>
+		</tr>
+		<tr>
+			<td style="text-align:center;">être</td>
+		</tr>
+	</tbody>
+</table>
+
+그렇다면 어떤 동사들이 각각 조동사 être, avoir 와 결합하여 복합과거를 만들까?
+
+1. 왕래발착 동사
+
+	> aller, entrer, passer par, monter, tomber, arriver, naitre, venir, sortir, retourner, decendre, rester, parir, mourir
+
+
+	* '다시'를 의미하는 접두사 r(e)를 붙인 동사도 이 규칙을 따른다.
+
+		> Je **suis rentré** à deux heures du matin.
+		> 
+		> 나는 새벽 2시에 집에 도착했다.
+
+
+~~~theorem |주의
+단, 주의할 점은, 위의 14개 동사가 모두 **자동사로 쓰여야만 한다는 전제조건**이 있다. 즉, 위의 언급한 동사들이 목적어를 취하는 타동사가 되버리면 avoir를 써서 복합과거를 만들어야 한다.
+
+> Il **est entré** sur la scène internationale
+> 
+> 그는 국제무대에 등장했다. (entrer)
+
+> Il y a deux heures, j'**ai entré** un profil dans le service Partenaires.
+> 
+> 2시간전, 나는 프로필자료를 Partenaires 서비스에 입력했다. (entrer qqc)
+~~~
+
+
+2. 대명동사
+
+> Elles **se sont promenées**.
+> 그녀는 산책을 했다.
+
+## 과거분사
+
+### 형태
+
+ * 1군 동사 : -é
+
+	regarder → regardé, aimer → aimé, ⋯
+
+ * 2군 동사 : -i
+
+    choisir → choisi, finir → fini, ⋯
+
+ * 3군동사 : -u, -s, -t 또는 불규칙
+
+    rendre → rendu, prendre → pris, peindre → peint, avoir → eu, ⋯
+
+### 과거분사의 성수일치
+
+복합과거에서 과거분사의 성수일치를 시켜주는 경우는 다음과 같다.
+
+1. 조동사 être를 사용한 복합과거
+
+    > Elle est parti**e** en vacances à Paris.
+    > 
+    > ⇒ partir는 왕래발착 동사이므로
+
+    > Ils sont parti**s** en vacances à Paris.
+    > 
+    > ⇒ partir 에 s를 붙여 수일치
+
+2. verbes essentiellement pronominaux
+
+	대명동사 중 verbes essentiellement pronominaux(대명동사로만 존재해야하는 동사 또는 대명동사일때 뜻이 바뀌는 동사들)는 무조건 성수일치를 한다.
+
+	> Marie s'est absenté**e** plus d'un mois.
+	> 
+	> ⇒ s'absenter 는 absenter 단독으로 쓰지 않는 동사다.
+	
+	> Elle s'est aperçu**e** que deux élèves n'ont pas compris.
+	> 
+	> ⇒ s'apercevoir (알아차리다), apercevoir (보다)
+
+3. 대명동사 + COD
+
+	나머지 대명동사는 COD가 앞에 올 때 성수일치를 하고, COD가 뒤에 오거나 COI를 갖을 때에는 성수일치를 하지 않는다.
+
+	> Elle s'est lavé**e**.
+	> 
+	> ⇒ laver qqn 으로 se 는 COD, 따라서 성수일치
+	
+	> Elle s'est lavé les mains.
+	> 
+	> ⇒ COD인 les mains이 동사 뒤에 왔으므로, 성수일치 X
+
+	> Elles se sont parlé.
+	> 
+	> ⇒ parler à qqn 으로 se 는 COI, 따라서 성수일치 안함
+	
+	
+
+5. (목적어) + que + (주어) + (avoir 복합과거)
+
+# 활용

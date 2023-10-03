@@ -1,7 +1,7 @@
 ---
 title: 직설법
 created_at: 2023-08-15 20:51:50
-updated_at: 2023-08-15 20:51:50
+updated_at: 2023-10-03 16:23:31
 ---
 
 # 직설법
@@ -10,57 +10,15 @@ updated_at: 2023-08-15 20:51:50
 
 # 직설법의 시제
 
+![프랑스어의 8 시제](temps.svg)
+
 직설법의 시제는 다음의 8가지이다.
 
-1. 현재 (le présent)
-1. 복합과거 (le passé composé)
+1. [현재 (le présent)](/ko/french_present/)
+1. [복합과거 (le passé composé)](/ko/french_passe_compose/)
 1. 반과거 (l'imparfait)
 1. 대과거 (le plus-que-parfait)
 1. 단순과거 (le passé simple)
 1. 전과거 (le passé antérieur)
 1. 단순미래 (le futur simple)
 1. 전미래 (le futur antérieur)
-
-## 현재 (le présent)
-
-### 형태
-
-동사는 직설법 현재형을 사용한다.
-
-### 활용
-
-1. 현재 상황을 묘사할 때
-
-    > Qu'est-ce que vous **écoutez**? — J'**écoute** de la musique.
-    >
-    > 무엇을 듣나요? — 저는 음악을 들어요.
-
-1. 습관이나 규칙적인 행동
-
-    이 때는 습관이나 반복을 나타내는 표현을 동반한다.
-
-    > Il se **lève** six heures *tous les jours*.
-    >
-    > 그는 매일 6시에 일어난다.
-
-    > *D'habitude*, Je **mange** au restaurant, chez Céleste.
-    >
-    > 평소에 나는 셀레스트네 식당에서 밥을 먹는다.
-
-1. 언제 끝날지 모르는 지속되는 상황
-
-1. 일반적인 사실
-
-1. 역사적 사실
-
-1. 가까운 미래나 먼 미래에 일어난 행위
-
-    이 때는 구체적인 미래를 나타내는 표현이 동반된다.
-
-    > Nous **décollons** *dans une heure*.
-    > 
-    > 우리는 1시간 후에 이륙할 겁니다.
-
-    > On s'**installe** en Suède *l'année prochaine*.
-    >
-    > 우리는 내년에 스웨덴에 정착할거야.
