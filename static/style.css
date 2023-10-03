@@ -226,3 +226,14 @@ input {
 .content p:has(> img) {
     text-align: center;
 }
+
+.content table {
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.content th, .content td {
+    border: 1px solid black;
+    padding: 0.5rem;
+}

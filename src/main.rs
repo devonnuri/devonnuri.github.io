@@ -5,6 +5,7 @@ use std::collections::HashMap;
 use std::fs;
 use std::path::PathBuf;
 
+use onnurmark::CompileOptions;
 use toml;
 
 use crate::onnurmark::parser;
@@ -28,6 +29,10 @@ fn to_html(value: &str) -> Option<(String, CompileResult)> {
                 ..Constructs::default()
             },
             ..ParseOptions::default()
+        },
+        compile: CompileOptions {
+            allow_dangerous_html: true,
+            ..CompileOptions::default()
         },
         ..Options::default()
     };
